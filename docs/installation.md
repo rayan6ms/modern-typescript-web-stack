@@ -7,7 +7,7 @@ Install both skills, then invoke kickoff in the target website workspace. Skill 
 With Bun and Git installed, run from your website workspace, replacing the source path with the unpacked product directory:
 
 ```sh
-bunx --bun skills@1.7.1 add /path/to/modern-typescript-web-stack --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --agent codex --copy
+bun x --bun skills@1.7.1 add /path/to/modern-typescript-web-stack --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --agent codex --copy
 ```
 
 To inspect discovery first, append `--list` instead of the selected skill/agent options. Add `--yes` for unattended installation after choosing the source and scope. Project installation is the default; `--global` makes skills available across projects. Replace `codex` with another agent supported by the CLI, or omit `--agent` for its picker. The documented CLI version runs under Bun; the package does not require Node merely because the CLI's metadata mentions it.
@@ -17,7 +17,7 @@ To inspect discovery first, append `--list` instead of the selected skill/agent 
 Run from your website workspace to install the tagged release:
 
 ```sh
-bunx --bun skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.0 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --agent codex --copy
+bun x --bun skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.0 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --agent codex --copy
 ```
 
 The [repository](https://github.com/rayan6ms/modern-typescript-web-stack) and [releases](https://github.com/rayan6ms/modern-typescript-web-stack/releases) provide the guide, downloads, and changelog. Keep the CLI version pinned separately from the product version. To follow development instead, use the repository URL without `/tree/v0.1.0`.
@@ -28,7 +28,7 @@ Codex users can alternatively ask `$skill-installer` to install both skill direc
 
 Copy the complete `skills/modern-typescript-web-stack/` and `skills/modern-typescript-web-stack-kickoff/` directories into your agent's configured skill directory, preserving their names, references, assets, and `SOURCE.json`. Copy both into the same parent directory so kickoff's relative link reaches its selected profile. No symlink or source checkout is required for continued use. Agents without skill discovery can read the kickoff `SKILL.md` directly.
 
-The root `plugin.json` is a skills-only portable plugin manifest; its onboarding path selects kickoff. Use a compatible plugin host's documented local installation flow. Plugin UI/onboarding has not been exercised here; standalone Skills CLI installation is the tested route.
+The root `plugin.json` is a skills-only portable plugin manifest; its onboarding path selects kickoff. Codex CLI 0.161.0 discovers this package through a configured local marketplace. Follow the [official plugin packaging and local installation instructions](https://developers.openai.com/plugins/build/plugins) to make it available in a compatible host. Desktop plugin installation and UI onboarding have not been exercised here; standalone Skills CLI installation is the tested route.
 
 ## Start a website
 
@@ -45,10 +45,10 @@ Your agent needs filesystem/command access and network access for required depen
 
 Review a release before updating. Keep accepted application decisions and local policy edits; refreshing an installed skill does not automatically replace the policy snapshot inside an existing website. Apply policy changes there as scoped reviewed work.
 
-For a pinned installation, review the next release, replace `v0.1.0` with its tag, and rerun the install command. `bunx --bun skills@1.7.1 update` checks tracked sources; it does not select a newer release tag for you. Retain the source/version information written by the installer. For a local archive, reinstall from the chosen new release according to the CLI's current overwrite behavior, preserving local customizations first. Remove just this product with:
+For a pinned installation, review the next release, replace `v0.1.0` with its tag, and rerun the install command. `bun x --bun skills@1.7.1 update` checks tracked sources; it does not select a newer release tag for you. Retain the source/version information written by the installer. For a local archive, reinstall from the chosen new release according to the CLI's current overwrite behavior, preserving local customizations first. Remove just this product with:
 
 ```sh
-bunx --bun skills@1.7.1 remove modern-typescript-web-stack modern-typescript-web-stack-kickoff --agent codex
+bun x --bun skills@1.7.1 remove modern-typescript-web-stack modern-typescript-web-stack-kickoff --agent codex
 ```
 
 Use `--global` when removing a global installation. Do not use `--all` to remove one product.

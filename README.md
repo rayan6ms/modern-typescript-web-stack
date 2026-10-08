@@ -31,7 +31,7 @@ This is a guide, not a framework starter. Versions move; follow the linked proje
 This product includes two skills: **modern-typescript-web-stack** for ongoing development and **modern-typescript-web-stack-kickoff** for preparing a new website. With Bun and Git available, install both from your website workspace:
 
 ```sh
-bunx --bun skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.0 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --agent codex --copy
+bun x --bun skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.0 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --agent codex --copy
 ```
 
 Choose your agent when prompted or replace `codex` with its supported identifier. Installation defaults to the current project; add `--global` to make the skills available across projects. See [installation and updates](docs/installation.md) for GitHub installation, prerequisites, manual copying, and other agents. Installation registers guidance; website dependencies are installed by the agent during kickoff.
