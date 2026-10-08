@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "modern-typescript-web-stack",
   "version": "0.1.0",
-  "description": "Modern TypeScript Web Stack guidance and verified initial project setup",
+  "description": "TypeScript web stack guidance and project setup for coding agents",
   "license": "MIT",
   "extensions": {
     "com.openai": {
