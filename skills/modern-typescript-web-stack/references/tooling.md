@@ -6,6 +6,8 @@ Use for dependency, lint/format, build, workspace, CI toolchain, or native Bun A
 
 DEFAULT: apply Ultracite's `core` and relevant framework presets to the selected engine, which still lints/formats. Pin compatible versions, expose local check/fix scripts, run non-mutating checks in CI, and verify Bun execution. Merge generated agent rules with project policy; select supported editor/agent hooks deliberately and review fixes. Retain suitable configs for scoped fixes and separate TypeScript checks.
 
+For new setup, explicitly pass `--pm bun --linter biome` to the pinned Ultracite initializer, or `--linter oxlint` when that engine is selected. Unspecified noninteractive setup currently defaults to Oxlint/Oxfmt. Oxlint JS plugins require that engine; do not add them to Biome configuration.
+
 For maintained repositories, use Renovate for reviewed update PRs, or suitable Dependabot/existing automation. Review lockfiles/changelogs and validate coupled toolchain upgrades.
 
 ## Versions and compatibility

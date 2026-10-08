@@ -83,7 +83,7 @@ The browser and server share schemas, not database models. A route validates unt
 | SQL access | Drizzle ORM plus SQL migrations | Typed queries with a thin abstraction | Complex SQL or performance hot paths should use reviewed SQL directly |
 | Validation | Zod through Standard Schema for new general-purpose/shared contracts | Runtime validation at every trust boundary | Valibot for browser bundle/integration needs; Effect Schema for Effect services; native Convex validators in its profile; retain suitable existing schemas |
 
-As checked on 2026-09-15, TanStack Start is documented as a release candidate. Treat it as a deliberate choice: pin it, run upgrade tests, and keep the hosting adapter replaceable. Its server functions are not a reason to expose an internal database shape.
+As checked on 2026-10-08, TanStack Start is documented as a release candidate. Treat it as a deliberate choice: pin it, run upgrade tests, and keep the hosting adapter replaceable. Its server functions are not a reason to expose an internal database shape.
 
 ### React versus other frontends
 
@@ -185,7 +185,7 @@ Validate Drizzle migrations in CI and apply them through a controlled deployment
 
 Distinguish **libSQL**, the older SQLite-derived engine, from **Turso Database**, the newer engine written in Rust, and from **Turso Cloud**, the managed service. Their SDKs and behavior differ. The newer engine supports MVCC with `BEGIN CONCURRENT`; its [0.8 release](https://turso.tech/blog/turso-0.8.0) improves concurrent writes. SQLite's traditional single-writer limitation should not be applied to every Turso deployment. As checked on 2026-10-07, the [project FAQ](https://github.com/tursodatabase/turso#faq) reports production use but a pre-1.0 engine with compatibility gaps and experimental features.
 
-[Drizzle's libSQL integration](https://orm.drizzle.team/docs/sqlite/connect-turso) provides a documented TypeScript path. Confirm support for the specific engine and SDK selected; changing from PostgreSQL requires reviewing SQL dialect, schemas, types, constraints, and migrations. Check the authentication adapter and other database integrations too.
+[Drizzle's libSQL integration](https://orm.drizzle.team/docs/sqlite/connect-turso) provides a documented TypeScript path. Its separate [Turso Database](https://orm.drizzle.team/docs/sqlite/connect-turso-database) and [Turso Sync](https://orm.drizzle.team/docs/sqlite/connect-turso-sync) adapters are currently documented on the RC release line; match ORM/Kit versions and verify installed exports before selecting them. Changing from PostgreSQL requires reviewing SQL dialect, schemas, types, constraints, and migrations. Check the authentication adapter and other database integrations too.
 
 Choose an explicit access and consistency model:
 
@@ -269,7 +269,7 @@ Choose based on the actual task and supported runtime. Keep provider calls behin
 Pick one primary hosting shape and document its constraints.
 
 - **Cloudflare Workers:** useful for globally distributed request handling, CDN integration, R2, Queues, and Durable Objects. Use the official [Cloudflare Vite plugin](https://developers.cloudflare.com/workers/framework-guides/web-apps/tanstack-start/) and test all dependencies in `workerd`.
-- **Bun server:** use a supported TanStack deployment adapter and Bun production target, such as [Nitro's Bun preset](https://nitro.build/deploy/runtimes/bun), for a regional server close to PostgreSQL. Verify SSR, auth, streaming, and database behavior on the built artifact.
+- **Bun server:** use a supported TanStack deployment adapter and Bun production target, such as [Nitro's Bun preset](https://nitro.build/deploy/runtimes/bun), for a regional server close to PostgreSQL. The documented Bun path currently requires React/React DOM 19. Match framework/Vite/adapter versions and plugin order, using one production adapter. Verify SSR, auth, streaming, and database behavior on the built artifact.
 - **Edge plus centralized PostgreSQL:** add Hyperdrive for connection pooling and optional read-query caching, or use Worker Placement to run near the database. Hyperdrive does not invalidate cached reads after writes; use a cache-disabled path where read-after-write consistency matters.
 
 Workers implements only part of Node's API surface; compatibility shims can import successfully and still throw at runtime. Do not select edge merely because it is geographically distributed. A single region near the data often wins for a write-heavy application.

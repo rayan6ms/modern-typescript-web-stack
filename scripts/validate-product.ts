@@ -70,7 +70,10 @@ export function validate(rootArg: string) {
   );
   const origin = json("SOURCE.json");
   check(
-    origin.package === name && /^[a-f0-9]{40,64}$/.test(origin.revision),
+    origin.schemaVersion === 1 &&
+      origin.package === name &&
+      /^[a-f0-9]{40,64}$/.test(origin.revision) &&
+      typeof origin.localModifications === "boolean",
     "Invalid source provenance",
   );
   for (const skill of skillNames) {
@@ -80,12 +83,16 @@ export function validate(rootArg: string) {
     check(match?.[1], `Invalid ${skill} frontmatter`);
     const metadata = Bun.YAML.parse(match[1]) as { name?: string; description?: string };
     check(
-      metadata.name === skill && metadata.description && metadata.description.length <= 1024,
+      metadata.name === skill &&
+        typeof metadata.description === "string" &&
+        metadata.description.length > 0 &&
+        metadata.description.length <= 1024,
       `Invalid ${skill} metadata`,
     );
     const marker = json(`skills/${skill}/SOURCE.json`);
     check(
-      marker.package === skill &&
+      marker.schemaVersion === 1 &&
+        marker.package === skill &&
         marker.revision === origin.revision &&
         marker.localModifications === origin.localModifications,
       `Inconsistent ${skill} provenance`,

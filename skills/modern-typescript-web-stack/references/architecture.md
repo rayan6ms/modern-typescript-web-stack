@@ -46,6 +46,8 @@ Use Astro pre-rendering and React/Solid islands for identified interactions. Add
 
 Run the supported Bun production build near its authoritative data and latency-sensitive providers. Verify applicable auth, database, streaming, shutdown, and artifact behavior; a working development server does not establish production compatibility.
 
+TanStack Start's documented Bun path currently requires React/React DOM 19. Match the framework, Vite, and deployment-plugin versions and plugin order to the installed release's hosting guide. Choose one production adapter; do not combine Nitro and Cloudflare deployment plugins for the same server build.
+
 ### Workers profile
 
 Choose Workers for compatible distributed request handling and relevant platform bindings. Use the framework's supported Cloudflare integration. MUST test runtime behavior in `workerd` with the supported integration or an authorized preview.
@@ -59,5 +61,6 @@ In every profile, cache only data whose freshness and authorization rules permit
 Use documentation matching the installed version.
 
 - [TanStack Start](https://tanstack.com/start/latest/docs/framework/react/overview)
+- [TanStack Start hosting](https://tanstack.com/start/latest/docs/framework/react/guide/hosting)
 - [Cloudflare Workers compatibility](https://developers.cloudflare.com/workers/runtime-apis/nodejs/)
 - [Hyperdrive behavior](https://developers.cloudflare.com/hyperdrive/concepts/how-hyperdrive-works/)
