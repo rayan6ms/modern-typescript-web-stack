@@ -1,0 +1,152 @@
+{
+  "date": "2026-10-08",
+  "scope": "Portable release demo copies on Linux with Bun 1.4.0; separate from the frozen trial scores.",
+  "commands": [
+    {
+      "demo": "01-cedar-journal",
+      "command": [
+        "bun",
+        "install",
+        "--frozen-lockfile",
+        "--network-concurrency",
+        "2",
+        "--concurrent-scripts",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 1.42
+    },
+    {
+      "demo": "01-cedar-journal",
+      "command": [
+        "bun",
+        "run",
+        "build"
+      ],
+      "exit": 0,
+      "seconds": 2.07
+    },
+    {
+      "demo": "01-cedar-journal",
+      "command": [
+        "bun",
+        "run",
+        "check"
+      ],
+      "exit": 0,
+      "seconds": 4.47
+    },
+    {
+      "demo": "02-deskledger",
+      "command": [
+        "bun",
+        "install",
+        "--frozen-lockfile",
+        "--network-concurrency",
+        "2",
+        "--concurrent-scripts",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 2.42
+    },
+    {
+      "demo": "02-deskledger",
+      "command": [
+        "bun",
+        "run",
+        "build"
+      ],
+      "exit": 0,
+      "seconds": 3.27
+    },
+    {
+      "demo": "02-deskledger",
+      "command": [
+        "bun",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 0.27
+    },
+    {
+      "demo": "02-deskledger",
+      "command": [
+        "bun",
+        "run",
+        "check"
+      ],
+      "exit": 0,
+      "seconds": 0.97
+    },
+    {
+      "demo": "03-liveboard",
+      "command": [
+        "bun",
+        "install",
+        "--frozen-lockfile",
+        "--network-concurrency",
+        "2",
+        "--concurrent-scripts",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 0.67
+    },
+    {
+      "demo": "03-liveboard",
+      "command": [
+        "bun",
+        "run",
+        "build"
+      ],
+      "exit": 0,
+      "seconds": 3.32
+    },
+    {
+      "demo": "03-liveboard",
+      "command": [
+        "bun",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0,
+      "seconds": 3.42
+    },
+    {
+      "demo": "03-liveboard",
+      "command": [
+        "bun",
+        "run",
+        "check"
+      ],
+      "exit": 0,
+      "seconds": 0.41
+    }
+  ],
+  "runtime": [
+    {
+      "demo": "01-cedar-journal",
+      "check": "served built homepage and article",
+      "status": "passed"
+    },
+    {
+      "demo": "02-deskledger",
+      "check": "actual Bun production entrypoint homepage and built assets and missing-route 404",
+      "status": "passed"
+    },
+    {
+      "demo": "03-liveboard",
+      "check": "actual Bun production entrypoint homepage and built assets and missing-route 404",
+      "status": "passed"
+    }
+  ],
+  "limits": [
+    "No new model or live-interview trial.",
+    "No new browser interaction, database lifecycle, hosted provider, deployment, load or field-performance check.",
+    "Rust checks used the already installed matching toolchain via the demo's scoped override; no shared toolchain was changed.",
+    "GitHub Actions and plugin UI have not run; their configuration/schema were validated locally."
+  ],
+  "cleanup": "All publication smoke servers stopped."
+}

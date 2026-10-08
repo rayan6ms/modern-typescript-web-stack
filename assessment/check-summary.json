@@ -1,0 +1,154 @@
+[
+  {
+    "case": "01-cedar-journal",
+    "check": "build",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "01-cedar-journal",
+    "check": "check",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "01-cedar-journal",
+    "check": "frozen-install",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "02-deskledger",
+    "check": "build",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "02-deskledger",
+    "check": "check",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "02-deskledger",
+    "check": "db-check",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "02-deskledger",
+    "check": "db-final-stop",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "02-deskledger",
+    "check": "db-recheck",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "02-deskledger",
+    "check": "db-restart",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "02-deskledger",
+    "check": "db-start",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "02-deskledger",
+    "check": "db-stop",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "02-deskledger",
+    "check": "db-stopped",
+    "exit": 1,
+    "status": null,
+    "expected": 1,
+    "passed": true
+  },
+  {
+    "case": "02-deskledger",
+    "check": "frozen-install",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "02-deskledger",
+    "check": "typecheck",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "03-liveboard",
+    "check": "build",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "03-liveboard",
+    "check": "check",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "03-liveboard",
+    "check": "convex-cli",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "03-liveboard",
+    "check": "frozen-install",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  },
+  {
+    "case": "03-liveboard",
+    "check": "typecheck",
+    "exit": 0,
+    "status": "passed",
+    "expected": 0,
+    "passed": true
+  }
+]

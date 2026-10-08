@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "rangeStrategy": "pin",
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "astro",
+        "@astrojs/check",
+        "typescript",
+        "ultracite",
+        "@biomejs/biome"
+      ],
+      "groupName": "web toolchain"
+    }
+  ]
+}

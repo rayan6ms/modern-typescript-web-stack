@@ -1,0 +1,67 @@
+{
+  "evaluated_date": "2026-10-08",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort_requested": "high",
+  "category_order": [
+    "Selection and scope",
+    "Installation and reproducibility",
+    "Runtime and behavior",
+    "Continuity and deferred choices",
+    "Reliability and delivery"
+  ],
+  "scoring_scope": "Authorized minimal foundations on the available local host. A score of 10 means complete against this narrow rubric; it does not establish production readiness, optimal technology choices, or absence of undiscovered defects.",
+  "evaluator_repairs_to_projects": 0,
+  "source_guidance_changes": 0,
+  "source_revision": "ff254aae09cd3cee626c39f07767d4e8f559e108",
+  "cases": [
+    {
+      "id": "01-cedar-journal",
+      "name": "Cedar Journal",
+      "score": 10,
+      "categories": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "readiness": "Ready for local static-content foundation work",
+      "finding": "No initial-scope defect found; publication metadata and hosting are deferred."
+    },
+    {
+      "id": "02-deskledger",
+      "name": "DeskLedger",
+      "score": 10,
+      "categories": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "readiness": "Ready for local public-shell and relational-toolchain work",
+      "finding": "Public shell and restricted local DB connection verified; identity/SSO and domain authorization remain deferred."
+    },
+    {
+      "id": "03-liveboard",
+      "name": "LiveBoard",
+      "score": 10,
+      "categories": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "readiness": "Ready for independent local shell work",
+      "finding": "Convex SDK/configuration prepared; no hosted connectivity, subscriptions, or authentication claim."
+    }
+  ],
+  "scenario_count": 3,
+  "dispatch_count": 5,
+  "interruptions": 2,
+  "independent_command_checks": {
+    "count": 19,
+    "passed": 19
+  }
+}

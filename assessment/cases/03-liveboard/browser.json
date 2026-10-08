@@ -1,0 +1,314 @@
+{
+  "desktop": {
+    "toolIcon": {
+      "_tag": "website",
+      "pageUrl": "http://127.0.0.1:43173/"
+    },
+    "value": {
+      "convexRequests": [],
+      "height": 800,
+      "hydrated": true,
+      "lang": "en",
+      "scrollWidth": 1265,
+      "title": "LiveBoard — Plan together",
+      "width": 1280
+    }
+  },
+  "skip": {
+    "toolIcon": {
+      "_tag": "website",
+      "pageUrl": "http://127.0.0.1:43173/"
+    },
+    "value": {
+      "href": "#main",
+      "text": "Skip to content",
+      "top": 16
+    }
+  },
+  "mobile": {
+    "toolIcon": {
+      "_tag": "website",
+      "pageUrl": "http://127.0.0.1:43173/#main"
+    },
+    "value": {
+      "convexRequests": [],
+      "focused": "main",
+      "hash": "#main",
+      "height": 844,
+      "hydrated": true,
+      "scrollWidth": 375,
+      "width": 390
+    }
+  },
+  "snapshot": {
+    "url": "http://127.0.0.1:43173/#main",
+    "title": "LiveBoard — Plan together",
+    "loading": false,
+    "visibleText": "Skip to content\nLiveBoard.\nEarly foundation\n\nA LITTLE CLARITY, TOGETHER\n\nA shared place for your next move.\n\nLiveBoard is taking shape as a planning space for small teams. Shared boards will help everyone stay close to the plan as it changes.\n\nCollaboration awaits setup\n\nThe space is ready to take shape.\n\nBackend connection and authentication await configuration. Boards, team membership, and live updates are not available yet.\n\nNo private team data is stored by this shell.\n\nLiveBoard · Plan together, move together.",
+    "interactiveElements": [],
+    "consoleEntries": [],
+    "networkEntries": [
+      {
+        "url": "http://127.0.0.1:44321/",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:06.966Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_ZhboeB.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:06.984Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_1yQqGT.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:06.993Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/journal/first-light/",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:37.631Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_ZhboeB.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:37.643Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_1yQqGT.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:37.646Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_ZhboeB.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:37.947Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:25:58.994Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_ZhboeB.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:25:59.005Z"
+      },
+      {
+        "url": "http://127.0.0.1:43103/",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:27:32.095Z"
+      },
+      {
+        "url": "http://127.0.0.1:43103/assets/styles-Blrq1T8T.css",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:27:32.112Z"
+      },
+      {
+        "url": "http://127.0.0.1:43103/assets/routes--UavZ56X.js",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:27:32.116Z"
+      },
+      {
+        "url": "http://127.0.0.1:43103/assets/index-CleCDqM5.js",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:27:32.130Z"
+      },
+      {
+        "url": "http://127.0.0.1:43173/",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:30:01.792Z"
+      },
+      {
+        "url": "http://127.0.0.1:43173/assets/styles-CcPnUYip.css",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:30:01.808Z"
+      },
+      {
+        "url": "http://127.0.0.1:43173/assets/routes-BlXivuUB.js",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:30:01.809Z"
+      },
+      {
+        "url": "http://127.0.0.1:43173/assets/index-BaAmWPPs.js",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:30:01.823Z"
+      }
+    ],
+    "actionTimeline": [
+      {
+        "id": "964d6cc1-b3ef-4f4b-9672-c40acfbc0021",
+        "action": "navigate",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:24:06.939Z",
+        "completedAt": "2026-10-08T17:24:06.993Z"
+      },
+      {
+        "id": "cfcf636e-7106-4cc5-afdc-99cd54e62cb5",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:24:37.361Z",
+        "completedAt": "2026-10-08T17:24:37.408Z"
+      },
+      {
+        "id": "a5907b23-e149-4650-a64f-3097cd72d6e9",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:24:37.463Z",
+        "completedAt": "2026-10-08T17:24:37.570Z"
+      },
+      {
+        "id": "15f8f1f3-570a-4f1f-ac58-d5156a19c237",
+        "action": "navigate",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:24:37.620Z",
+        "completedAt": "2026-10-08T17:24:37.649Z"
+      },
+      {
+        "id": "d82336da-1d57-4f14-9741-45a55f70cd2a",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:25:09.639Z",
+        "completedAt": "2026-10-08T17:25:09.691Z"
+      },
+      {
+        "id": "dc6e8c16-e189-4da1-a901-14644ac36e1e",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:25:19.544Z",
+        "completedAt": "2026-10-08T17:25:19.593Z"
+      },
+      {
+        "id": "bd6bcace-cac7-4654-a22c-0eebe8a1ef96",
+        "action": "click",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:25:58.675Z",
+        "completedAt": "2026-10-08T17:25:59.007Z"
+      },
+      {
+        "id": "07a075a4-b9e8-4982-85e2-185950c640d5",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:25:59.035Z",
+        "completedAt": "2026-10-08T17:25:59.046Z"
+      },
+      {
+        "id": "09983f61-a03e-4788-9afa-824fba09b120",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:26:08.221Z",
+        "completedAt": "2026-10-08T17:26:08.265Z"
+      },
+      {
+        "id": "e90b79bb-9917-4727-8b1a-98e095da425c",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:26:32.679Z",
+        "completedAt": "2026-10-08T17:26:32.773Z"
+      },
+      {
+        "id": "81db9f72-5c70-4582-960e-781327431c3f",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:26:48.054Z",
+        "completedAt": "2026-10-08T17:26:48.136Z"
+      },
+      {
+        "id": "79c89ef6-ec85-4fd6-b263-1920b814b83f",
+        "action": "navigate",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:27:31.996Z",
+        "completedAt": "2026-10-08T17:27:32.171Z"
+      },
+      {
+        "id": "20a8e02d-6154-4d79-89a9-d474863aac94",
+        "action": "click",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:28:04.828Z",
+        "completedAt": "2026-10-08T17:28:05.142Z"
+      },
+      {
+        "id": "d893381d-5d01-46ee-a31b-87e410ed4d6e",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:28:22.591Z",
+        "completedAt": "2026-10-08T17:28:22.601Z"
+      },
+      {
+        "id": "af44ca52-38bb-4529-bfb1-18a286c1ca58",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:28:34.153Z",
+        "completedAt": "2026-10-08T17:28:34.164Z"
+      },
+      {
+        "id": "a2b1cf3c-d77b-4c03-8435-888057d2dcb1",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:28:48.157Z",
+        "completedAt": "2026-10-08T17:28:48.171Z"
+      },
+      {
+        "id": "1ecc5087-d232-40c9-a4f8-fefaa9f6a317",
+        "action": "navigate",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:30:01.682Z",
+        "completedAt": "2026-10-08T17:30:01.861Z"
+      },
+      {
+        "id": "50e41f75-81c2-4999-9066-f7cc28f26c45",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:30:02.144Z",
+        "completedAt": "2026-10-08T17:30:02.156Z"
+      },
+      {
+        "id": "8b208da2-dcda-45f0-abc7-003c0af15b90",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:30:41.330Z",
+        "completedAt": "2026-10-08T17:30:41.344Z"
+      }
+    ],
+    "screenshot": {
+      "mimeType": "image/png",
+      "width": 1280,
+      "height": 800
+    },
+    "screenshotPath": "<trial-home>/.t3/userdata/browser-artifacts/browser-screenshot-127-0-0-1-muztc7gd-c306d69d.png",
+    "accessibilityTree": "- generic [ref=t3-a0d8ed12-1o-e2] [box=0,-85,375,981]:\n  - link \"Skip to content\" [ref=t3-a0d8ed12-1o-e3] [cursor=pointer] [box=16,-165,139,48]:\n    - /url: \"#main\"\n  - banner [ref=t3-a0d8ed12-1o-e4] [box=24,-85,327,85]:\n    - link \"LiveBoard.\" [ref=t3-a0d8ed12-1o-e5] [cursor=pointer] [box=24,-57,94,28]:\n      - /url: /\n    - generic [ref=t3-a0d8ed12-1o-e6] [box=238,-56,113,26]: Early foundation\n  - main [active] [ref=t3-a0d8ed12-1o-e7] [box=24,0,327,827]:\n    - paragraph [ref=t3-a0d8ed12-1o-e8] [box=24,64,327,20]: A little clarity, together\n    - heading \"A shared place for your next move.\" [level=1] [ref=t3-a0d8ed12-1o-e9] [box=24,104,327,180]\n    - paragraph [ref=t3-a0d8ed12-1o-e10] [box=24,308,327,117]: LiveBoard is taking shape as a planning space for small teams. Shared boards will help everyone stay close to the plan as it changes.\n    - region \"The space is ready to take shape.\" [ref=t3-a0d8ed12-1o-e11] [box=24,473,327,290]:\n      - paragraph [ref=t3-a0d8ed12-1o-e12] [box=49,498,277,20]: Collaboration awaits setup\n      - heading \"The space is ready to take shape.\" [level=2] [ref=t3-a0d8ed12-1o-e13] [box=49,530,277,56]\n      - paragraph [ref=t3-a0d8ed12-1o-e14] [box=49,598,277,104]: Backend connection and authentication await configuration. Boards, team membership, and live updates are not available yet.\n      - paragraph [ref=t3-a0d8ed12-1o-e15] [box=49,718,277,20]: No private team data is stored by this shell.\n  - contentinfo [ref=t3-a0d8ed12-1o-e16] [box=24,827,327,69]: LiveBoard · Plan together, move together."
+  }
+}

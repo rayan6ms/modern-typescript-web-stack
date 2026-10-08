@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "passed": true,
+    "pending_backend": true
+  },
+  {
+    "path": "/not-a-route",
+    "status": 404,
+    "passed": true,
+    "pending_backend": null
+  }
+]

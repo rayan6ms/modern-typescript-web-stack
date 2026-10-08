@@ -1,0 +1,16 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "passed": true,
+    "pt_br": true,
+    "contains_database_configuration": false
+  },
+  {
+    "path": "/missing-page",
+    "status": 404,
+    "passed": true,
+    "pt_br": true,
+    "contains_database_configuration": false
+  }
+]

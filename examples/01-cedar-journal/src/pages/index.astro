@@ -1,0 +1,75 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import forestLight from "../assets/forest-light.jpg";
+import Page from "../layouts/page.astro";
+
+const entries = (await getCollection("journal")).sort(
+  (a, b) => b.data.published.getTime() - a.data.published.getTime()
+);
+---
+
+<Page
+  description="Cedar Journal is a photography journal of quiet places, changing light, and the details we pass along the way."
+  title="A closer look at the everyday"
+>
+  <section aria-labelledby="intro-title" class="intro">
+    <p class="eyebrow">A photography journal</p>
+    <h1 id="intro-title">A closer look at<br>the everyday.</h1>
+    <p class="lede">
+      Quiet places. Changing light. A few field notes from the space between one
+      photograph and the next.
+    </p>
+  </section>
+  <figure class="opening-image">
+    <Image
+      alt="Mist and sunlight filter between tall tree trunks above green forest undergrowth."
+      priority
+      sizes="(min-width: 1136px) 1040px, calc(100vw - 48px)"
+      src={forestLight}
+      widths={[480, 960, 1440]}
+    />
+    <figcaption>
+      Sample photograph ·{" "}
+      <a href="https://unsplash.com/photos/sp-p7uuT0tw"
+        >Sebastian Unrau / Unsplash</a
+      >
+    </figcaption>
+  </figure>
+  <section aria-labelledby="journal-title" class="journal" id="journal">
+    <div class="section-heading">
+      <h2 id="journal-title">From the journal</h2>
+      <span>Notes on looking</span>
+    </div>
+    {entries.map((entry) => (
+      <article class="entry">
+        <time datetime={entry.data.published.toISOString()}>
+          {entry.data.published.toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "long",
+            timeZone: "UTC",
+            year: "numeric",
+          })}
+        </time>
+        <div>
+          <h3>
+            <a href={`/journal/${entry.id}/`}>{entry.data.title}</a>
+          </h3>
+          <p>{entry.data.description}</p>
+          <a class="read-link" href={`/journal/${entry.id}/`}>
+            Read {entry.data.title} <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+    ))}
+  </section>
+  <section aria-labelledby="about-title" class="about" id="about">
+    <p class="eyebrow">A little about this place</p>
+    <h2 id="about-title">Photographs worth<br>slowing down for.</h2>
+    <p>
+      Cedar Journal is a small collection of photographs and observations. An
+      invitation to pause, notice the light, and return to familiar places with
+      fresh eyes.
+    </p>
+  </section>
+</Page>

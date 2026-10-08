@@ -1,0 +1,33 @@
+{
+  "name": "cedar-journal",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "ASTRO_TELEMETRY_DISABLED=1 UV_THREADPOOL_SIZE=2 RAYON_NUM_THREADS=2 bun --bun astro build",
+    "check": "bun run typecheck && bun run lint",
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 bun --bun astro dev --host 127.0.0.1",
+    "dev:status": "ASTRO_TELEMETRY_DISABLED=1 bun --bun astro dev status",
+    "dev:stop": "ASTRO_TELEMETRY_DISABLED=1 bun --bun astro dev stop",
+    "format": "RAYON_NUM_THREADS=2 bun --bun ultracite fix",
+    "lint": "RAYON_NUM_THREADS=2 bun --bun ultracite check",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 bun --bun astro preview --host 127.0.0.1",
+    "preview:status": "ASTRO_TELEMETRY_DISABLED=1 bun --bun astro preview status",
+    "preview:stop": "ASTRO_TELEMETRY_DISABLED=1 bun --bun astro preview stop",
+    "typecheck": "ASTRO_TELEMETRY_DISABLED=1 bun --bun astro check"
+  },
+  "dependencies": {
+    "astro": "7.3.7",
+    "sharp": "0.35.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@biomejs/biome": "2.5.15",
+    "typescript": "6.0.3",
+    "ultracite": "7.12.4"
+  },
+  "packageManager": "bun@1.4.0",
+  "engines": {
+    "bun": "1.4.0"
+  }
+}

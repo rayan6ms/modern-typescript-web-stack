@@ -1,0 +1,50 @@
+{
+  "name": "deskledger",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bun --bun vite build",
+    "check": "bun --bun ultracite check",
+    "db:check": "bun --env-file=.env.local scripts/check-db.ts",
+    "db:generate": "bun --env-file=.env.local --bun drizzle-kit generate",
+    "db:migrate": "bun --env-file=.env.local --bun drizzle-kit migrate",
+    "db:start": "bun scripts/local-db.ts start",
+    "db:status": "bun scripts/local-db.ts status",
+    "db:stop": "bun scripts/local-db.ts stop",
+    "dev": "HOST=127.0.0.1 PORT=43102 bun --bun vite --host 127.0.0.1 --port 43102 --strictPort",
+    "fix": "bun --bun ultracite fix",
+    "start": "bun .output/server/index.mjs",
+    "typecheck": "bun --bun tsc --noEmit"
+  },
+  "dependencies": {
+    "@base-ui/react": "1.8.0",
+    "@tanstack/react-router": "1.170.41",
+    "@tanstack/react-start": "1.168.60",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "drizzle-orm": "0.45.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "tailwind-merge": "3.7.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@tailwindcss/vite": "4.3.3",
+    "@types/bun": "1.4.2",
+    "@types/node": "26.6.4",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "drizzle-kit": "0.31.11",
+    "nitro": "3.0.260903-beta",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2",
+    "ultracite": "7.12.4",
+    "vite": "8.3.4"
+  },
+  "packageManager": "bun@1.4.0",
+  "engines": {
+    "bun": "1.4.x"
+  }
+}

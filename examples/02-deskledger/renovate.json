@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "rangeStrategy": "pin",
+  "prConcurrentLimit": 2,
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "@tanstack/**",
+        "react",
+        "react-dom",
+        "@types/react",
+        "@types/react-dom"
+      ],
+      "groupName": "React and TanStack"
+    }
+  ]
+}

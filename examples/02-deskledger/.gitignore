@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.output/
+.tanstack/
+.local/
+.task-tmp/
+.env*
+!.env.example

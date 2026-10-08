@@ -1,0 +1,210 @@
+{
+  "desktop": {
+    "toolIcon": {
+      "_tag": "website",
+      "pageUrl": "http://127.0.0.1:44321/"
+    },
+    "value": {
+      "height": 900,
+      "images": [
+        {
+          "alt": "Mist and sunlight filter between tall tree trunks above green forest undergrowth.",
+          "currentSrc": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_1yQqGT.webp",
+          "loaded": true,
+          "naturalWidth": 1040,
+          "srcset": "/_astro/forest-light.Bj3hGiOM_ZhboeB.webp 480w, /_astro/forest-light.Bj3hGiOM_Z2nSYbX.webp 960w, /_astro/forest-light.Bj3hGiOM_1yQqGT.webp 1440w",
+          "width": 1040
+        }
+      ],
+      "lang": "en",
+      "scripts": 0,
+      "scrollWidth": 1425,
+      "title": "A closer look at the everyday · Cedar Journal",
+      "width": 1440
+    }
+  },
+  "mobileArticle": {
+    "toolIcon": {
+      "_tag": "website",
+      "pageUrl": "http://127.0.0.1:44321/journal/first-light/"
+    },
+    "value": {
+      "h1": "First light, familiar paths",
+      "height": 844,
+      "images": [
+        {
+          "loaded": true,
+          "srcset": "/_astro/forest-light.Bj3hGiOM_ZhboeB.webp 480w, /_astro/forest-light.Bj3hGiOM_Z2nSYbX.webp 960w, /_astro/forest-light.Bj3hGiOM_1yQqGT.webp 1440w",
+          "width": 327
+        }
+      ],
+      "scrollWidth": 375,
+      "width": 390
+    }
+  },
+  "skipFocus": {
+    "toolIcon": {
+      "_tag": "website",
+      "pageUrl": "http://127.0.0.1:44321/"
+    },
+    "value": {
+      "focused": "Skip to content",
+      "href": "#main",
+      "top": 12
+    }
+  },
+  "skipTarget": {
+    "toolIcon": {
+      "_tag": "website",
+      "pageUrl": "http://127.0.0.1:44321/#main"
+    },
+    "value": {
+      "focused": "main",
+      "hash": "#main"
+    }
+  },
+  "desktopSnapshot": {
+    "url": "http://127.0.0.1:44321/",
+    "title": "A closer look at the everyday · Cedar Journal",
+    "loading": false,
+    "visibleText": "Skip to content\nCedar Journal.\nJournal\nAbout\n\nA PHOTOGRAPHY JOURNAL\n\nA closer look at\nthe everyday.\n\nQuiet places. Changing light. A few field notes from the space between one photograph and the next.\n\nSample photograph · Sebastian Unrau / Unsplash\nFrom the journal\nNotes on looking\nOctober 8, 2026\nFirst light, familiar paths\n\nA short reflection on looking slowly, and finding something new in a familiar landscape.\n\nRead First light, familiar paths ↗\n\nA LITTLE ABOUT THIS PLACE\n\nPhotographs worth\nslowing down for.\n\nCedar Journal is a small collection of photographs and observations. An invitation to pause, notice the light, and return to familiar places with fresh eyes.\n\nCedar Journal\nPhotography & field notes",
+    "interactiveElements": [],
+    "consoleEntries": [],
+    "networkEntries": [
+      {
+        "url": "http://127.0.0.1:44321/",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:06.966Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_ZhboeB.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:06.984Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_1yQqGT.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:06.993Z"
+      }
+    ],
+    "actionTimeline": [
+      {
+        "id": "964d6cc1-b3ef-4f4b-9672-c40acfbc0021",
+        "action": "navigate",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:24:06.939Z",
+        "completedAt": "2026-10-08T17:24:06.993Z"
+      }
+    ],
+    "screenshot": {
+      "mimeType": "image/png",
+      "width": 1280,
+      "height": 800
+    },
+    "screenshotPath": "<trial-home>/.t3/userdata/browser-artifacts/browser-screenshot-127-0-0-1-muzt31l4-dfc0669d.png",
+    "accessibilityTree": "- generic [active] [ref=t3-a0d8ed12-1a-e1] [box=0,0,1265,2117]:\n  - link \"Skip to content\" [ref=t3-a0d8ed12-1a-e2] [cursor=pointer] [box=24,-73,139,42]:\n    - /url: \"#main\"\n  - banner [ref=t3-a0d8ed12-1a-e3] [box=113,0,1040,97]:\n    - link \"Cedar Journal home\" [ref=t3-a0d8ed12-1a-e4] [cursor=pointer] [box=113,28,130,40]:\n      - /url: /\n      - text: Cedar Journal.\n    - navigation \"Main navigation\" [ref=t3-a0d8ed12-1a-e5] [box=1048,28,105,40]:\n      - link \"Journal\" [ref=t3-a0d8ed12-1a-e6] [cursor=pointer] [box=1048,28,46,40]:\n        - /url: /#journal\n      - link \"About\" [ref=t3-a0d8ed12-1a-e7] [cursor=pointer] [box=1113,28,39,40]:\n        - /url: /#about\n  - main [ref=t3-a0d8ed12-1a-e8] [box=113,97,1040,1951]:\n    - region \"A closer look at the everyday.\" [ref=t3-a0d8ed12-1a-e9] [box=113,97,1040,447]:\n      - paragraph [ref=t3-a0d8ed12-1a-e10] [box=113,169,1040,20]: A photography journal\n      - heading \"A closer look at the everyday.\" [level=1] [ref=t3-a0d8ed12-1a-e11] [box=113,209,1040,194]:\n        - text: A closer look at\n        - text: the everyday.\n      - paragraph [ref=t3-a0d8ed12-1a-e12] [box=113,426,672,58]: Quiet places. Changing light. A few field notes from the space between one photograph and the next.\n    - figure \"Sample photograph · Sebastian Unrau / Unsplash\" [ref=t3-a0d8ed12-1a-e13] [box=113,544,1040,725]:\n      - img \"Mist and sunlight filter between tall tree trunks above green forest undergrowth.\" [ref=t3-a0d8ed12-1a-e14] [box=113,544,1040,693]\n      - generic [ref=t3-a0d8ed12-1a-e15] [box=113,1237,1040,32]:\n        - text: Sample photograph ·\n        - link \"Sebastian Unrau / Unsplash\" [ref=t3-a0d8ed12-1a-e16] [cursor=pointer] [box=227,1250,146,16]:\n          - /url: https://unsplash.com/photos/sp-p7uuT0tw\n    - region \"From the journal\" [ref=t3-a0d8ed12-1a-e17] [box=113,1269,1040,428]:\n      - generic [ref=t3-a0d8ed12-1a-e18] [box=113,1333,1040,52]:\n        - heading \"From the journal\" [level=2] [ref=t3-a0d8ed12-1a-e19] [box=113,1333,175,31]\n        - generic [ref=t3-a0d8ed12-1a-e20] [box=1055,1342,98,21]: Notes on looking\n      - article [ref=t3-a0d8ed12-1a-e21] [box=113,1386,1040,247]:\n        - time [ref=t3-a0d8ed12-1a-e22] [box=113,1426,252,166]: October 8, 2026\n        - generic [ref=t3-a0d8ed12-1a-e23] [box=397,1426,756,166]:\n          - heading \"First light, familiar paths\" [level=3] [ref=t3-a0d8ed12-1a-e24] [box=397,1426,756,43]:\n            - link \"First light, familiar paths\" [ref=t3-a0d8ed12-1a-e25] [cursor=pointer] [box=397,1426,382,42]:\n              - /url: /journal/first-light/\n          - paragraph [ref=t3-a0d8ed12-1a-e26] [box=397,1481,576,53]: A short reflection on looking slowly, and finding something new in a familiar landscape.\n          - link \"Read First light, familiar paths\" [ref=t3-a0d8ed12-1a-e27] [cursor=pointer] [box=397,1553,191,38]:\n            - /url: /journal/first-light/\n            - text: Read First light, familiar paths ↗\n    - region \"Photographs worth slowing down for.\" [ref=t3-a0d8ed12-1a-e28] [box=113,1697,672,350]:\n      - paragraph [ref=t3-a0d8ed12-1a-e29] [box=113,1713,672,20]: A little about this place\n      - heading \"Photographs worth slowing down for.\" [level=2] [ref=t3-a0d8ed12-1a-e30] [box=113,1753,672,108]:\n        - text: Photographs worth\n        - text: slowing down for.\n      - paragraph [ref=t3-a0d8ed12-1a-e31] [box=113,1884,544,79]: Cedar Journal is a small collection of photographs and observations. An invitation to pause, notice the light, and return to familiar places with fresh eyes.\n  - contentinfo [ref=t3-a0d8ed12-1a-e32] [box=113,2047,1040,70]:\n    - generic [ref=t3-a0d8ed12-1a-e33] [box=113,2072,77,21]: Cedar Journal\n    - generic [ref=t3-a0d8ed12-1a-e34] [box=1003,2072,150,21]: Photography & field notes"
+  },
+  "mobileArticleSnapshot": {
+    "url": "http://127.0.0.1:44321/journal/first-light/",
+    "title": "First light, familiar paths · Cedar Journal",
+    "loading": false,
+    "visibleText": "Skip to content\nCedar Journal.\nJournal\nAbout\n← Back to the journal\n\nFIELD NOTES · SAMPLE ARTICLE\n\nFirst light, familiar paths\n\nA short reflection on looking slowly, and finding something new in a familiar landscape.\n\nOctober 8, 2026\nSample photograph by Sebastian Unrau on Unsplash.\n\nThe first thing to notice is the light. It settles between the trees, turning a familiar path into a series of small discoveries: a bright leaf, a dark trunk, a bend disappearing into green.\n\nStay with the scene\n\nA photograph begins before the shutter opens. Pause long enough to see where your eye returns. Sometimes the most useful change is a step to the side; sometimes it is simply waiting.\n\nLook for light before looking for a subject.\nLeave room for the landscape to breathe.\nMake one frame, then look again without the camera.\nA reason to return\n\nThe same path will look different tomorrow. Light shifts, leaves turn, and what seemed ordinary becomes the detail that holds a picture together. Keeping a journal is a way of remembering to return.\n\nThis is a sample editorial entry for the initial Cedar Journal foundation. The accompanying photograph is credited to its photographer; it is not presented as the journal author’s original work.\n\nReturn to the journal.\n\nCedar Journal\nPhotography & field notes",
+    "interactiveElements": [],
+    "consoleEntries": [],
+    "networkEntries": [
+      {
+        "url": "http://127.0.0.1:44321/",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:06.966Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_ZhboeB.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:06.984Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_1yQqGT.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:06.993Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/journal/first-light/",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:37.631Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_ZhboeB.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:37.643Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_1yQqGT.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:37.646Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_ZhboeB.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:37.947Z"
+      }
+    ],
+    "actionTimeline": [
+      {
+        "id": "964d6cc1-b3ef-4f4b-9672-c40acfbc0021",
+        "action": "navigate",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:24:06.939Z",
+        "completedAt": "2026-10-08T17:24:06.993Z"
+      },
+      {
+        "id": "cfcf636e-7106-4cc5-afdc-99cd54e62cb5",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:24:37.361Z",
+        "completedAt": "2026-10-08T17:24:37.408Z"
+      },
+      {
+        "id": "a5907b23-e149-4650-a64f-3097cd72d6e9",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:24:37.463Z",
+        "completedAt": "2026-10-08T17:24:37.570Z"
+      },
+      {
+        "id": "15f8f1f3-570a-4f1f-ac58-d5156a19c237",
+        "action": "navigate",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:24:37.620Z",
+        "completedAt": "2026-10-08T17:24:37.649Z"
+      }
+    ],
+    "screenshot": {
+      "mimeType": "image/png",
+      "width": 1280,
+      "height": 800
+    },
+    "screenshotPath": "<trial-home>/.t3/userdata/browser-artifacts/browser-screenshot-127-0-0-1-muzt4dpi-41da3aec.png",
+    "accessibilityTree": "- generic [active] [ref=t3-a0d8ed12-1d-e1] [box=0,0,375,2024]:\n  - link \"Skip to content\" [ref=t3-a0d8ed12-1d-e2] [cursor=pointer] [box=24,-73,139,42]:\n    - /url: \"#main\"\n  - banner [ref=t3-a0d8ed12-1d-e3] [box=24,0,327,73]:\n    - link \"Cedar Journal home\" [ref=t3-a0d8ed12-1d-e4] [cursor=pointer] [box=24,16,130,40]:\n      - /url: /\n      - text: Cedar Journal.\n    - navigation \"Main navigation\" [ref=t3-a0d8ed12-1d-e5] [box=246,16,105,40]:\n      - link \"Journal\" [ref=t3-a0d8ed12-1d-e6] [cursor=pointer] [box=246,16,46,40]:\n        - /url: /#journal\n      - link \"About\" [ref=t3-a0d8ed12-1d-e7] [cursor=pointer] [box=312,16,39,40]:\n        - /url: /#about\n  - main [ref=t3-a0d8ed12-1d-e8] [box=24,73,327,1792]:\n    - article [ref=t3-a0d8ed12-1d-e9] [box=24,73,327,1792]:\n      - generic [ref=t3-a0d8ed12-1d-e10] [box=24,73,327,448]:\n        - link \"← Back to the journal\" [ref=t3-a0d8ed12-1d-e11] [cursor=pointer] [box=24,113,128,38]:\n          - /url: /#journal\n        - paragraph [ref=t3-a0d8ed12-1d-e12] [box=24,183,327,20]: Field notes · Sample article\n        - heading \"First light, familiar paths\" [level=1] [ref=t3-a0d8ed12-1d-e13] [box=24,223,327,100]\n        - paragraph [ref=t3-a0d8ed12-1d-e14] [box=24,347,327,87]: A short reflection on looking slowly, and finding something new in a familiar landscape.\n        - time [ref=t3-a0d8ed12-1d-e15] [box=24,459,90,17]: October 8, 2026\n      - figure \"Sample photograph by Sebastian Unrau on Unsplash.\" [ref=t3-a0d8ed12-1d-e16] [box=24,521,327,250]:\n        - img \"Mist and sunlight filter between tall tree trunks above green forest undergrowth.\" [ref=t3-a0d8ed12-1d-e17] [box=24,521,327,218]\n        - generic [ref=t3-a0d8ed12-1d-e18] [box=24,739,327,32]:\n          - text: Sample photograph by\n          - link \"Sebastian Unrau on Unsplash\" [ref=t3-a0d8ed12-1d-e19] [cursor=pointer] [box=149,752,155,16]:\n            - /url: https://unsplash.com/photos/sp-p7uuT0tw\n          - text: .\n      - generic [ref=t3-a0d8ed12-1d-e20] [box=24,819,327,1046]:\n        - paragraph [ref=t3-a0d8ed12-1d-e21] [box=24,819,327,145]: \"The first thing to notice is the light. It settles between the trees, turning a familiar path into a series of small discoveries: a bright leaf, a dark trunk, a bend disappearing into green.\"\n        - heading \"Stay with the scene\" [level=2] [ref=t3-a0d8ed12-1d-e22] [box=24,1004,327,36]\n        - paragraph [ref=t3-a0d8ed12-1d-e23] [box=24,1055,327,145]: A photograph begins before the shutter opens. Pause long enough to see where your eye returns. Sometimes the most useful change is a step to the side; sometimes it is simply waiting.\n        - list [ref=t3-a0d8ed12-1d-e24] [box=24,1221,327,193]:\n          - listitem [ref=t3-a0d8ed12-1d-e25] [box=64,1221,287,64]: Look for light before looking for a subject.\n          - listitem [ref=t3-a0d8ed12-1d-e26] [box=64,1285,287,64]: Leave room for the landscape to breathe.\n          - listitem [ref=t3-a0d8ed12-1d-e27] [box=64,1349,287,64]: Make one frame, then look again without the camera.\n        - heading \"A reason to return\" [level=2] [ref=t3-a0d8ed12-1d-e28] [box=24,1454,327,36]\n        - paragraph [ref=t3-a0d8ed12-1d-e29] [box=24,1506,327,145]: The same path will look different tomorrow. Light shifts, leaves turn, and what seemed ordinary becomes the detail that holds a picture together. Keeping a journal is a way of remembering to return.\n        - paragraph [ref=t3-a0d8ed12-1d-e30] [box=24,1671,327,145]:\n          - emphasis [ref=t3-a0d8ed12-1d-e31] [box=24,1674,316,139]: This is a sample editorial entry for the initial Cedar Journal foundation. The accompanying photograph is credited to its photographer; it is not presented as the journal author’s original work.\n        - paragraph [ref=t3-a0d8ed12-1d-e32] [box=24,1836,327,29]:\n          - link \"Return to the journal\" [ref=t3-a0d8ed12-1d-e33] [cursor=pointer] [box=24,1839,161,23]:\n            - /url: /#journal\n          - text: .\n  - contentinfo [ref=t3-a0d8ed12-1d-e34] [box=24,1929,327,95]:\n    - generic [ref=t3-a0d8ed12-1d-e35] [box=24,1954,327,21]: Cedar Journal\n    - generic [ref=t3-a0d8ed12-1d-e36] [box=24,1979,327,21]: Photography & field notes"
+  },
+  "evaluatorNotes": "Initial keyboard attempts needed correct separate modifier arguments and a pointer gesture to focus the desktop preview host. The final native keyboard check passed; no application change."
+}

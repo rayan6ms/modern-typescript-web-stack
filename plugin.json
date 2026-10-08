@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "modern-typescript-web-stack",
+  "version": "0.1.0",
+  "description": "Modern TypeScript Web Stack guidance and verified initial project setup",
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/modern-typescript-web-stack-kickoff/SKILL.md"
+    }
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "baseline": {
+    "toolIcon": {
+      "_tag": "website",
+      "pageUrl": "http://127.0.0.1:43103/"
+    },
+    "value": {
+      "expanded": "false",
+      "height": 800,
+      "lang": "pt-BR",
+      "scrollWidth": 1265,
+      "width": 1280
+    }
+  },
+  "clicked": {
+    "toolIcon": {
+      "_tag": "website",
+      "pageUrl": "http://127.0.0.1:43103/"
+    },
+    "value": {
+      "expanded": "true",
+      "focused": "BUTTON",
+      "text": "Ir para o conteúdo\nDeskLedger.\nEm preparação\n\nPARA AGÊNCIAS BRASILEIRAS\n\nMais clareza para o trabalho da sua agência.\n\nUm espaço para reunir projetos e pessoas, acompanhar responsabilidades e manter a equipe alinhada.\n\nOcultar próximos passos\nEstamos preparando o DeskLedger\n\nO acesso à conta e a gestão de projetos estarão disponíveis em uma próxima etapa. Esta página apresenta a proposta do produto.\n\nProjetos em contexto\n\nUma visão organizada do trabalho da agência.\n\nEquipe alinhada\n\nResponsabilidades claras para cada etapa.\n\nFeito para o seu dia a dia\n\nUma experiência simples, em português.\n\nDeskLedger · Organização para criar melhor."
+    }
+  },
+  "enter": {
+    "toolIcon": {
+      "_tag": "website",
+      "pageUrl": "http://127.0.0.1:43103/"
+    },
+    "value": {
+      "expanded": "false",
+      "focused": "BUTTON"
+    }
+  },
+  "skipFocus": {
+    "toolIcon": {
+      "_tag": "website",
+      "pageUrl": "http://127.0.0.1:43103/"
+    },
+    "value": {
+      "href": "#conteudo",
+      "text": "Ir para o conteúdo",
+      "top": 12
+    }
+  },
+  "mobileAndSkipTarget": {
+    "toolIcon": {
+      "_tag": "website",
+      "pageUrl": "http://127.0.0.1:43103/#conteudo"
+    },
+    "value": {
+      "css": 1,
+      "expanded": "false",
+      "focused": "conteudo",
+      "hash": "#conteudo",
+      "height": 844,
+      "scrollWidth": 375,
+      "width": 390
+    }
+  },
+  "snapshot": {
+    "url": "http://127.0.0.1:43103/#conteudo",
+    "title": "DeskLedger | Projetos para agências",
+    "loading": false,
+    "visibleText": "Ir para o conteúdo\nDeskLedger.\nEm preparação\n\nPARA AGÊNCIAS BRASILEIRAS\n\nMais clareza para o trabalho da sua agência.\n\nUm espaço para reunir projetos e pessoas, acompanhar responsabilidades e manter a equipe alinhada.\n\nConhecer os próximos passos\nProjetos em contexto\n\nUma visão organizada do trabalho da agência.\n\nEquipe alinhada\n\nResponsabilidades claras para cada etapa.\n\nFeito para o seu dia a dia\n\nUma experiência simples, em português.\n\nDeskLedger · Organização para criar melhor.",
+    "interactiveElements": [],
+    "consoleEntries": [],
+    "networkEntries": [
+      {
+        "url": "http://127.0.0.1:44321/",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:06.966Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_ZhboeB.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:06.984Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_1yQqGT.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:06.993Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/journal/first-light/",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:37.631Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_ZhboeB.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:37.643Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_1yQqGT.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:37.646Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_ZhboeB.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:24:37.947Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:25:58.994Z"
+      },
+      {
+        "url": "http://127.0.0.1:44321/_astro/forest-light.Bj3hGiOM_ZhboeB.webp",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:25:59.005Z"
+      },
+      {
+        "url": "http://127.0.0.1:43103/",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:27:32.095Z"
+      },
+      {
+        "url": "http://127.0.0.1:43103/assets/styles-Blrq1T8T.css",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:27:32.112Z"
+      },
+      {
+        "url": "http://127.0.0.1:43103/assets/routes--UavZ56X.js",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:27:32.116Z"
+      },
+      {
+        "url": "http://127.0.0.1:43103/assets/index-CleCDqM5.js",
+        "method": "GET",
+        "status": 200,
+        "failed": false,
+        "timestamp": "2026-10-08T17:27:32.130Z"
+      }
+    ],
+    "actionTimeline": [
+      {
+        "id": "964d6cc1-b3ef-4f4b-9672-c40acfbc0021",
+        "action": "navigate",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:24:06.939Z",
+        "completedAt": "2026-10-08T17:24:06.993Z"
+      },
+      {
+        "id": "cfcf636e-7106-4cc5-afdc-99cd54e62cb5",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:24:37.361Z",
+        "completedAt": "2026-10-08T17:24:37.408Z"
+      },
+      {
+        "id": "a5907b23-e149-4650-a64f-3097cd72d6e9",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:24:37.463Z",
+        "completedAt": "2026-10-08T17:24:37.570Z"
+      },
+      {
+        "id": "15f8f1f3-570a-4f1f-ac58-d5156a19c237",
+        "action": "navigate",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:24:37.620Z",
+        "completedAt": "2026-10-08T17:24:37.649Z"
+      },
+      {
+        "id": "d82336da-1d57-4f14-9741-45a55f70cd2a",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:25:09.639Z",
+        "completedAt": "2026-10-08T17:25:09.691Z"
+      },
+      {
+        "id": "dc6e8c16-e189-4da1-a901-14644ac36e1e",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:25:19.544Z",
+        "completedAt": "2026-10-08T17:25:19.593Z"
+      },
+      {
+        "id": "bd6bcace-cac7-4654-a22c-0eebe8a1ef96",
+        "action": "click",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:25:58.675Z",
+        "completedAt": "2026-10-08T17:25:59.007Z"
+      },
+      {
+        "id": "07a075a4-b9e8-4982-85e2-185950c640d5",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:25:59.035Z",
+        "completedAt": "2026-10-08T17:25:59.046Z"
+      },
+      {
+        "id": "09983f61-a03e-4788-9afa-824fba09b120",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:26:08.221Z",
+        "completedAt": "2026-10-08T17:26:08.265Z"
+      },
+      {
+        "id": "e90b79bb-9917-4727-8b1a-98e095da425c",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:26:32.679Z",
+        "completedAt": "2026-10-08T17:26:32.773Z"
+      },
+      {
+        "id": "81db9f72-5c70-4582-960e-781327431c3f",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:26:48.054Z",
+        "completedAt": "2026-10-08T17:26:48.136Z"
+      },
+      {
+        "id": "79c89ef6-ec85-4fd6-b263-1920b814b83f",
+        "action": "navigate",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:27:31.996Z",
+        "completedAt": "2026-10-08T17:27:32.171Z"
+      },
+      {
+        "id": "20a8e02d-6154-4d79-89a9-d474863aac94",
+        "action": "click",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:28:04.828Z",
+        "completedAt": "2026-10-08T17:28:05.142Z"
+      },
+      {
+        "id": "d893381d-5d01-46ee-a31b-87e410ed4d6e",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:28:22.591Z",
+        "completedAt": "2026-10-08T17:28:22.601Z"
+      },
+      {
+        "id": "af44ca52-38bb-4529-bfb1-18a286c1ca58",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:28:34.153Z",
+        "completedAt": "2026-10-08T17:28:34.164Z"
+      },
+      {
+        "id": "a2b1cf3c-d77b-4c03-8435-888057d2dcb1",
+        "action": "press",
+        "status": "succeeded",
+        "startedAt": "2026-10-08T17:28:48.157Z",
+        "completedAt": "2026-10-08T17:28:48.171Z"
+      }
+    ],
+    "screenshot": {
+      "mimeType": "image/png",
+      "width": 1280,
+      "height": 800
+    },
+    "screenshotPath": "<trial-home>/.t3/userdata/browser-artifacts/browser-screenshot-127-0-0-1-muzt9tfm-b033fe73.png",
+    "accessibilityTree": "- generic [ref=t3-a0d8ed12-1j-e1] [box=0,-85,375,1045]:\n  - link \"Ir para o conteúdo\" [ref=t3-a0d8ed12-1j-e2] [cursor=pointer] [box=12,-84,155,48]:\n    - /url: \"#conteudo\"\n  - generic [ref=t3-a0d8ed12-1j-e3] [box=0,-85,375,1045]:\n    - banner [ref=t3-a0d8ed12-1j-e4] [box=24,-85,327,85]:\n      - link \"DeskLedger.\" [ref=t3-a0d8ed12-1j-e5] [cursor=pointer] [box=24,-57,104,28]:\n        - /url: /\n      - generic [ref=t3-a0d8ed12-1j-e6] [box=248,-55,103,24]: Em preparação\n    - main [active] [ref=t3-a0d8ed12-1j-e7] [box=24,0,327,891]:\n      - paragraph [ref=t3-a0d8ed12-1j-e8] [box=24,64,327,20]: Para agências brasileiras\n      - heading \"Mais clareza para o trabalho da sua agência.\" [level=1] [ref=t3-a0d8ed12-1j-e9] [box=24,108,327,180]\n      - paragraph [ref=t3-a0d8ed12-1j-e10] [box=24,316,327,88]: Um espaço para reunir projetos e pessoas, acompanhar responsabilidades e manter a equipe alinhada.\n      - button \"Conhecer os próximos passos\" [ref=t3-a0d8ed12-1j-e12] [box=24,444,225,48]\n      - generic [ref=t3-a0d8ed12-1j-e13] [box=24,556,327,271]:\n        - generic [ref=t3-a0d8ed12-1j-e14] [box=24,589,327,58]:\n          - heading \"Projetos em contexto\" [level=2] [ref=t3-a0d8ed12-1j-e15] [box=24,589,327,24]\n          - paragraph [ref=t3-a0d8ed12-1j-e16] [box=24,621,327,26]: Uma visão organizada do trabalho da agência.\n        - generic [ref=t3-a0d8ed12-1j-e17] [box=24,679,327,58]:\n          - heading \"Equipe alinhada\" [level=2] [ref=t3-a0d8ed12-1j-e18] [box=24,679,327,24]\n          - paragraph [ref=t3-a0d8ed12-1j-e19] [box=24,711,327,26]: Responsabilidades claras para cada etapa.\n        - generic [ref=t3-a0d8ed12-1j-e20] [box=24,769,327,58]:\n          - heading \"Feito para o seu dia a dia\" [level=2] [ref=t3-a0d8ed12-1j-e21] [box=24,769,327,24]\n          - paragraph [ref=t3-a0d8ed12-1j-e22] [box=24,801,327,26]: Uma experiência simples, em português.\n    - contentinfo [ref=t3-a0d8ed12-1j-e23] [box=24,891,327,69]: DeskLedger · Organização para criar melhor."
+  }
+}

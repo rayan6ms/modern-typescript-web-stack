@@ -1,0 +1,63 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "expected": 200,
+    "passed": true,
+    "bytes": 6068,
+    "assets": [
+      {
+        "path": "/_astro/forest-light.Bj3hGiOM_1yQqGT.webp",
+        "status": 200,
+        "content_type": "image/webp",
+        "bytes": 186494
+      },
+      {
+        "path": "/_astro/forest-light.Bj3hGiOM_Z2nSYbX.webp",
+        "status": 200,
+        "content_type": "image/webp",
+        "bytes": 88814
+      },
+      {
+        "path": "/_astro/forest-light.Bj3hGiOM_ZhboeB.webp",
+        "status": 200,
+        "content_type": "image/webp",
+        "bytes": 23914
+      }
+    ]
+  },
+  {
+    "path": "/journal/first-light/",
+    "status": 200,
+    "expected": 200,
+    "passed": true,
+    "bytes": 6375,
+    "assets": [
+      {
+        "path": "/_astro/forest-light.Bj3hGiOM_1yQqGT.webp",
+        "status": 200,
+        "content_type": "image/webp",
+        "bytes": 186494
+      },
+      {
+        "path": "/_astro/forest-light.Bj3hGiOM_Z2nSYbX.webp",
+        "status": 200,
+        "content_type": "image/webp",
+        "bytes": 88814
+      },
+      {
+        "path": "/_astro/forest-light.Bj3hGiOM_ZhboeB.webp",
+        "status": 200,
+        "content_type": "image/webp",
+        "bytes": 23914
+      }
+    ]
+  },
+  {
+    "path": "/not-a-route/",
+    "status": 404,
+    "expected": 404,
+    "passed": true,
+    "bytes": 4306
+  }
+]

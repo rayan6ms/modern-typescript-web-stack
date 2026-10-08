@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import forestLight from "../../assets/forest-light.jpg";
+import Page from "../../layouts/page.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("journal");
+  return entries.map((post) => ({
+    params: { id: post.id },
+    props: { entry: post },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<"journal">;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Page article description={entry.data.description} title={entry.data.title}>
+  <article class="article-page">
+    <header class="article-header">
+      <a class="back-link" href="/#journal">← Back to the journal</a>
+      <p class="eyebrow">Field notes · Sample article</p>
+      <h1>{entry.data.title}</h1>
+      <p class="lede">{entry.data.description}</p>
+      <time datetime={entry.data.published.toISOString()}
+        >{entry.data.published.toLocaleDateString("en-US", {
+          day: "numeric",
+          month: "long",
+          timeZone: "UTC",
+          year: "numeric",
+        })}</time
+      >
+    </header>
+    <figure class="opening-image">
+      <Image
+        alt="Mist and sunlight filter between tall tree trunks above green forest undergrowth."
+        priority
+        sizes="(min-width: 1136px) 1040px, calc(100vw - 48px)"
+        src={forestLight}
+        widths={[480, 960, 1440]}
+      />
+      <figcaption>
+        Sample photograph by{" "}
+        <a href="https://unsplash.com/photos/sp-p7uuT0tw"
+          >Sebastian Unrau on Unsplash</a
+        >.
+      </figcaption>
+    </figure>
+    <div class="prose"><Content /></div>
+  </article>
+</Page>

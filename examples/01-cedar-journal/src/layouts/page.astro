@@ -1,0 +1,45 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  article?: boolean;
+  description: string;
+  title: string;
+}
+
+const { title, description, article = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content={description} name="description">
+    <meta content="#f5f3ed" name="theme-color">
+    <title>{title} · Cedar Journal</title>
+    <meta content={title} property="og:title">
+    <meta content={description} property="og:description">
+    <meta content={article ? "article" : "website"} property="og:type">
+    <meta content="Cedar Journal" property="og:site_name">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header shell">
+      <a aria-label="Cedar Journal home" class="wordmark" href="/"
+        >Cedar Journal<span aria-hidden="true">.</span></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="/#journal">Journal</a>
+        <a href="/#about">About</a>
+      </nav>
+    </header>
+    <main class="shell" id="main" tabindex="-1">
+      <slot />
+    </main>
+    <footer class="site-footer shell">
+      <span>Cedar Journal</span>
+      <span>Photography &amp; field notes</span>
+    </footer>
+  </body>
+</html>

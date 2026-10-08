@@ -1,0 +1,54 @@
+name: Validate product and demos
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.0
+      - run: bun scripts/validate-product.ts .
+  demos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        # The builder replaces this list with this product's demos.
+        demo: ["01-cedar-journal","02-deskledger","03-liveboard"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.0
+      - name: Install and check demo
+        working-directory: examples/${{ matrix.demo }}
+        env:
+          CI: "true"
+          CARGO_BUILD_JOBS: "2"
+          RAYON_NUM_THREADS: "2"
+          UV_THREADPOOL_SIZE: "2"
+          BIOME_MAX_THREADS: "2"
+        run: |
+          bun install --frozen-lockfile --network-concurrency 2 --concurrent-scripts 2
+          bun run build
+          case "${{ matrix.demo }}" in
+            01-cedar-journal)
+              bun run check
+              ;;
+            02-deskledger)
+              bun run typecheck
+              bun run check
+              ;;
+            03-liveboard)
+              bun run typecheck
+              bun run check
+              ;;
+          esac

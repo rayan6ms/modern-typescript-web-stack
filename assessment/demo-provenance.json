@@ -1,0 +1,167 @@
+[
+  {
+    "id": "01-cedar-journal",
+    "original_commit": "166ba751bcbc19cdac31d470c02577d1c5b4de20",
+    "original_guidance_revision": "ff254aae09cd3cee626c39f07767d4e8f559e108",
+    "original_tracked_sha256": {
+      ".bun-version": "78b591400c56b7b67b8cb3b2b8a8e65e9093897f02ce0878e6b5405c68620fa7",
+      ".github/workflows/check.yml": "5c988a6c345bf3cf7c3757a01e4a00011b2ddc3502e4f395043278c46c2ef2db",
+      ".gitignore": "bf9191e194dd7bc21acec8b1cd1d52da8c7a5e6bf8b53a3dd76c31ca63a8137d",
+      "AGENTS.md": "b203459ede362ce0b29c65c8fef859c283d2c4e5380626589ad9efb00ec98dad",
+      "README.md": "4645fc6113082e3bae1ac51827b6b57166e680f3c2671a69fba8a08ac981404f",
+      "astro.config.mjs": "eead073c37e40713a8d0bc3b86627207f9cd493bbb36d5eb64e7ffcacc02d94b",
+      "biome.jsonc": "fdc0cfbb3be346a5bbeb8795dbe27800ec8ef9fda6cebc8156f10f56b6f45ca2",
+      "bun.lock": "53efa4e707f344c306f74003ecb6e6ba2623cce927eee059c3ddada95bfc40d9",
+      "docs/image-credit.md": "86579cdea92773109530458fcede0dc9c8fde60c5cbf10819705a545824eb27a",
+      "docs/stack-decisions.md": "8d86be576f6a696cbb1f1ad77cc717a52af0e56349f1d1d2c8d6acc2fab8d5ba",
+      "docs/stack/AGENTS.md": "5f07e66c1ea61306b6b5cbcb2e2f0ad2e1b70683ba0e4c4c7bcbb9fe445e6ae4",
+      "docs/stack/references/architecture.md": "5af3a625eb5018eb1d6a26fe1c944dee6ad10127fd85a3829084750f57fac496",
+      "docs/stack/references/backend.md": "3c680ccac73a8a0b1b9f1ba3b896eb345271e02bb33bd43c3584d715bf122b12",
+      "docs/stack/references/convex.md": "8663f2888bc976daa658f5beef0edb438330ce6fd2cca1e447d80a4d2085b528",
+      "docs/stack/references/data-services.md": "8ab50cbeb430508116193da44173f7aaac371eb1becaa2d126e786c9798572f3",
+      "docs/stack/references/frontend.md": "b1ab32f9d654aacf86d97188ded7de9983b2a38448cd0ed86189841d655e0039",
+      "docs/stack/references/integrations.md": "b77e4161ec57a178fac8066041fb43e66666c9479e877e204f9a946412dbe04f",
+      "docs/stack/references/operations.md": "325e3f8fd5c596d1bf6076f5a25111b7c81b280317e5f8637afcc70fd871f16e",
+      "docs/stack/references/postgresql.md": "af4d7ead4a363b9c395a2a832747df729adcd1c10047eea05e4523d662eacd3f",
+      "docs/stack/references/tooling.md": "b9e01d9ddddc989acba3beb2a572e9bc11ade7cb4b72e487c2caad4eec47795e",
+      "docs/stack/references/turso.md": "daa1fc25b359f16241d790cf7fbbf171d0a26c1656918f4f1fb27e20db8a9d74",
+      "package.json": "b472799511696dcb43477025f6ae1242395ad75807608c834c5dbc66d7f569b6",
+      "public/robots.txt": "16ceb5ee3e0dc13aa9adf31a3ebbe45a1d965b8c2b9f72eaf84e5911e140ed95",
+      "renovate.json": "58095e12b66e0d246d286ba99eb8f98d9ac5927cff83a9241b6d6f67818fa293",
+      "src/assets/forest-light.jpg": "e7fd2914a78bb0bffb4cac3e73d3ea2c34ff1806ae238799c5f8f160f74bdd7a",
+      "src/content.config.ts": "94aa05ae544e3b544809f7f8689cb20ea1a9da6a49c2683dd6681614a2efbbe8",
+      "src/content/journal/first-light.md": "b0e3dd6ef6d033207a54588d076b36a72638a4955c5f286caccd860d9a0b952a",
+      "src/layouts/page.astro": "f6c4473cf5e3e62e5b448e52959ab5f835b02c671c345aca394a6290db464c64",
+      "src/pages/index.astro": "b89929ee984f2f71266cab3a98a156f4d9825681677f20f89560ffbb4c291e02",
+      "src/pages/journal/[...id].astro": "94ff8d72e17f74da3865b37616bb88d7bf71faa9b330d3879e206a6eb0d4c035",
+      "src/styles/global.css": "fa0980f8f05cc59a2a0add74602fdaaaf80b6e893f0bf1fc7783ae83913bf531",
+      "tsconfig.json": "b5b0a5b04a14cddd7713c5e1c82e86c79c17c2f86b170e26e9b170b3d5e01cd9"
+    },
+    "publication_edits": [
+      {
+        "file": "docs/stack-decisions.md",
+        "reason": "Replace trial-host paths with portable locations; historical facts retained."
+      },
+      {
+        "file": "README.md",
+        "reason": "Add publication scope, evidence links and reproduction limits."
+      },
+      {
+        "file": "LICENSE",
+        "reason": "Add the MIT notice to keep copied standalone demos licensed."
+      }
+    ]
+  },
+  {
+    "id": "02-deskledger",
+    "original_commit": "cfffdd7be2eca1bb4b039d90cb5f00969eb18667",
+    "original_guidance_revision": "ff254aae09cd3cee626c39f07767d4e8f559e108",
+    "original_tracked_sha256": {
+      ".env.example": "8b5306d96abe797c5b38fa3e204d7319fd75de25cd3aa3808830fdc4ec84d65b",
+      ".gitignore": "af5edbee6f0a28b90a8d25b077d973d0241c5d6260de3a0530df3c5be78ad667",
+      "AGENTS.md": "d23eacd350da35bbf0902a293b02a324b5f8c8c87a6141b57f095ac01d14b5cd",
+      "README.md": "cfc6f5862eb951b905c586f9ad8457409e5cbc25e1dd2923b6f63887b59a20d5",
+      "biome.jsonc": "497f8770f5e3ed46e92ac119ff00b86a50ca1709348d83ed7cd376d0f630b3c1",
+      "bun.lock": "77c055d3e12a12b3aa11397119ab5e9acf8f731e43086bc05adc4d723f0851f1",
+      "docs/stack-decisions.md": "8e948fe097cab54fbe5633983c5abb87a7576e3fd3362ff6f2613e412a4fab89",
+      "docs/stack/AGENTS.md": "5f07e66c1ea61306b6b5cbcb2e2f0ad2e1b70683ba0e4c4c7bcbb9fe445e6ae4",
+      "docs/stack/references/architecture.md": "5af3a625eb5018eb1d6a26fe1c944dee6ad10127fd85a3829084750f57fac496",
+      "docs/stack/references/backend.md": "3c680ccac73a8a0b1b9f1ba3b896eb345271e02bb33bd43c3584d715bf122b12",
+      "docs/stack/references/convex.md": "8663f2888bc976daa658f5beef0edb438330ce6fd2cca1e447d80a4d2085b528",
+      "docs/stack/references/data-services.md": "8ab50cbeb430508116193da44173f7aaac371eb1becaa2d126e786c9798572f3",
+      "docs/stack/references/frontend.md": "b1ab32f9d654aacf86d97188ded7de9983b2a38448cd0ed86189841d655e0039",
+      "docs/stack/references/integrations.md": "b77e4161ec57a178fac8066041fb43e66666c9479e877e204f9a946412dbe04f",
+      "docs/stack/references/operations.md": "325e3f8fd5c596d1bf6076f5a25111b7c81b280317e5f8637afcc70fd871f16e",
+      "docs/stack/references/postgresql.md": "af4d7ead4a363b9c395a2a832747df729adcd1c10047eea05e4523d662eacd3f",
+      "docs/stack/references/tooling.md": "b9e01d9ddddc989acba3beb2a572e9bc11ade7cb4b72e487c2caad4eec47795e",
+      "docs/stack/references/turso.md": "daa1fc25b359f16241d790cf7fbbf171d0a26c1656918f4f1fb27e20db8a9d74",
+      "drizzle.config.ts": "5283162a40cd77dd40c3fc1cd497277072ad2367cd9bad1d6293b84a00585698",
+      "infra/postgres-init.sh": "a347c9fbb145dd60bc403461c3d6120e199811b199e997d0ff70b360227a3cf3",
+      "package.json": "06ce88e42c5dea04091dbd851be516c50fedb68bdd2a29983272c4b91cdd843c",
+      "renovate.json": "92dd74909cc27cf1e1a5db26ab62e001de98a1a046bf60711543afa5655e24fa",
+      "scripts/check-db.ts": "3260d8f43aa3e59a36e32a1477ad90f0687c453910768c3d89618a9e5e0cd11d",
+      "scripts/local-db.ts": "6bae734c363087dd059f5cd1b97f246e301c6e6a7b3edc3ee027e7f70f94d38e",
+      "src/components/ui/button.tsx": "2f403361bf093d999fa6d8cb45f82e8043df2be30c3bdade778fe30a3f5a98c5",
+      "src/db/client.server.ts": "0281695525b6a902bc5a2c7bae793296169b4d82fce90e765cd029c106fe75ba",
+      "src/db/schema.ts": "0be32707f3f3a6b217ebc6569bd37b325f958ce1ad81ac2c9a9bf9a6ce022e03",
+      "src/lib/utils.ts": "4acbc7165a8d54738ff62b51414e772c08fe78434e524e6d8770180d3ba2925f",
+      "src/routeTree.gen.ts": "f4a843c61899ede2abbc4a7153e6a00557765f737b724b152463c533c4e0ddb0",
+      "src/router.tsx": "5e23c9513b36e6a9d01c7c45ef1715f9e7ef47bfa04a98fc1cd264e7414f11a1",
+      "src/routes/__root.tsx": "7c15572c0c59ad086f7d30b64e1e377ab3c47fee227a8c44f2bc879f254714a3",
+      "src/routes/index.tsx": "103864b4ba451bbd8a56a0d58ab4d06f803f01a1f51e756c34243a68ad3c6526",
+      "src/styles.css": "f8973d3f145dea9dbd17129bb0c49428af4086cccd1d6584e6b583ee24bb6436",
+      "tsconfig.json": "f7ed4ad2c107d16cee92d3f3f8309fbfa056d1625cc95583c990cfd6279ea207",
+      "vite.config.ts": "03883b31c1cf591ff6e34175b29558ba65e24e0a1444c098b5db65d53b07391d"
+    },
+    "publication_edits": [
+      {
+        "file": "docs/stack-decisions.md",
+        "reason": "Replace trial-host paths with portable locations; historical facts retained."
+      },
+      {
+        "file": "README.md",
+        "reason": "Add publication scope, evidence links and reproduction limits."
+      },
+      {
+        "file": "LICENSE",
+        "reason": "Add the MIT notice to keep copied standalone demos licensed."
+      },
+      {
+        "file": "docs/shadcn-ui-MIT.txt",
+        "reason": "Preserve the upstream notice for copied shadcn/ui component code."
+      }
+    ]
+  },
+  {
+    "id": "03-liveboard",
+    "original_commit": "d4cc4b1a730260f439239125404d0e972ffe869d",
+    "original_guidance_revision": "ff254aae09cd3cee626c39f07767d4e8f559e108",
+    "original_tracked_sha256": {
+      ".env.example": "9d6c7a663159250f12314ec73fb12502bd3f2cf583575ac626dbfcb4b0ba78c8",
+      ".github/workflows/check.yml": "dda9d58a388481f855ddb854b67dce4f5710039a89a8392ace9a5f0365d3682c",
+      ".gitignore": "6b8e7bc50a887fefa98fb3a0475e78fdbd2ee58c58fe5982a701334fcae74b31",
+      "AGENTS.md": "dac5f739d758c7d9a528b57e2f59de63c8c740189676a55cab16adcead07ed5a",
+      "README.md": "53c651052c51cce713fa30dd852f345f9ad8ff5935b39d63d9929dbc98330c4e",
+      "biome.json": "89aca259197bb97be72c7f82043fa6dbf75f77e5f32619f197fbdb605be3ad8b",
+      "bun.lock": "e597579745212f3594158404215fe1fc664fcd26784456fca46c54cf2660737f",
+      "convex.json": "3ff9de0be433d623935d9ebd862b14107e715f631e137d118aca3be2259d8162",
+      "convex/README.md": "9059bad389bcf1747739476f3ef1f662e354acac749a713a63b2ca8b9c804e6b",
+      "docs/stack-decisions.md": "f4ad05c27d8d1620daac283cd79c6c3a56108a47de4191f1c652f8fc4df2f7ef",
+      "docs/stack/AGENTS.md": "5f07e66c1ea61306b6b5cbcb2e2f0ad2e1b70683ba0e4c4c7bcbb9fe445e6ae4",
+      "docs/stack/references/architecture.md": "5af3a625eb5018eb1d6a26fe1c944dee6ad10127fd85a3829084750f57fac496",
+      "docs/stack/references/backend.md": "3c680ccac73a8a0b1b9f1ba3b896eb345271e02bb33bd43c3584d715bf122b12",
+      "docs/stack/references/convex.md": "8663f2888bc976daa658f5beef0edb438330ce6fd2cca1e447d80a4d2085b528",
+      "docs/stack/references/data-services.md": "8ab50cbeb430508116193da44173f7aaac371eb1becaa2d126e786c9798572f3",
+      "docs/stack/references/frontend.md": "b1ab32f9d654aacf86d97188ded7de9983b2a38448cd0ed86189841d655e0039",
+      "docs/stack/references/integrations.md": "b77e4161ec57a178fac8066041fb43e66666c9479e877e204f9a946412dbe04f",
+      "docs/stack/references/operations.md": "325e3f8fd5c596d1bf6076f5a25111b7c81b280317e5f8637afcc70fd871f16e",
+      "docs/stack/references/postgresql.md": "af4d7ead4a363b9c395a2a832747df729adcd1c10047eea05e4523d662eacd3f",
+      "docs/stack/references/tooling.md": "b9e01d9ddddc989acba3beb2a572e9bc11ade7cb4b72e487c2caad4eec47795e",
+      "docs/stack/references/turso.md": "daa1fc25b359f16241d790cf7fbbf171d0a26c1656918f4f1fb27e20db8a9d74",
+      "package.json": "6025056654a407292506011ee17bb88e113e43516d2c84e9984e3158953b5780",
+      "renovate.json": "5e8b2045f1fd0f01e3a9bd7f551f32d23068a81cf6e6f9a3a91f97d018fc54f8",
+      "src/convex-provider.tsx": "3ef96348294a410c880a92aad5d540d64b0c54e0cb46aaab9d4fec79723aec51",
+      "src/routeTree.gen.ts": "f4a843c61899ede2abbc4a7153e6a00557765f737b724b152463c533c4e0ddb0",
+      "src/router.tsx": "5e23c9513b36e6a9d01c7c45ef1715f9e7ef47bfa04a98fc1cd264e7414f11a1",
+      "src/routes/__root.tsx": "b00c505124ac07f64439ffc6c7cfdb6875fbde43a441e32c5cb520d5b9010bb6",
+      "src/routes/index.tsx": "5d0b47225f147cf600a0e646c65a4c26c9b908d80cebc78b36e2271b9d7e20cc",
+      "src/styles.css": "a1c6026523e06f256332682602be75d2e6afdf597f2ba7e9c9775315b75adf6f",
+      "tsconfig.json": "a60a62939347a3880ee2e7c94398f5cc9813eee07625aaee426029b911ffce33",
+      "vite.config.ts": "03883b31c1cf591ff6e34175b29558ba65e24e0a1444c098b5db65d53b07391d"
+    },
+    "publication_edits": [
+      {
+        "file": "README.md",
+        "reason": "Add publication scope, evidence links and reproduction limits."
+      },
+      {
+        "file": "docs/stack-decisions.md",
+        "reason": "Replace absolute trial executable location with portable description; historical result retained."
+      },
+      {
+        "file": "LICENSE",
+        "reason": "Add the MIT notice to keep copied standalone demos licensed."
+      }
+    ]
+  }
+]
