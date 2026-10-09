@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.5 — 2026-10-09
+
+- Reject demo directories missing from the provenance manifest.
+
 ## 0.1.4 — 2026-10-09
 
 - Corrected skill removal and validation of demo additions and CI commands.

@@ -209,6 +209,11 @@ export function validate(rootArg: string) {
       `Incomplete demo ${demo.id}`,
     );
   }
+  for (const file of files) {
+    const [section, id, ...children] = relative(root, file).split(sep);
+    if (section === "examples" && children.length)
+      check(id && demoIds.has(id), `Unlisted demo directory: ${id}`);
+  }
   const checks = json("assessment/check-summary.json") as Array<{ passed: boolean; case: string }>;
   check(
     checks.every((entry) => entry.passed && demos.some((demo) => demo.id === entry.case)),
