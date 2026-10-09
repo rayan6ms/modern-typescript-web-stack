@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.6 — 2026-10-09
+
+- Preserve decision subjects and IDs when answers resolve only part of a choice.
+- Keep handoff commands portable and review generated continuation instructions.
+
 ## 0.1.5 — 2026-10-09
 
 - Reject demo directories missing from the provenance manifest.

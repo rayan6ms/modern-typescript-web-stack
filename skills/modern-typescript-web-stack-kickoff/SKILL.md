@@ -58,7 +58,7 @@ Produce a concise plan containing the information below. Planning-only requests 
 
 For example: payment-provider selection can remain deferred while public pages are planned. Before implementing checkout or subscriptions, ask about supported countries, billing requirements, and provider preferences. Record that checkout is blocked by that decision; do not create a speculative payment abstraction.
 
-Update the plan when answers arrive. Resolve deferred entries into chosen decisions, and mark replaced material decisions as superseded. Once a persistent record exists, maintain decisions there rather than in competing plans. Store each fact once: summarize with decision IDs or links instead of repeating the brief, rationale, setup state, and check results. Future agents should revisit open choices when their recorded trigger is reached, without rerunning kickoff or questioning settled choices during unrelated tasks.
+Update the plan when answers arrive. Resolve answered scope under the existing decision ID and subject, retaining any unresolved scope there. Mark replaced material selections superseded with replacement references. Once a persistent record exists, maintain decisions there rather than in competing plans. Store each fact once: summarize with decision IDs or links instead of repeating the brief, rationale, setup state, and check results. Future agents should revisit open choices when their recorded trigger is reached, without rerunning kickoff or questioning settled choices during unrelated tasks.
 
 ## Execute the requested initial setup
 
