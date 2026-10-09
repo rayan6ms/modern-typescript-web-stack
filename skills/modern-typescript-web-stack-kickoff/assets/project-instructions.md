@@ -16,6 +16,8 @@ When a task reaches a deferred entry's revisit trigger or blocked scope, ask its
 
 Maintain decisions in the local record. Resolve a deferred entry as chosen under the same ID; preserve replaced material choices as superseded with a replacement reference. Update the affected implementation/check state when work lands, keeping selection separate from installation and verification.
 
+Keep the record current and compact: replace obsolete check summaries, store each fact once, and group routine defaults. Before and after editing handoff documents, count their words using the same tool (for example, `wc -w`); review growth for duplication. For small projects, use soft upper targets of 500 words for root stack guidance and 1,000 for the decision record. Compaction-only work should reduce size. Preserve necessary commands, constraints, provenance, decision IDs, open questions/triggers and verification limits. Report counts and justified excess briefly in the task response; do not add size-history logs or trim unrelated user rules to meet a target.
+
 ## Commands and continuation
 
 Find actual development/check commands, working directories, prerequisites, and readiness limits in the decision record. Check current manifests/configuration before execution; update the record when commands change. Planned checks are not passing results, and a selected service is not necessarily configured. Results describe the recorded state and environment; rerun affected checks when implementation or configuration changes.

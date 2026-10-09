@@ -25,7 +25,7 @@ Use Astro for content sites, Convex for reactive shared data, or Turso for embed
 With Bun and Git installed, run from your project workspace:
 
 ```sh
-bun x --bun skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.1 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --agent codex --copy
+bun x --bun skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.2 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --agent codex --copy
 ```
 
 Then ask your agent:

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 — 2026-10-09
+
+- Minimal kickoff shells for undecided behavior and measurable handoff compactness checks.
+- Clarified third-party type errors and migration CLI prerequisites.
+- Safe server-rendered form behavior before hydration.
+
 ## 0.1.1 — 2026-10-08
 
 - Shorter README, a separate stack guide, and simpler installation and example pages.

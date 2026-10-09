@@ -51,14 +51,14 @@ Produce a concise plan containing the information below. Planning-only requests 
 
 - **Project brief:** initial outcome, committed capabilities, constraints, and labeled assumptions.
 - **Selected foundation:** profile/source, applicable rendering/runtime/data/tooling choices, their roles, and only the services needed initially. Distinguish profile defaults, supported branches, conditional additions, and explicit departures.
-- **Minimal setup scope:** essential files/configuration and a minimal runnable page or endpoint to create later. Avoid speculative feature directories, domain models, abstraction layers, and unused service integrations.
+- **Minimal setup scope:** essential files/configuration and a minimal runnable page or endpoint. When launch behavior is undecided, prepare a neutral runnable shell and defer that behavior; do not invent product logic to demonstrate the stack. Implement confirmed requirements or an explicitly requested prototype. Avoid speculative feature directories, domain models, abstraction layers, and unused service integrations.
 - **Material decisions:** chosen options and a short rationale. Record departures with their requirement/evidence, tradeoff, and planned validation. Recording a selection does not mean it has been installed or verified.
 - **Deferred decisions:** the unresolved question and reason; safe provisional behavior (or explicitly none); affected scope and what can proceed; the event that requires revisiting it; and what the next agent must ask or do. Identify decisions that currently block dependent setup.
 - **Verification plan:** applicable install, type, lint/format, production build, startup/smoke, and selected integration checks. Identify checks awaiting access or credentials without claiming readiness.
 
 For example: payment-provider selection can remain deferred while public pages are planned. Before implementing checkout or subscriptions, ask about supported countries, billing requirements, and provider preferences. Record that checkout is blocked by that decision; do not create a speculative payment abstraction.
 
-Update the plan when answers arrive. Resolve deferred entries into chosen decisions, and mark replaced material decisions as superseded. Once a persistent record exists, maintain decisions there rather than in competing plans. Future agents should revisit open choices when their recorded trigger is reached, without rerunning kickoff or questioning settled choices during unrelated tasks.
+Update the plan when answers arrive. Resolve deferred entries into chosen decisions, and mark replaced material decisions as superseded. Once a persistent record exists, maintain decisions there rather than in competing plans. Store each fact once: summarize with decision IDs or links instead of repeating the brief, rationale, setup state, and check results. Future agents should revisit open choices when their recorded trigger is reached, without rerunning kickoff or questioning settled choices during unrelated tasks.
 
 ## Execute the requested initial setup
 

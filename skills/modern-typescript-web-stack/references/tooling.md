@@ -18,6 +18,8 @@ For maintained repositories, use Renovate for reviewed update PRs, or suitable D
 - Use Bun explicitly for compatible tools; `--bun` overrides Node shebangs, not incompatibility. Another runtime needs a verified unmet Bun requirement; upstream metadata alone is insufficient. pnpm manages packages, not execution. Fetch missing tools at verified versions.
 - Prefer rootless Podman, Docker when unsuitable, and `uv` for Python. Containers are optional.
 
+When type checking fails in third-party declarations, first inspect compatible dependency versions and separate those diagnostics from authored errors. If needed, document `skipLibCheck` in the smallest affected configuration; it skips declaration-file checking, not checking of authored code against imported APIs. Retain strict application, configuration, and test checks and verify their coverage. Record the vendor-check limitation rather than masking authored errors or installing unused optional integrations.
+
 When changing workspace/build configuration, declare package exports and task dependencies, keep server-only imports out of browser graphs, and include build-affecting inputs/environment in cache keys. Separate code generation from deploy/migration commands; do not cache external mutations or persistent tasks. Keep secrets/private data out of cached artifacts and logs.
 
 For new foundations, expose one documented `verify` command covering applicable non-mutating type, lint/format, meaningful local tests, and contract checks; retain a suitable existing equivalent. Keep individual checks available and propagate failures. Builds, code generation that updates source, live-service checks, migrations, and deployment remain explicit commands. Do not add no-op checks or test infrastructure just to fill the umbrella.
@@ -32,4 +34,5 @@ Use documentation matching the installed version.
 
 - [Bun runtime and APIs](https://bun.com/docs/runtime)
 - [Ultracite setup](https://www.ultracite.ai/docs/setup)
+- [TypeScript skipLibCheck](https://www.typescriptlang.org/tsconfig/skipLibCheck.html)
 - [Turborepo caching](https://turborepo.dev/docs/crafting-your-repository/caching) and [environment inputs](https://turborepo.dev/docs/crafting-your-repository/using-environment-variables)

@@ -30,6 +30,8 @@ Keep staging cleanup limited to task-owned resources. Failures should leave a cl
 
 ## Keep the initial surface essential
 
+If product behavior is still undecided, use a neutral page or health endpoint to exercise the foundation. Do not invent a sample workflow, calculation, or domain schema that will need replacing once the user answers. Confirmed launch behavior or an explicitly requested prototype can supply the runnable surface.
+
 Create only the structure needed to run the selected components and their checks:
 
 - Framework/language configuration, dependency manifests/lockfiles, applicable runtime/build adapters, and a minimal page or endpoint. Preserve required routing/layout files; omit starter showcase features and speculative feature/service directories.
