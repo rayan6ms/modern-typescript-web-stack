@@ -57,6 +57,12 @@ export function validate(rootArg: string) {
     "CHANGELOG.md",
     "SOURCE.json",
     "docs/installation.md",
+    "package.json",
+    "install.sh",
+    "cli/index.mjs",
+    "cli/product.json",
+    "cli/agents.json",
+    "cli/THIRD_PARTY_NOTICES.md",
     "examples/README.md",
     "assessment/REPORT.md",
     "assessment/RUBRIC.md",
@@ -64,6 +70,74 @@ export function validate(rootArg: string) {
   ]) {
     check(existsSync(resolve(root, file)), `Missing ${file}`);
   }
+  const cli = json("cli/product.json");
+  const pkg = json("package.json");
+  const command = name.startsWith("modern") ? "modern-stack" : "performance-stack";
+  check(
+    cli.id === name && cli.command === command && cli.version === manifest.version,
+    "Invalid CLI identity",
+  );
+  check(
+    pkg.name === `@rayan6ms/${name}` &&
+      pkg.version === manifest.version &&
+      pkg.bin?.[command] === "cli/index.mjs",
+    "Invalid CLI package",
+  );
+  check(
+    !pkg.dependencies && !pkg.scripts,
+    "Distributed CLI must be bundled without install scripts",
+  );
+  check(
+    pkg.engines?.node === ">=22" && Object.keys(pkg.bin).length === 1,
+    "Invalid CLI runtime or executable",
+  );
+  for (const executable of ["cli/index.mjs", "install.sh"])
+    check(
+      Boolean(lstatSync(resolve(root, executable)).mode & 0o111),
+      `Missing executable mode: ${executable}`,
+    );
+  const bootstrap = readFileSync(resolve(root, "install.sh"), "utf8");
+  check(
+    bootstrap.includes(`product='${name}'`) &&
+      bootstrap.includes(`version='${manifest.version}'`) &&
+      !/__PRODUCT__|__VERSION__|__COMMAND__/.test(bootstrap),
+    "Invalid bootstrap identity",
+  );
+  const catalog = json("cli/agents.json") as Array<{
+    id: string;
+    label: string;
+    local: string;
+    global: string | null;
+    popular: boolean;
+  }>;
+  check(
+    catalog.length > 10 && new Set(catalog.map((agent) => agent.id)).size === catalog.length,
+    "Invalid agent catalog",
+  );
+  check(
+    catalog.every(
+      (agent, index) =>
+        typeof agent.local === "string" &&
+        (!index ||
+          catalog[index - 1]!.label.localeCompare(agent.label, "en", { sensitivity: "base" }) <= 0),
+    ),
+    "Unsorted agent catalog",
+  );
+  check(
+    catalog.every(
+      (agent) =>
+        /^[a-z0-9-]+$/.test(agent.id) &&
+        typeof agent.label === "string" &&
+        typeof agent.popular === "boolean" &&
+        /^(?:[a-zA-Z0-9_.-]+\/)*skills$/.test(agent.local) &&
+        !agent.local.split("/").some((part) => part === "." || part === "..") &&
+        (agent.global === null ||
+          /^(HOME|CONFIG|CLAUDE|VIBE|HERMES|AUTOHAND|GROK|SARVAM)\/(?:[a-zA-Z0-9_.-]+\/)*skills$/.test(
+            agent.global,
+          )),
+    ),
+    "Invalid agent paths or metadata",
+  );
   check(
     readFileSync(resolve(root, "LICENSE"), "utf8").includes("MIT License"),
     "Missing MIT license text",

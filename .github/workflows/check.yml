@@ -14,6 +14,18 @@ jobs:
         with:
           bun-version: 1.4.0
       - run: bun scripts/validate-product.ts .
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check global and project installers
+        env:
+          WEB_STACK_HOME: ${{ runner.temp }}/web-stack-installer-home
+          WEB_STACK_CLI_PREFIX: ${{ runner.temp }}/web-stack-installer-cli
+        run: |
+          bun cli/index.mjs --agent codex
+          node cli/index.mjs init --local --agent cursor
+          node cli/index.mjs remove --local --agent cursor
+          bun cli/index.mjs remove --agent codex
   demos:
     runs-on: ubuntu-latest
     timeout-minutes: 20

@@ -1,0 +1,555 @@
+[
+  {
+    "id": "adal",
+    "label": "AdaL",
+    "local": ".adal/skills",
+    "global": "HOME/.adal/skills",
+    "popular": false
+  },
+  {
+    "id": "aider-desk",
+    "label": "AiderDesk",
+    "local": ".aider-desk/skills",
+    "global": "HOME/.aider-desk/skills",
+    "popular": false
+  },
+  {
+    "id": "amp",
+    "label": "Amp",
+    "local": ".agents/skills",
+    "global": "CONFIG/agents/skills",
+    "popular": true
+  },
+  {
+    "id": "antigravity",
+    "label": "Antigravity",
+    "local": ".agents/skills",
+    "global": "HOME/.gemini/antigravity/skills",
+    "popular": false
+  },
+  {
+    "id": "antigravity-cli",
+    "label": "Antigravity CLI",
+    "local": ".agents/skills",
+    "global": "HOME/.gemini/antigravity-cli/skills",
+    "popular": false
+  },
+  {
+    "id": "astrbot",
+    "label": "AstrBot",
+    "local": "data/skills",
+    "global": "HOME/.astrbot/data/skills",
+    "popular": false
+  },
+  {
+    "id": "augment",
+    "label": "Augment",
+    "local": ".augment/skills",
+    "global": "HOME/.augment/skills",
+    "popular": false
+  },
+  {
+    "id": "autohand-code",
+    "label": "Autohand Code CLI",
+    "local": ".autohand/skills",
+    "global": "AUTOHAND/skills",
+    "popular": false
+  },
+  {
+    "id": "claude-code",
+    "label": "Claude Code",
+    "local": ".claude/skills",
+    "global": "CLAUDE/skills",
+    "popular": true
+  },
+  {
+    "id": "cline",
+    "label": "Cline",
+    "local": ".agents/skills",
+    "global": "HOME/.agents/skills",
+    "popular": true
+  },
+  {
+    "id": "codestudio",
+    "label": "Code Studio",
+    "local": ".codestudio/skills",
+    "global": "HOME/.codestudio/skills",
+    "popular": false
+  },
+  {
+    "id": "codearts-agent",
+    "label": "CodeArts Agent",
+    "local": ".codeartsdoer/skills",
+    "global": "HOME/.codeartsdoer/skills",
+    "popular": false
+  },
+  {
+    "id": "codebuddy",
+    "label": "CodeBuddy",
+    "local": ".codebuddy/skills",
+    "global": "HOME/.codebuddy/skills",
+    "popular": false
+  },
+  {
+    "id": "codemaker",
+    "label": "Codemaker",
+    "local": ".codemaker/skills",
+    "global": "HOME/.codemaker/skills",
+    "popular": false
+  },
+  {
+    "id": "codex",
+    "label": "Codex",
+    "local": ".agents/skills",
+    "global": "HOME/.agents/skills",
+    "popular": true
+  },
+  {
+    "id": "command-code",
+    "label": "Command Code",
+    "local": ".commandcode/skills",
+    "global": "HOME/.commandcode/skills",
+    "popular": false
+  },
+  {
+    "id": "continue",
+    "label": "Continue",
+    "local": ".continue/skills",
+    "global": "HOME/.continue/skills",
+    "popular": false
+  },
+  {
+    "id": "cortex",
+    "label": "Cortex Code",
+    "local": ".cortex/skills",
+    "global": "HOME/.snowflake/cortex/skills",
+    "popular": false
+  },
+  {
+    "id": "crush",
+    "label": "Crush",
+    "local": ".crush/skills",
+    "global": "HOME/.config/crush/skills",
+    "popular": false
+  },
+  {
+    "id": "cursor",
+    "label": "Cursor",
+    "local": ".agents/skills",
+    "global": "HOME/.cursor/skills",
+    "popular": true
+  },
+  {
+    "id": "deepagents",
+    "label": "Deep Agents",
+    "local": ".agents/skills",
+    "global": "HOME/.deepagents/agent/skills",
+    "popular": false
+  },
+  {
+    "id": "devin",
+    "label": "Devin for Terminal",
+    "local": ".devin/skills",
+    "global": "CONFIG/devin/skills",
+    "popular": false
+  },
+  {
+    "id": "dexto",
+    "label": "Dexto",
+    "local": ".agents/skills",
+    "global": "HOME/.agents/skills",
+    "popular": false
+  },
+  {
+    "id": "droid",
+    "label": "Droid",
+    "local": ".agents/skills",
+    "global": "HOME/.factory/skills",
+    "popular": false
+  },
+  {
+    "id": "eve",
+    "label": "Eve",
+    "local": "agent/skills",
+    "global": null,
+    "popular": false
+  },
+  {
+    "id": "firebender",
+    "label": "Firebender",
+    "local": ".agents/skills",
+    "global": "HOME/.firebender/skills",
+    "popular": false
+  },
+  {
+    "id": "forgecode",
+    "label": "ForgeCode",
+    "local": ".forge/skills",
+    "global": "HOME/.forge/skills",
+    "popular": false
+  },
+  {
+    "id": "fx",
+    "label": "fx",
+    "local": ".fx/skills",
+    "global": "HOME/.fx/skills",
+    "popular": false
+  },
+  {
+    "id": "gemini-cli",
+    "label": "Gemini CLI",
+    "local": ".agents/skills",
+    "global": "HOME/.gemini/skills",
+    "popular": true
+  },
+  {
+    "id": "github-copilot",
+    "label": "GitHub Copilot",
+    "local": ".agents/skills",
+    "global": "HOME/.copilot/skills",
+    "popular": true
+  },
+  {
+    "id": "goose",
+    "label": "Goose",
+    "local": ".goose/skills",
+    "global": "CONFIG/goose/skills",
+    "popular": false
+  },
+  {
+    "id": "grok",
+    "label": "Grok Build",
+    "local": ".grok/skills",
+    "global": "GROK/skills",
+    "popular": false
+  },
+  {
+    "id": "hermes-agent",
+    "label": "Hermes Agent",
+    "local": ".hermes/skills",
+    "global": "HERMES/skills",
+    "popular": false
+  },
+  {
+    "id": "bob",
+    "label": "IBM Bob",
+    "local": ".bob/skills",
+    "global": "HOME/.bob/skills",
+    "popular": false
+  },
+  {
+    "id": "iflow-cli",
+    "label": "iFlow CLI",
+    "local": ".iflow/skills",
+    "global": "HOME/.iflow/skills",
+    "popular": false
+  },
+  {
+    "id": "inference-sh",
+    "label": "inference.sh",
+    "local": ".inferencesh/skills",
+    "global": "HOME/.inferencesh/skills",
+    "popular": false
+  },
+  {
+    "id": "jazz",
+    "label": "Jazz",
+    "local": ".jazz/skills",
+    "global": "HOME/.jazz/skills",
+    "popular": false
+  },
+  {
+    "id": "junie",
+    "label": "Junie",
+    "local": ".junie/skills",
+    "global": "HOME/.junie/skills",
+    "popular": false
+  },
+  {
+    "id": "kilo",
+    "label": "Kilo Code",
+    "local": ".agents/skills",
+    "global": "HOME/.kilo/skills",
+    "popular": true
+  },
+  {
+    "id": "kimchi",
+    "label": "Kimchi",
+    "local": ".kimchi/skills",
+    "global": "HOME/.config/kimchi/harness/skills",
+    "popular": false
+  },
+  {
+    "id": "kimi-code-cli",
+    "label": "Kimi Code CLI",
+    "local": ".agents/skills",
+    "global": "HOME/.agents/skills",
+    "popular": false
+  },
+  {
+    "id": "kiro-cli",
+    "label": "Kiro CLI",
+    "local": ".kiro/skills",
+    "global": "HOME/.kiro/skills",
+    "popular": false
+  },
+  {
+    "id": "kode",
+    "label": "Kode",
+    "local": ".kode/skills",
+    "global": "HOME/.kode/skills",
+    "popular": false
+  },
+  {
+    "id": "lingma",
+    "label": "Lingma",
+    "local": ".lingma/skills",
+    "global": "HOME/.lingma/skills",
+    "popular": false
+  },
+  {
+    "id": "loaf",
+    "label": "Loaf",
+    "local": ".agents/skills",
+    "global": "HOME/.agents/skills",
+    "popular": false
+  },
+  {
+    "id": "mcpjam",
+    "label": "MCPJam",
+    "local": ".mcpjam/skills",
+    "global": "HOME/.mcpjam/skills",
+    "popular": false
+  },
+  {
+    "id": "minimax-code",
+    "label": "MiniMax Code",
+    "local": ".minimax/skills",
+    "global": "HOME/.minimax/skills",
+    "popular": false
+  },
+  {
+    "id": "mistral-vibe",
+    "label": "Mistral Vibe",
+    "local": ".vibe/skills",
+    "global": "VIBE/skills",
+    "popular": false
+  },
+  {
+    "id": "moxby",
+    "label": "Moxby",
+    "local": ".moxby/skills",
+    "global": "HOME/.moxby/skills",
+    "popular": false
+  },
+  {
+    "id": "mux",
+    "label": "Mux",
+    "local": ".mux/skills",
+    "global": "HOME/.mux/skills",
+    "popular": false
+  },
+  {
+    "id": "neovate",
+    "label": "Neovate",
+    "local": ".neovate/skills",
+    "global": "HOME/.neovate/skills",
+    "popular": false
+  },
+  {
+    "id": "ona",
+    "label": "Ona",
+    "local": ".ona/skills",
+    "global": "HOME/.ona/skills",
+    "popular": false
+  },
+  {
+    "id": "openclaw",
+    "label": "OpenClaw",
+    "local": "skills",
+    "global": "HOME/.openclaw/skills",
+    "popular": false
+  },
+  {
+    "id": "opencode",
+    "label": "OpenCode",
+    "local": ".agents/skills",
+    "global": "CONFIG/opencode/skills",
+    "popular": true
+  },
+  {
+    "id": "openhands",
+    "label": "OpenHands",
+    "local": ".openhands/skills",
+    "global": "HOME/.openhands/skills",
+    "popular": false
+  },
+  {
+    "id": "pi",
+    "label": "Pi",
+    "local": ".agents/skills",
+    "global": "HOME/.agents/skills",
+    "popular": false
+  },
+  {
+    "id": "pochi",
+    "label": "Pochi",
+    "local": ".pochi/skills",
+    "global": "HOME/.pochi/skills",
+    "popular": false
+  },
+  {
+    "id": "posit-assistant",
+    "label": "Posit Assistant",
+    "local": ".posit/assistant/skills",
+    "global": "HOME/.posit/assistant/skills",
+    "popular": false
+  },
+  {
+    "id": "promptscript",
+    "label": "PromptScript",
+    "local": ".agents/skills",
+    "global": null,
+    "popular": false
+  },
+  {
+    "id": "qoder",
+    "label": "Qoder",
+    "local": ".qoder/skills",
+    "global": "HOME/.qoder/skills",
+    "popular": false
+  },
+  {
+    "id": "qoder-cn",
+    "label": "Qoder CN",
+    "local": ".qoder/skills",
+    "global": "HOME/.qoder-cn/skills",
+    "popular": false
+  },
+  {
+    "id": "qwen-code",
+    "label": "Qwen Code",
+    "local": ".qwen/skills",
+    "global": "HOME/.qwen/skills",
+    "popular": false
+  },
+  {
+    "id": "reasonix",
+    "label": "Reasonix",
+    "local": ".reasonix/skills",
+    "global": "HOME/.reasonix/skills",
+    "popular": false
+  },
+  {
+    "id": "replit",
+    "label": "Replit",
+    "local": ".agents/skills",
+    "global": "CONFIG/agents/skills",
+    "popular": false
+  },
+  {
+    "id": "roo",
+    "label": "Roo Code",
+    "local": ".roo/skills",
+    "global": "HOME/.roo/skills",
+    "popular": false
+  },
+  {
+    "id": "rovodev",
+    "label": "Rovo Dev",
+    "local": ".rovodev/skills",
+    "global": "HOME/.rovodev/skills",
+    "popular": false
+  },
+  {
+    "id": "sarvam-code",
+    "label": "Sarvam Code",
+    "local": ".agents/skills",
+    "global": "HOME/.agents/skills",
+    "popular": false
+  },
+  {
+    "id": "tabnine-cli",
+    "label": "Tabnine CLI",
+    "local": ".tabnine/agent/skills",
+    "global": "HOME/.tabnine/agent/skills",
+    "popular": false
+  },
+  {
+    "id": "terramind",
+    "label": "Terramind",
+    "local": ".terramind/skills",
+    "global": "HOME/.terramind/skills",
+    "popular": false
+  },
+  {
+    "id": "tinycloud",
+    "label": "Tinycloud",
+    "local": ".tinycloud/skills",
+    "global": "HOME/.tinycloud/skills",
+    "popular": false
+  },
+  {
+    "id": "trae",
+    "label": "Trae",
+    "local": ".trae/skills",
+    "global": "HOME/.trae/skills",
+    "popular": false
+  },
+  {
+    "id": "trae-cn",
+    "label": "Trae CN",
+    "local": ".trae/skills",
+    "global": "HOME/.trae-cn/skills",
+    "popular": false
+  },
+  {
+    "id": "universal",
+    "label": "Universal",
+    "local": ".agents/skills",
+    "global": "HOME/.agents/skills",
+    "popular": false
+  },
+  {
+    "id": "warp",
+    "label": "Warp",
+    "local": ".agents/skills",
+    "global": "HOME/.agents/skills",
+    "popular": false
+  },
+  {
+    "id": "windsurf",
+    "label": "Windsurf",
+    "local": ".windsurf/skills",
+    "global": "HOME/.codeium/windsurf/skills",
+    "popular": true
+  },
+  {
+    "id": "zcode",
+    "label": "ZCode",
+    "local": ".zcode/skills",
+    "global": "HOME/.zcode/skills",
+    "popular": false
+  },
+  {
+    "id": "zed",
+    "label": "Zed",
+    "local": ".agents/skills",
+    "global": "HOME/.agents/skills",
+    "popular": false
+  },
+  {
+    "id": "zencoder",
+    "label": "Zencoder",
+    "local": ".zencoder/skills",
+    "global": "HOME/.zencoder/skills",
+    "popular": false
+  },
+  {
+    "id": "zenflow",
+    "label": "Zenflow",
+    "local": ".zencoder/skills",
+    "global": "HOME/.zencoder/skills",
+    "popular": false
+  }
+]

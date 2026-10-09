@@ -1,70 +1,81 @@
 # Installation
 
-Run one of the following commands inside your website's folder, creating the folder first if needed. Install [Git](https://git-scm.com/downloads) and either [Bun](https://bun.com/docs/installation) or [Node.js 22.20+](https://nodejs.org/en/download).
+Setup installs the CLI and both skills globally. You choose the agents; none is assumed.
 
-These commands use Codex. For Claude Code, replace `codex` with `claude-code`.
+## Install
 
-**Bun:**
-
-```sh
-bun x --bun skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.8 --agent codex --copy --yes
-```
-
-**Node.js/npm:**
+With [Bun](https://bun.com/docs/installation) and [Git](https://git-scm.com/downloads):
 
 ```sh
-npx --yes skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.8 --agent codex --copy --yes
+bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.9
 ```
 
-**[pnpm](https://pnpm.io/installation) with Node.js:**
+With curl and either Bun or Node.js 22+ (Linux/macOS):
 
 ```sh
-pnpm dlx skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.8 --agent codex --copy --yes
+curl -fsSL https://raw.githubusercontent.com/rayan6ms/modern-typescript-web-stack/v0.1.9/install.sh | sh
 ```
 
-Both skills install as project-local copies without prompts. Open the same folder in your coding agent and ask it to use the `modern-typescript-web-stack-kickoff` skill to set up this directory. Kickoff installs the website dependencies using the stack defaults.
+With Node.js 22+ and Git:
 
-## Agents and scope
+```sh
+npx --yes github:rayan6ms/modern-typescript-web-stack#v0.1.9
+```
 
-Set `--agent` to the agent you use:
+With pnpm, Node.js 22+ and Git:
 
-| Agent | Option | Project skill directory |
-| --- | --- | --- |
-| Claude Code | `--agent claude-code` | `.claude/skills/` |
-| Codex | `--agent codex` | `.agents/skills/` |
+```sh
+pnpm dlx github:rayan6ms/modern-typescript-web-stack#v0.1.9
+```
 
-For other [supported agents](https://github.com/vercel-labs/skills#supported-agents), replace `codex` with their identifier. To install for both Codex and Claude Code, use `--agent codex claude-code`. The explicit target bypasses agent detection and the interactive picker.
+The installer shows popular agents alphabetically, with search and multiple selection. It then asks **Install additional agents?**, defaulting to **No**. Choose Yes for the remaining agents, also sorted and searchable. Leave the popular list empty if you only want an additional agent.
 
-[Codex reads project skills from `.agents/skills/`](https://learn.chatgpt.com/docs/build-skills#where-codex-loads-local-skills). If a skill does not appear, start a new agent session in the website's folder.
+The CLI is installed under `~/.local/share/modern-stack`, with its command in `~/.local/bin`. If needed, add that bin directory to your PATH:
 
-Add `--global` to make the skills available across projects. Keep the final `--yes` to skip installer prompts; npm's earlier `--yes` only skips its download confirmation.
+```sh
+export PATH="$HOME/.local/bin:$PATH"
+```
 
-## Local or manual installation
+On Windows, the CLI creates `modern-stack.cmd` in the same bin directory; add it to your user PATH.
 
-To install from a downloaded release or checkout, replace the GitHub URL with its local directory path.
+## Use the CLI
 
-For manual installation, copy the complete `skills/modern-typescript-web-stack/` and `skills/modern-typescript-web-stack-kickoff/` directories into your agent's skill directory, such as those listed above. Keep both together and preserve their supporting files.
+```sh
+modern-stack init
+```
+
+This installs or updates the bundled skills globally. To install into the current website instead:
+
+```sh
+modern-stack init --local
+```
+
+To skip agent selection, specify one or more identifiers from `modern-stack agents`:
+
+```sh
+modern-stack init --agent cursor
+modern-stack init --agent claude-code,codex
+```
+
+Use `--dry-run` to preview destinations. Existing or edited copies require confirmation or `--force` before replacement. Updates preserve unrelated files and skills.
+
+After setup, open your website in your agent and ask it to use the `modern-typescript-web-stack-kickoff` skill. Website dependencies are installed during kickoff.
 
 ## Updates and removal
 
-To update a pinned installation, choose a new [release](https://github.com/rayan6ms/modern-typescript-web-stack/releases), replace `v0.1.8` with its tag, and rerun the install command. This replaces the installed copies, so save any local skill edits first. Updating a skill does not automatically update instructions already copied into a website project.
-
-To remove these skills, use your preferred runner:
+Rerun setup with a newer [release](https://github.com/rayan6ms/modern-typescript-web-stack/releases) to update the CLI and bundled skills. `modern-stack init` uses the version already installed; it does not fetch a new release. Updating skills does not change instructions previously copied into a website project.
 
 ```sh
-bun x --bun skills@1.7.1 remove modern-typescript-web-stack modern-typescript-web-stack-kickoff --yes
+modern-stack remove
+modern-stack remove --local
 ```
 
-```sh
-npx --yes skills@1.7.1 remove modern-typescript-web-stack modern-typescript-web-stack-kickoff --yes
-```
+Removal uses the same agent picker, or accepts `--agent`. It removes only this product's two skills from the selected agents and scope. Agents that share a skill directory share those copies.
 
-```sh
-pnpm dlx skills@1.7.1 remove modern-typescript-web-stack modern-typescript-web-stack-kickoff --yes
-```
+## Local files and plugins
 
-This removes this product's named skills across agents in the current project without prompts. Include `--global` if you installed globally.
+From a release archive or checkout, run `bun cli/index.mjs` or `node cli/index.mjs`. Skills are bundled, so setup works offline after downloading the CLI.
 
-## Plugins
+For manual installation, copy both complete skill directories from `skills/` into your agent's skill directory. [Codex](https://learn.chatgpt.com/docs/build-skills#where-codex-loads-local-skills) uses `~/.agents/skills/` globally and `.agents/skills/` in a project. Claude Code uses `~/.claude/skills/` and `.claude/skills/`.
 
-The included `plugin.json` can be used with compatible plugin hosts. See the [local plugin installation guide](https://developers.openai.com/plugins/build/plugins).
+The included `plugin.json` supports compatible plugin hosts; see the [local plugin installation guide](https://developers.openai.com/plugins/build/plugins).

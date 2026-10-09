@@ -1,0 +1,23 @@
+{
+  "name": "@rayan6ms/modern-typescript-web-stack",
+  "version": "0.1.9",
+  "description": "TypeScript web stack guidance and project setup for coding agents",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "modern-stack": "cli/index.mjs"
+  },
+  "files": [
+    "cli",
+    "skills",
+    "LICENSE",
+    "SOURCE.json"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rayan6ms/modern-typescript-web-stack.git"
+  }
+}

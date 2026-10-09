@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.9 — 2026-10-09
+
+- Dedicated CLI with global installation by default and project-local installation via --local.
+- Sorted, searchable popular and additional agent lists, with additional agents opt-in.
+- Bundled skills, shorter setup commands, curl installation, and guarded updates and removal.
+
 ## 0.1.8 — 2026-10-09
 
 - Shorter installation commands with explicit agent targets and no interactive picker.
