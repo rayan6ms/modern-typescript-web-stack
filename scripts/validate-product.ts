@@ -126,9 +126,9 @@ export function validate(rootArg: string) {
   }
   walk(root);
   for (const file of files) {
-    const path = relative(root, file);
+    const path = relative(root, file).split(sep).join("/");
     check(
-      !/(^|\/)\.env(?:$|\.(?!example$))/.test(path) && !path.includes("/.local/"),
+      !/(^|\/)\.env(?:$|\.(?!example$))/.test(path) && !path.split("/").includes(".local"),
       `Private runtime file: ${path}`,
     );
     if (!file.endsWith(".md") || path.includes("/assets/")) continue;
