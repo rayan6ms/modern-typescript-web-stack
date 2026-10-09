@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.7 — 2026-10-09
+
+- Agent-neutral setup with Bun, npm, and pnpm installation options.
+- Compact README commands and kickoff in the website's own folder.
+
 ## 0.1.6 — 2026-10-09
 
 - Preserve decision subjects and IDs when answers resolve only part of a choice.

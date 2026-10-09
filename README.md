@@ -22,22 +22,44 @@ Use Astro for content sites, Convex for reactive shared data, or Turso for embed
 
 ## Use with your agent
 
-With Bun and Git installed, run from your project workspace:
+Create or open your website's folder. With [Git](https://git-scm.com/downloads) and either [Bun](https://bun.com/docs/installation) or [Node.js 22.20+](https://nodejs.org/en/download) installed, run one of these commands inside that folder.
+
+**Bun:**
 
 ```sh
-bun x --bun skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.6 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --agent codex --copy
+bun x --bun skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.7 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --copy
 ```
 
-Then ask your agent:
+<details>
+<summary>Node.js/npm</summary>
+
+```sh
+npx --yes skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.7 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --copy
+```
+
+</details>
+
+<details>
+<summary>pnpm</summary>
+
+Requires [pnpm](https://pnpm.io/installation) with Node.js.
+
+```sh
+pnpm dlx skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.7 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --copy
+```
+
+</details>
+
+Choose your coding agent when prompted, then open the same folder in your agent and ask:
 
 ```text
-Use $modern-typescript-web-stack-kickoff to set up ./my-site.
+Use the modern-typescript-web-stack-kickoff skill to set up this directory.
 It will be [describe your website and its main features].
 ```
 
-The agent asks about your website, installs the needed tools, and prepares a starting project. Use `$modern-typescript-web-stack` for ongoing development.
+The agent asks about your website, installs the needed tools, and prepares a starting project. Use the `modern-typescript-web-stack` skill for ongoing development.
 
-For other agents, manual installation, and updates, see [installation options](docs/installation.md). Browse the [example projects](examples/README.md) to see different uses of the stack.
+For global or manual installation, and updates, see [installation options](docs/installation.md). Browse the [example projects](examples/README.md) to see different uses of the stack.
 
 ## License
 
