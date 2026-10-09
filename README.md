@@ -25,7 +25,7 @@ Use Astro for content sites, Convex for reactive shared data, or Turso for embed
 With [Bun](https://bun.com/docs/installation) and [Git](https://git-scm.com/downloads), run:
 
 ```sh
-bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.9
+bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.10
 ```
 
 <details>
@@ -34,24 +34,24 @@ bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.9
 With curl and either Bun or Node.js 22+ (Linux/macOS):
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/rayan6ms/modern-typescript-web-stack/v0.1.9/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/rayan6ms/modern-typescript-web-stack/v0.1.10/install.sh | sh
 ```
 
 With Node.js 22+ and Git:
 
 ```sh
-npx --yes github:rayan6ms/modern-typescript-web-stack#v0.1.9
+npx --yes github:rayan6ms/modern-typescript-web-stack#v0.1.10
 ```
 
 With pnpm, Node.js 22+ and Git:
 
 ```sh
-pnpm dlx github:rayan6ms/modern-typescript-web-stack#v0.1.9
+pnpm dlx github:rayan6ms/modern-typescript-web-stack#v0.1.10
 ```
 
 </details>
 
-Setup installs the CLI and both skills globally. Choose your agents from a sorted, searchable list; additional agents are offered separately, with No as the default.
+Setup installs the CLI and both skills globally. Choose from a sorted, searchable list, or open **Other agents** in the same picker.
 
 Then open your website in your agent and ask:
 

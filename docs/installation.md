@@ -7,28 +7,28 @@ Setup installs the CLI and both skills globally. You choose the agents; none is 
 With [Bun](https://bun.com/docs/installation) and [Git](https://git-scm.com/downloads):
 
 ```sh
-bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.9
+bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.10
 ```
 
 With curl and either Bun or Node.js 22+ (Linux/macOS):
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/rayan6ms/modern-typescript-web-stack/v0.1.9/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/rayan6ms/modern-typescript-web-stack/v0.1.10/install.sh | sh
 ```
 
 With Node.js 22+ and Git:
 
 ```sh
-npx --yes github:rayan6ms/modern-typescript-web-stack#v0.1.9
+npx --yes github:rayan6ms/modern-typescript-web-stack#v0.1.10
 ```
 
 With pnpm, Node.js 22+ and Git:
 
 ```sh
-pnpm dlx github:rayan6ms/modern-typescript-web-stack#v0.1.9
+pnpm dlx github:rayan6ms/modern-typescript-web-stack#v0.1.10
 ```
 
-The installer shows popular agents alphabetically, with search and multiple selection. It then asks **Install additional agents?**, defaulting to **No**. Choose Yes for the remaining agents, also sorted and searchable. Leave the popular list empty if you only want an additional agent.
+The picker starts with popular agents in alphabetical order. **Other agents** opens the full list in the same picker; Tab switches between views and preserves your selections. Search finds any supported agent directly. Space selects agents and Enter confirms. All popular agents appear when the terminal has room; smaller terminals show a visible range and indicate more agents below.
 
 The CLI is installed under `~/.local/share/modern-stack`, with its command in `~/.local/bin`. If needed, add that bin directory to your PATH:
 

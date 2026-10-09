@@ -1,6 +1,6 @@
 {
   "name": "@rayan6ms/modern-typescript-web-stack",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "TypeScript web stack guidance and project setup for coding agents",
   "type": "module",
   "license": "MIT",

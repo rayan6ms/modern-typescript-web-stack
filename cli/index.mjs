@@ -130,62 +130,6 @@ var require_kleur = __commonJS(function(exports, module) {
   }
   module.exports = $;
 });
-var require_src = __commonJS(function(exports, module) {
-  var ESC = "\x1B";
-  var CSI = `${ESC}[`;
-  var beep = "\x07";
-  var cursor = {
-    to(x, y) {
-      if (!y)
-        return `${CSI}${x + 1}G`;
-      return `${CSI}${y + 1};${x + 1}H`;
-    },
-    move(x, y) {
-      let ret = "";
-      if (x < 0)
-        ret += `${CSI}${-x}D`;
-      else if (x > 0)
-        ret += `${CSI}${x}C`;
-      if (y < 0)
-        ret += `${CSI}${-y}A`;
-      else if (y > 0)
-        ret += `${CSI}${y}B`;
-      return ret;
-    },
-    up: (count = 1) => `${CSI}${count}A`,
-    down: (count = 1) => `${CSI}${count}B`,
-    forward: (count = 1) => `${CSI}${count}C`,
-    backward: (count = 1) => `${CSI}${count}D`,
-    nextLine: (count = 1) => `${CSI}E`.repeat(count),
-    prevLine: (count = 1) => `${CSI}F`.repeat(count),
-    left: `${CSI}G`,
-    hide: `${CSI}?25l`,
-    show: `${CSI}?25h`,
-    save: `${ESC}7`,
-    restore: `${ESC}8`
-  };
-  var scroll = {
-    up: (count = 1) => `${CSI}S`.repeat(count),
-    down: (count = 1) => `${CSI}T`.repeat(count)
-  };
-  var erase = {
-    screen: `${CSI}2J`,
-    up: (count = 1) => `${CSI}1J`.repeat(count),
-    down: (count = 1) => `${CSI}J`.repeat(count),
-    line: `${CSI}2K`,
-    lineEnd: `${CSI}K`,
-    lineStart: `${CSI}1K`,
-    lines(count) {
-      let clear = "";
-      for (let i = 0;i < count; i++)
-        clear += this.line + (i < count - 1 ? cursor.up() : "");
-      if (count)
-        clear += cursor.left;
-      return clear;
-    }
-  };
-  module.exports = { cursor, scroll, erase, beep };
-});
 var require_action = __commonJS(function(exports, module) {
   module.exports = (key, isSelect) => {
     if (key.meta && key.name !== "escape")
@@ -250,6 +194,62 @@ var require_strip = __commonJS(function(exports, module) {
     const RGX = new RegExp(pattern, "g");
     return typeof str === "string" ? str.replace(RGX, "") : str;
   };
+});
+var require_src = __commonJS(function(exports, module) {
+  var ESC = "\x1B";
+  var CSI = `${ESC}[`;
+  var beep = "\x07";
+  var cursor = {
+    to(x, y) {
+      if (!y)
+        return `${CSI}${x + 1}G`;
+      return `${CSI}${y + 1};${x + 1}H`;
+    },
+    move(x, y) {
+      let ret = "";
+      if (x < 0)
+        ret += `${CSI}${-x}D`;
+      else if (x > 0)
+        ret += `${CSI}${x}C`;
+      if (y < 0)
+        ret += `${CSI}${-y}A`;
+      else if (y > 0)
+        ret += `${CSI}${y}B`;
+      return ret;
+    },
+    up: (count = 1) => `${CSI}${count}A`,
+    down: (count = 1) => `${CSI}${count}B`,
+    forward: (count = 1) => `${CSI}${count}C`,
+    backward: (count = 1) => `${CSI}${count}D`,
+    nextLine: (count = 1) => `${CSI}E`.repeat(count),
+    prevLine: (count = 1) => `${CSI}F`.repeat(count),
+    left: `${CSI}G`,
+    hide: `${CSI}?25l`,
+    show: `${CSI}?25h`,
+    save: `${ESC}7`,
+    restore: `${ESC}8`
+  };
+  var scroll = {
+    up: (count = 1) => `${CSI}S`.repeat(count),
+    down: (count = 1) => `${CSI}T`.repeat(count)
+  };
+  var erase = {
+    screen: `${CSI}2J`,
+    up: (count = 1) => `${CSI}1J`.repeat(count),
+    down: (count = 1) => `${CSI}J`.repeat(count),
+    line: `${CSI}2K`,
+    lineEnd: `${CSI}K`,
+    lineStart: `${CSI}1K`,
+    lines(count) {
+      let clear = "";
+      for (let i = 0;i < count; i++)
+        clear += this.line + (i < count - 1 ? cursor.up() : "");
+      if (count)
+        clear += cursor.left;
+      return clear;
+    }
+  };
+  module.exports = { cursor, scroll, erase, beep };
 });
 var require_clear = __commonJS(function(exports, module) {
   var strip = require_strip();
@@ -432,394 +432,6 @@ var require_prompt = __commonJS(function(exports, module) {
   }
   module.exports = Prompt;
 });
-var require_multiselect = __commonJS(function(exports, module) {
-  var color = require_kleur();
-  var { cursor } = require_src();
-  var Prompt = require_prompt();
-  var { clear, figures, style, wrap, entriesToDisplay } = require_util();
-
-  class MultiselectPrompt extends Prompt {
-    constructor(opts = {}) {
-      super(opts);
-      this.msg = opts.message;
-      this.cursor = opts.cursor || 0;
-      this.scrollIndex = opts.cursor || 0;
-      this.hint = opts.hint || "";
-      this.warn = opts.warn || "- This option is disabled -";
-      this.minSelected = opts.min;
-      this.showMinError = false;
-      this.maxChoices = opts.max;
-      this.instructions = opts.instructions;
-      this.optionsPerPage = opts.optionsPerPage || 10;
-      this.value = opts.choices.map((ch, idx) => {
-        if (typeof ch === "string")
-          ch = { title: ch, value: idx };
-        return {
-          title: ch && (ch.title || ch.value || ch),
-          description: ch && ch.description,
-          value: ch && (ch.value === undefined ? idx : ch.value),
-          selected: ch && ch.selected,
-          disabled: ch && ch.disabled
-        };
-      });
-      this.clear = clear("", this.out.columns);
-      if (!opts.overrideRender) {
-        this.render();
-      }
-    }
-    reset() {
-      this.value.map((v) => !v.selected);
-      this.cursor = 0;
-      this.fire();
-      this.render();
-    }
-    selected() {
-      return this.value.filter((v) => v.selected);
-    }
-    exit() {
-      this.abort();
-    }
-    abort() {
-      this.done = this.aborted = true;
-      this.fire();
-      this.render();
-      this.out.write(`
-`);
-      this.close();
-    }
-    submit() {
-      const selected = this.value.filter((e) => e.selected);
-      if (this.minSelected && selected.length < this.minSelected) {
-        this.showMinError = true;
-        this.render();
-      } else {
-        this.done = true;
-        this.aborted = false;
-        this.fire();
-        this.render();
-        this.out.write(`
-`);
-        this.close();
-      }
-    }
-    first() {
-      this.cursor = 0;
-      this.render();
-    }
-    last() {
-      this.cursor = this.value.length - 1;
-      this.render();
-    }
-    next() {
-      this.cursor = (this.cursor + 1) % this.value.length;
-      this.render();
-    }
-    up() {
-      if (this.cursor === 0) {
-        this.cursor = this.value.length - 1;
-      } else {
-        this.cursor--;
-      }
-      this.render();
-    }
-    down() {
-      if (this.cursor === this.value.length - 1) {
-        this.cursor = 0;
-      } else {
-        this.cursor++;
-      }
-      this.render();
-    }
-    left() {
-      this.value[this.cursor].selected = false;
-      this.render();
-    }
-    right() {
-      if (this.value.filter((e) => e.selected).length >= this.maxChoices)
-        return this.bell();
-      this.value[this.cursor].selected = true;
-      this.render();
-    }
-    handleSpaceToggle() {
-      const v = this.value[this.cursor];
-      if (v.selected) {
-        v.selected = false;
-        this.render();
-      } else if (v.disabled || this.value.filter((e) => e.selected).length >= this.maxChoices) {
-        return this.bell();
-      } else {
-        v.selected = true;
-        this.render();
-      }
-    }
-    toggleAll() {
-      if (this.maxChoices !== undefined || this.value[this.cursor].disabled) {
-        return this.bell();
-      }
-      const newSelected = !this.value[this.cursor].selected;
-      this.value.filter((v) => !v.disabled).forEach((v) => v.selected = newSelected);
-      this.render();
-    }
-    _(c, key) {
-      if (c === " ") {
-        this.handleSpaceToggle();
-      } else if (c === "a") {
-        this.toggleAll();
-      } else {
-        return this.bell();
-      }
-    }
-    renderInstructions() {
-      if (this.instructions === undefined || this.instructions) {
-        if (typeof this.instructions === "string") {
-          return this.instructions;
-        }
-        return `
-Instructions:
-` + `    ${figures.arrowUp}/${figures.arrowDown}: Highlight option
-` + `    ${figures.arrowLeft}/${figures.arrowRight}/[space]: Toggle selection
-` + (this.maxChoices === undefined ? `    a: Toggle all
-` : "") + `    enter/return: Complete answer`;
-      }
-      return "";
-    }
-    renderOption(cursor2, v, i, arrowIndicator) {
-      const prefix = (v.selected ? color.green(figures.radioOn) : figures.radioOff) + " " + arrowIndicator + " ";
-      let title, desc;
-      if (v.disabled) {
-        title = cursor2 === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
-      } else {
-        title = cursor2 === i ? color.cyan().underline(v.title) : v.title;
-        if (cursor2 === i && v.description) {
-          desc = ` - ${v.description}`;
-          if (prefix.length + title.length + desc.length >= this.out.columns || v.description.split(/\r?\n/).length > 1) {
-            desc = `
-` + wrap(v.description, { margin: prefix.length, width: this.out.columns });
-          }
-        }
-      }
-      return prefix + title + color.gray(desc || "");
-    }
-    paginateOptions(options) {
-      if (options.length === 0) {
-        return color.red("No matches for this query.");
-      }
-      let { startIndex, endIndex } = entriesToDisplay(this.cursor, options.length, this.optionsPerPage);
-      let prefix, styledOptions = [];
-      for (let i = startIndex;i < endIndex; i++) {
-        if (i === startIndex && startIndex > 0) {
-          prefix = figures.arrowUp;
-        } else if (i === endIndex - 1 && endIndex < options.length) {
-          prefix = figures.arrowDown;
-        } else {
-          prefix = " ";
-        }
-        styledOptions.push(this.renderOption(this.cursor, options[i], i, prefix));
-      }
-      return `
-` + styledOptions.join(`
-`);
-    }
-    renderOptions(options) {
-      if (!this.done) {
-        return this.paginateOptions(options);
-      }
-      return "";
-    }
-    renderDoneOrInstructions() {
-      if (this.done) {
-        return this.value.filter((e) => e.selected).map((v) => v.title).join(", ");
-      }
-      const output = [color.gray(this.hint), this.renderInstructions()];
-      if (this.value[this.cursor].disabled) {
-        output.push(color.yellow(this.warn));
-      }
-      return output.join(" ");
-    }
-    render() {
-      if (this.closed)
-        return;
-      if (this.firstRender)
-        this.out.write(cursor.hide);
-      super.render();
-      let prompt = [
-        style.symbol(this.done, this.aborted),
-        color.bold(this.msg),
-        style.delimiter(false),
-        this.renderDoneOrInstructions()
-      ].join(" ");
-      if (this.showMinError) {
-        prompt += color.red(`You must select a minimum of ${this.minSelected} choices.`);
-        this.showMinError = false;
-      }
-      prompt += this.renderOptions(this.value);
-      this.out.write(this.clear + prompt);
-      this.clear = clear(prompt, this.out.columns);
-    }
-  }
-  module.exports = MultiselectPrompt;
-});
-var require_autocompleteMultiselect = __commonJS(function(exports, module) {
-  var color = require_kleur();
-  var { cursor } = require_src();
-  var MultiselectPrompt = require_multiselect();
-  var { clear, style, figures } = require_util();
-
-  class AutocompleteMultiselectPrompt extends MultiselectPrompt {
-    constructor(opts = {}) {
-      opts.overrideRender = true;
-      super(opts);
-      this.inputValue = "";
-      this.clear = clear("", this.out.columns);
-      this.filteredOptions = this.value;
-      this.render();
-    }
-    last() {
-      this.cursor = this.filteredOptions.length - 1;
-      this.render();
-    }
-    next() {
-      this.cursor = (this.cursor + 1) % this.filteredOptions.length;
-      this.render();
-    }
-    up() {
-      if (this.cursor === 0) {
-        this.cursor = this.filteredOptions.length - 1;
-      } else {
-        this.cursor--;
-      }
-      this.render();
-    }
-    down() {
-      if (this.cursor === this.filteredOptions.length - 1) {
-        this.cursor = 0;
-      } else {
-        this.cursor++;
-      }
-      this.render();
-    }
-    left() {
-      this.filteredOptions[this.cursor].selected = false;
-      this.render();
-    }
-    right() {
-      if (this.value.filter((e) => e.selected).length >= this.maxChoices)
-        return this.bell();
-      this.filteredOptions[this.cursor].selected = true;
-      this.render();
-    }
-    delete() {
-      if (this.inputValue.length) {
-        this.inputValue = this.inputValue.substr(0, this.inputValue.length - 1);
-        this.updateFilteredOptions();
-      }
-    }
-    updateFilteredOptions() {
-      const currentHighlight = this.filteredOptions[this.cursor];
-      this.filteredOptions = this.value.filter((v) => {
-        if (this.inputValue) {
-          if (typeof v.title === "string") {
-            if (v.title.toLowerCase().includes(this.inputValue.toLowerCase())) {
-              return true;
-            }
-          }
-          if (typeof v.value === "string") {
-            if (v.value.toLowerCase().includes(this.inputValue.toLowerCase())) {
-              return true;
-            }
-          }
-          return false;
-        }
-        return true;
-      });
-      const newHighlightIndex = this.filteredOptions.findIndex((v) => v === currentHighlight);
-      this.cursor = newHighlightIndex < 0 ? 0 : newHighlightIndex;
-      this.render();
-    }
-    handleSpaceToggle() {
-      const v = this.filteredOptions[this.cursor];
-      if (v.selected) {
-        v.selected = false;
-        this.render();
-      } else if (v.disabled || this.value.filter((e) => e.selected).length >= this.maxChoices) {
-        return this.bell();
-      } else {
-        v.selected = true;
-        this.render();
-      }
-    }
-    handleInputChange(c) {
-      this.inputValue = this.inputValue + c;
-      this.updateFilteredOptions();
-    }
-    _(c, key) {
-      if (c === " ") {
-        this.handleSpaceToggle();
-      } else {
-        this.handleInputChange(c);
-      }
-    }
-    renderInstructions() {
-      if (this.instructions === undefined || this.instructions) {
-        if (typeof this.instructions === "string") {
-          return this.instructions;
-        }
-        return `
-Instructions:
-    ${figures.arrowUp}/${figures.arrowDown}: Highlight option
-    ${figures.arrowLeft}/${figures.arrowRight}/[space]: Toggle selection
-    [a,b,c]/delete: Filter choices
-    enter/return: Complete answer
-`;
-      }
-      return "";
-    }
-    renderCurrentInput() {
-      return `
-Filtered results for: ${this.inputValue ? this.inputValue : color.gray("Enter something to filter")}
-`;
-    }
-    renderOption(cursor2, v, i) {
-      let title;
-      if (v.disabled)
-        title = cursor2 === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
-      else
-        title = cursor2 === i ? color.cyan().underline(v.title) : v.title;
-      return (v.selected ? color.green(figures.radioOn) : figures.radioOff) + "  " + title;
-    }
-    renderDoneOrInstructions() {
-      if (this.done) {
-        return this.value.filter((e) => e.selected).map((v) => v.title).join(", ");
-      }
-      const output = [color.gray(this.hint), this.renderInstructions(), this.renderCurrentInput()];
-      if (this.filteredOptions.length && this.filteredOptions[this.cursor].disabled) {
-        output.push(color.yellow(this.warn));
-      }
-      return output.join(" ");
-    }
-    render() {
-      if (this.closed)
-        return;
-      if (this.firstRender)
-        this.out.write(cursor.hide);
-      super.render();
-      let prompt = [
-        style.symbol(this.done, this.aborted),
-        color.bold(this.msg),
-        style.delimiter(false),
-        this.renderDoneOrInstructions()
-      ].join(" ");
-      if (this.showMinError) {
-        prompt += color.red(`You must select a minimum of ${this.minSelected} choices.`);
-        this.showMinError = false;
-      }
-      prompt += this.renderOptions(this.filteredOptions);
-      this.out.write(this.clear + prompt);
-      this.clear = clear(prompt, this.out.columns);
-    }
-  }
-  module.exports = AutocompleteMultiselectPrompt;
-});
 var require_confirm = __commonJS(function(exports, module) {
   var color = require_kleur();
   var Prompt = require_prompt();
@@ -894,74 +506,256 @@ var require_confirm = __commonJS(function(exports, module) {
   }
   module.exports = ConfirmPrompt;
 });
-var import_autocompleteMultiselect = __toESM(require_autocompleteMultiselect(), 1);
 var import_confirm = __toESM(require_confirm(), 1);
 var import_prompt = __toESM(require_prompt(), 1);
 var import_util = __toESM(require_util(), 1);
 var import_sisteransi = __toESM(require_src(), 1);
+var import_kleur = __toESM(require_kleur(), 1);
+import_kleur.default.enabled = Boolean(process.stdout.isTTY || process.env.FORCE_COLOR) && !("NO_COLOR" in process.env) && !process.env.NODE_DISABLE_COLORS && process.env.FORCE_COLOR !== "0" && process.env.TERM !== "dumb";
+var heading = (text) => import_kleur.default.bold(text);
+var muted = (text) => import_kleur.default.gray(text);
+var width = (text) => [...import_util.strip(text)].length;
+var height = (text, columns) => text.split(`
+`).reduce((sum, line) => sum + Math.max(1, Math.ceil(width(line) / columns)), 0);
+var clip = (text, columns) => [...text].length <= columns ? text : [...text].slice(0, Math.max(0, columns - 1)).join("") + "…";
+function filtered(choices, showAll, query) {
+  return query ? choices.filter((choice) => `${choice.title} ${choice.value}`.toLowerCase().includes(query.toLowerCase())) : choices.filter((choice) => showAll || choice.popular);
+}
+function renderAgentFrame({
+  choices,
+  showAll = false,
+  query = "",
+  cursor: focused = 0,
+  scrollCursor = focused,
+  rows = 24,
+  columns = 80,
+  error = false,
+  done = false,
+  aborted = false
+}) {
+  columns = Math.max(1, columns);
+  const selected = choices.filter((choice) => choice.selected).length;
+  if (done)
+    return {
+      frame: `  ${aborted ? muted("Cancelled") : import_kleur.default.green(`${selected} agents selected`)}`,
+      visible: [],
+      start: 0,
+      end: 0,
+      pageSize: 0
+    };
+  const visible = filtered(choices, showAll, query);
+  const title = query ? "Search all agents" : showAll ? "All agents" : "Popular agents";
+  const instructions = columns >= 64 ? ["Type to search | ↑↓ move | Space selects | Enter confirms"] : columns >= 32 ? ["Type to search | ↑↓ move", "Space selects | Enter confirms"] : ["Type to search", "↑↓ move | Space selects", "Enter confirms"];
+  const lines = [
+    muted(`  ${title} · ${selected} selected`),
+    ...instructions.map((line) => muted(`  ${line}`)),
+    muted(`  Search: ${clip(query || "Type to filter", Math.max(1, columns - 10))}`)
+  ];
+  const otherCount = choices.filter((choice) => !choice.popular).length;
+  const action = showAll ? "Popular agents" : `Other agents (${otherCount} more)`;
+  const actionHint = columns >= 44 ? " · Tab to browse" : columns >= 36 ? " · Tab" : "";
+  const actionFocused = focused === visible.length;
+  const actionLine = `  ${actionFocused ? import_kleur.default.cyan("›") : " "}   ${actionFocused ? import_kleur.default.cyan().underline(action) : action}${muted(actionHint)}`;
+  const longestOption = Math.max(1, ...visible.map((choice) => height(`    › ○ ${choice.title}`, columns)));
+  const budget = rows - 3 - height(lines.join(`
+`), columns) - height(actionLine, columns) - 1;
+  const pageSize = Math.min(visible.length, Math.max(1, Math.floor(budget / longestOption)));
+  const start = Math.min(Math.max(0, scrollCursor - Math.floor(pageSize / 2)), Math.max(0, visible.length - pageSize));
+  const end = start + pageSize;
+  for (let index = start;index < end; index++) {
+    const choice = visible[index];
+    const marker = choice.selected ? import_kleur.default.green("●") : "○";
+    const label = focused === index ? import_kleur.default.cyan().underline(choice.title) : choice.title;
+    lines.push(`    ${focused === index ? import_kleur.default.cyan("›") : " "} ${marker} ${label}`);
+  }
+  if (!visible.length)
+    lines.push(muted("    No agents match this search"));
+  lines.push(actionLine);
+  const remaining = end < visible.length;
+  const range = pageSize < visible.length ? columns >= 44 ? `Showing ${start + 1}–${end} of ${visible.length} | ${start && remaining ? "↑↓" : start ? "↑" : "↓"} more agents` : `${start + 1}–${end} of ${visible.length} | ${start && remaining ? "↑↓" : start ? "↑" : "↓"} more agents` : `${visible.length} agents`;
+  lines.push(error ? import_kleur.default.yellow("  Select an agent with Space") : muted(`  ${range}`));
+  return { frame: lines.join(`
+`), visible, start, end, pageSize };
+}
 
-class SearchPicker extends import_autocompleteMultiselect.default {
+class AgentPicker extends import_prompt.default {
   constructor(options) {
     super(options);
+    this.value = options.choices.map((choice) => ({ ...choice, selected: false }));
+    this.query = "";
+    this.showAll = false;
+    this.cursor = 0;
+    this.scrollCursor = 0;
+    this.error = false;
+    this.previousFrame = "";
+    this.previousColumns = this.out.columns || 80;
     this.onResize = () => this.render();
     this.out.on("resize", this.onResize);
-  }
-  close() {
-    if (this.onResize)
+    const close = this.close;
+    this.close = () => {
       this.out.off("resize", this.onResize);
-    super.close();
+      close();
+    };
+    this.render();
   }
-  handleSpaceToggle() {
-    if (this.filteredOptions.length)
-      super.handleSpaceToggle();
-    else
-      this.bell();
+  get visible() {
+    return filtered(this.value, this.showAll, this.query);
+  }
+  move(next) {
+    this.cursor = next;
+    if (next >= 0 && next < this.visible.length)
+      this.scrollCursor = next;
+    this.error = false;
+    this.render();
+  }
+  up() {
+    this.move(this.cursor <= 0 ? this.visible.length : this.cursor - 1);
+  }
+  down() {
+    this.move(this.cursor >= this.visible.length ? 0 : this.cursor + 1);
+  }
+  first() {
+    this.move(this.visible.length ? 0 : -1);
+  }
+  home() {
+    this.first();
+  }
+  last() {
+    this.move(this.visible.length);
+  }
+  end() {
+    this.last();
+  }
+  nextPage() {
+    this.move(Math.min(this.visible.length, this.cursor + Math.max(1, this.pageSize)));
+  }
+  prevPage() {
+    this.move(Math.max(0, this.cursor - Math.max(1, this.pageSize)));
+  }
+  next() {
+    this.changeView();
+  }
+  changeView() {
+    this.showAll = !this.showAll;
+    this.query = "";
+    this.cursor = this.scrollCursor = 0;
+    this.error = false;
+    this.render();
+  }
+  toggle(selected) {
+    if (this.cursor === this.visible.length)
+      return this.changeView();
+    const choice = this.visible[this.cursor];
+    if (!choice)
+      return this.bell();
+    choice.selected = selected === undefined ? !choice.selected : selected;
+    this.error = false;
+    this.fire();
+    this.render();
   }
   left() {
-    if (this.filteredOptions.length)
-      super.left();
-    else
-      this.bell();
+    this.toggle(false);
   }
   right() {
-    if (this.filteredOptions.length)
-      super.right();
-    else
-      this.bell();
+    this.toggle(true);
   }
-  renderOption(focused, option, index, pageArrow) {
-    return `${focused === index ? ">" : " "} ${pageArrow || " "} ${super.renderOption(focused, option, index)}`;
+  filter() {
+    this.cursor = this.visible.length ? 0 : -1;
+    this.scrollCursor = 0;
+    this.error = false;
+    this.render();
   }
-  renderDoneOrInstructions() {
-    return this.done ? `${this.value.filter((option) => option.selected).length} selected` : super.renderDoneOrInstructions();
+  delete() {
+    this.query = [...this.query].slice(0, -1).join("");
+    this.filter();
+  }
+  deleteForward() {
+    this.delete();
+  }
+  reset() {
+    this.query = "";
+    this.filter();
+  }
+  _(text) {
+    if (text === " ")
+      return this.toggle();
+    if (typeof text !== "string" || !text || /[\u0000-\u001f\u007f]/.test(text))
+      return this.bell();
+    this.query = [...this.query + text].slice(0, 100).join("");
+    this.filter();
+  }
+  exit() {
+    this.abort();
+  }
+  abort() {
+    this.done = this.aborted = true;
+    this.render();
+    this.out.write(`
+`);
+    this.close();
+  }
+  submit() {
+    if (this.cursor === this.visible.length)
+      return this.changeView();
+    if (!this.value.some((choice) => choice.selected)) {
+      this.error = true;
+      return this.render();
+    }
+    this.done = true;
+    this.render();
+    this.out.write(`
+`);
+    this.close();
   }
   render() {
     if (this.closed)
       return;
     if (this.firstRender)
       this.out.write(import_sisteransi.cursor.hide);
-    import_prompt.default.prototype.render.call(this);
-    this.optionsPerPage = Math.max(1, Math.min(6, (this.out.rows || 24) - 10));
-    const lines = [`${this.done ? this.aborted ? "×" : "✔" : "?"} ${this.msg}`];
-    if (this.done)
-      lines.push(this.renderDoneOrInstructions());
-    else
-      lines.push(this.instructions, `Search: ${this.inputValue || "Type to filter"} (${this.filteredOptions.length}/${this.value.length})`);
-    const frame = lines.join(`
-`) + this.renderOptions(this.filteredOptions);
-    this.out.write(this.clear + frame);
-    this.clear = import_util.clear(frame, this.out.columns);
+    super.render();
+    const result = renderAgentFrame({
+      choices: this.value,
+      showAll: this.showAll,
+      query: this.query,
+      cursor: this.cursor,
+      scrollCursor: this.scrollCursor,
+      error: this.error,
+      done: this.done,
+      aborted: this.aborted,
+      rows: this.out.rows || 24,
+      columns: this.out.columns || 80
+    });
+    this.pageSize = result.pageSize;
+    if (this.previousFrame)
+      this.out.write(import_util.clear(this.previousFrame, this.out.columns || this.previousColumns));
+    this.out.write(result.frame);
+    this.previousFrame = result.frame;
+    this.previousColumns = this.out.columns || 80;
   }
 }
-function ask(Prompt2, options, format = (value) => value) {
+
+class StyledConfirm extends import_confirm.default {
+  render() {
+    if (this.closed)
+      return;
+    if (this.firstRender)
+      this.out.write(import_sisteransi.cursor.hide);
+    else
+      this.out.write(import_util.clear(this.outputText, this.out.columns));
+    import_prompt.default.prototype.render.call(this);
+    this.outputText = `  ${import_kleur.default.bold(this.msg)} ${muted(this.done ? this.value ? "Yes" : "No" : this.initialValue ? "(Y/n)" : "(y/N)")}`;
+    this.out.write(this.outputText);
+  }
+}
+function ask(PromptType, options, format = (value) => value) {
   return new Promise((resolve, reject) => {
-    const prompt = new Prompt2(options);
+    const prompt = new PromptType(options);
     prompt.on("submit", (value) => resolve(format(value)));
     prompt.on("abort", () => reject(new Error("cancelled")));
   });
 }
-var multiselect = (options) => ask(SearchPicker, options, (values) => values.filter((option) => option.selected).map((option) => option.value));
-var confirm = (options) => ask(import_confirm.default, options);
+var multiselect = (options) => ask(AgentPicker, options, (values) => values.filter((choice) => choice.selected).map((choice) => choice.value));
+var confirm = (options) => ask(StyledConfirm, options);
 
 // installer:picker.ts
 class Cancelled extends Error {
@@ -978,22 +772,9 @@ async function ask2(prompt) {
   }
 }
 async function selectAgents(agents, global) {
-  const optionsPerPage = Math.max(1, Math.min(6, (process.stdout.rows || 24) - 10));
-  const choices = (popular) => agents.filter((agent) => agent.popular === popular && (!global || agent.global)).map((agent) => ({ value: agent.id, title: agent.label }));
-  const settings = {
-    optionsPerPage,
-    min: 0,
-    instructions: "Type to search; arrows move; Space selects; Enter confirms"
-  };
-  while (true) {
-    const popular = await ask2(multiselect({ message: "Popular agents", choices: choices(true), ...settings }));
-    const more = await ask2(confirm({ message: "Install additional agents?", initial: false }));
-    const additional = more ? await ask2(multiselect({ message: "Additional agents", choices: choices(false), ...settings })) : [];
-    const selected = [...popular, ...additional];
-    if (selected.length)
-      return selected;
-    console.log("Choose at least one agent. You can leave Popular agents empty and choose an additional agent.");
-  }
+  return ask2(multiselect({
+    choices: agents.filter((agent) => !global || agent.global).map((agent) => ({ value: agent.id, title: agent.label, popular: agent.popular }))
+  }));
 }
 async function allowReplacement(message) {
   return Boolean(await ask2(confirm({ message, initial: false })));
@@ -1336,7 +1117,7 @@ agents    List supported agents alphabetically
   const tty = Boolean(process.stdin.isTTY && process.stdout.isTTY);
   if (!chosen.length && !tty)
     throw new Error(`Interactive setup needs a terminal. Use --agent <id>; run ${product.command} agents to list choices.`);
-  console.log(`${product.title} · ${global ? "Global" : "Project"} installation`);
+  console.log(heading(`${product.title} · ${global ? "Global" : "Project"} installation`));
   const selected = chosen.length ? [...new Set(chosen)] : await selectAgents(agents, global);
   const targets = agents.filter((agent) => selected.includes(agent.id));
   const plan = planSkills(root, product, targets, global, context, action === "remove");

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.10 — 2026-10-09
+
+- A single agent picker with Other agents, preserved selections, and search across all agents.
+- Show all popular agents when space permits, with explicit visible ranges on smaller terminals.
+- Bold installation titles, indented gray guidance, and clearer keyboard instructions.
+
 ## 0.1.9 — 2026-10-09
 
 - Dedicated CLI with global installation by default and project-local installation via --local.
