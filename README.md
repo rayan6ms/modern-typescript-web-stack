@@ -24,17 +24,19 @@ Use Astro for content sites, Convex for reactive shared data, or Turso for embed
 
 Create or open your website's folder. With [Git](https://git-scm.com/downloads) and either [Bun](https://bun.com/docs/installation) or [Node.js 22.20+](https://nodejs.org/en/download) installed, run one of these commands inside that folder.
 
+These commands use Codex. For Claude Code, replace `codex` with `claude-code`; see [installation options](docs/installation.md) for other agents.
+
 **Bun:**
 
 ```sh
-bun x --bun skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.7 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --copy
+bun x --bun skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.8 --agent codex --copy --yes
 ```
 
 <details>
 <summary>Node.js/npm</summary>
 
 ```sh
-npx --yes skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.7 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --copy
+npx --yes skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.8 --agent codex --copy --yes
 ```
 
 </details>
@@ -45,12 +47,12 @@ npx --yes skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-sta
 Requires [pnpm](https://pnpm.io/installation) with Node.js.
 
 ```sh
-pnpm dlx skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.7 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --copy
+pnpm dlx skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.8 --agent codex --copy --yes
 ```
 
 </details>
 
-Choose your coding agent when prompted, then open the same folder in your agent and ask:
+Both skills install into the project without prompts. Open the same folder in your agent and ask:
 
 ```text
 Use the modern-typescript-web-stack-kickoff skill to set up this directory.

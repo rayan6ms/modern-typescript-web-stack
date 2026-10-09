@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.8 — 2026-10-09
+
+- Shorter installation commands with explicit agent targets and no interactive picker.
+- Clarified Codex's project skill directory and unattended skill removal.
+
 ## 0.1.7 — 2026-10-09
 
 - Agent-neutral setup with Bun, npm, and pnpm installation options.

@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "modern-typescript-web-stack",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "TypeScript web stack guidance and project setup for coding agents",
   "license": "MIT",
   "extensions": {
