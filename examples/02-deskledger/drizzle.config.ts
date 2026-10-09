@@ -6,6 +6,12 @@ if (!url) {
     "Set MIGRATION_DATABASE_URL in an ignored local environment file."
   );
 }
+const validUrl =
+  URL.canParse(url) &&
+  ["postgres:", "postgresql:"].includes(new URL(url).protocol);
+if (!validUrl) {
+  throw new Error("MIGRATION_DATABASE_URL must be a valid PostgreSQL URL.");
+}
 
 export default defineConfig({
   dbCredentials: { url },

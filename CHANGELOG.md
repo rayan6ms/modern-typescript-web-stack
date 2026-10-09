@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4 — 2026-10-09
+
+- Corrected skill removal and validation of demo additions and CI commands.
+- Fixed database credential diagnostics and DeskLedger migration prerequisites.
+
 ## 0.1.3 — 2026-10-09
 
 - Fixed package validation to reject private `.local` files at any directory depth.

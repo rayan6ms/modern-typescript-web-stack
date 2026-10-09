@@ -1,6 +1,6 @@
 # Kickoff trial assessment
 
-This product includes 3 scenarios from the original five-scenario assessment on 2026-10-08. Their local foundations passed applicable install, type/lint/format, production build/startup, and relevant browser/service checks. These published copies preserve the original application code and policy, with host paths and publication notes adapted as listed in [demo provenance](demo-provenance.json).
+This product includes 3 scenarios from the original five-scenario assessment on 2026-10-08. Their local foundations passed applicable install, type/lint/format, production build/startup, and relevant browser/service checks. Published copies retain the trial policy; portability edits and subsequent tooling corrections are listed in [demo provenance](demo-provenance.json). Original trial hashes and scores are preserved.
 
 | Demo | Local-foundation score | Finding |
 | --- | --- | --- |
@@ -15,6 +15,10 @@ The original experiment used frozen source revision `ff254aae09cd3cee626c39f0776
 [Scores](scores.json) follow the [predeclared rubric](RUBRIC.md). [Command results](check-summary.json) record 19 passing command executions in this subset; expected failure probes can correctly have a nonzero exit status. These are executions, not counts of distinct tests. Prepared [briefs and answers](cases/) and browser/HTTP evidence are included for these cases. Agent traces, credentials, host tooling, volumes, raw environment inventories, and dependency caches are not distributed.
 
 The scored outputs used frozen local guidance and retained selected defaults, complete policy snapshots, stable deferred IDs, explicit blocked scopes, and chosen-versus-verified distinctions. That demonstrates instruction use, but the prepared answers also influenced selection. There was no control group, so causal improvement cannot be quantified. The interview itself and fresh-agent continuation were not tested.
+
+## Tooling corrections
+
+A code review on 2026-10-09 reproduced credential exposure from malformed database URLs and missing migration prerequisites in the DeskLedger copy. Database construction and migration configuration now reject those inputs with safe diagnostics. Postgres.js supplies Drizzle Kit's tooling driver, and fresh database initialization gives the separate migrator the `CREATE` privilege needed for its journal schema. Bun SQL remains the application driver. An isolated rootless Podman database verified startup, restricted-role checks, stop/restart, generation of a disposable schema, real migration, an idempotent rerun, and application-role use. The disposable schema was not added to the demo. These corrections do not rescore or alter the original trial records.
 
 ## Scope and known limits
 

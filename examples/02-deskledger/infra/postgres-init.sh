@@ -10,6 +10,8 @@ CREATE ROLE deskledger_app LOGIN PASSWORD '$APP_DB_PASSWORD' NOSUPERUSER NOCREAT
 CREATE ROLE deskledger_migrator LOGIN PASSWORD '$MIGRATION_DB_PASSWORD' NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION;
 REVOKE ALL ON DATABASE deskledger FROM PUBLIC;
 GRANT CONNECT ON DATABASE deskledger TO deskledger_app, deskledger_migrator;
+-- Drizzle Kit initializes its migration journal schema with the separate DDL role.
+GRANT CREATE ON DATABASE deskledger TO deskledger_migrator;
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
 ALTER SCHEMA public OWNER TO deskledger_migrator;
 GRANT USAGE ON SCHEMA public TO deskledger_app;

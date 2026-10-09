@@ -164,20 +164,42 @@ export function validate(rootArg: string) {
     original_tracked_sha256: Record<string, string>;
     publication_edits: Array<{ file: string; reason: string }>;
   }>;
+  const demoIds = new Set<string>();
+  const fileSet = new Set(files);
   for (const demo of demos) {
+    check(/^[a-z0-9-]+$/.test(demo.id) && !demoIds.has(demo.id), "Invalid/duplicate demo ID");
+    demoIds.add(demo.id);
     check(/^[a-f0-9]{40}$/.test(demo.original_commit), `Invalid ${demo.id} provenance`);
-    const edited = new Set(demo.publication_edits.map((entry) => entry.file));
-    for (const [path, expected] of Object.entries(demo.original_tracked_sha256)) {
-      const file = resolve(root, "examples", demo.id, path);
+    const demoRoot = resolve(root, "examples", demo.id);
+    for (const entry of demo.publication_edits) {
+      const file = resolve(demoRoot, entry.file);
       check(
-        inside(resolve(root, "examples", demo.id), file) && existsSync(file),
-        `Missing demo file ${demo.id}/${path}`,
+        inside(demoRoot, file) && fileSet.has(file),
+        `Missing publication edit: ${demo.id}/${entry.file}`,
       );
+      check(
+        typeof entry.reason === "string" && entry.reason.trim().length > 0,
+        `Missing publication edit reason: ${demo.id}/${entry.file}`,
+      );
+    }
+    const edited = new Set(demo.publication_edits.map((entry) => entry.file));
+    const originalFiles = Object.keys(demo.original_tracked_sha256);
+    check(originalFiles.length > 0, `Empty ${demo.id} provenance`);
+    for (const [path, expected] of Object.entries(demo.original_tracked_sha256)) {
+      const file = resolve(demoRoot, path);
+      check(inside(demoRoot, file) && fileSet.has(file), `Missing demo file ${demo.id}/${path}`);
+      check(/^[a-f0-9]{64}$/.test(expected), `Invalid demo digest: ${demo.id}/${path}`);
       if (!edited.has(path))
         check(
           createHash("sha256").update(readFileSync(file)).digest("hex") === expected,
           `Undocumented demo change: ${demo.id}/${path}`,
         );
+    }
+    const allowed = new Set([...originalFiles, ...edited]);
+    for (const file of files) {
+      if (!inside(demoRoot, file)) continue;
+      const path = relative(demoRoot, file).split(sep).join("/");
+      check(allowed.has(path), `Undocumented demo addition: ${demo.id}/${path}`);
     }
     const pkg = json(`examples/${demo.id}/package.json`);
     check(

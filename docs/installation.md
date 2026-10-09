@@ -3,7 +3,7 @@
 With Bun and Git installed, run from your project workspace:
 
 ```sh
-bun x --bun skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.3 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --agent codex --copy
+bun x --bun skills@1.7.1 add https://github.com/rayan6ms/modern-typescript-web-stack/tree/v0.1.4 --skill modern-typescript-web-stack modern-typescript-web-stack-kickoff --agent codex --copy
 ```
 
 This installs the stack and kickoff skills. Your agent installs the website dependencies when you run kickoff.
@@ -22,15 +22,15 @@ For manual installation, copy the complete `skills/modern-typescript-web-stack/`
 
 ## Updates and removal
 
-To update a pinned installation, choose a new [release](https://github.com/rayan6ms/modern-typescript-web-stack/releases), replace `v0.1.3` with its tag, and rerun the install command. Updating a skill does not automatically update instructions already copied into a website project.
+To update a pinned installation, choose a new [release](https://github.com/rayan6ms/modern-typescript-web-stack/releases), replace `v0.1.4` with its tag, and rerun the install command. Updating a skill does not automatically update instructions already copied into a website project.
 
 To remove these skills:
 
 ```sh
-bun x --bun skills@1.7.1 remove modern-typescript-web-stack modern-typescript-web-stack-kickoff --agent codex
+bun x --bun skills@1.7.1 remove modern-typescript-web-stack modern-typescript-web-stack-kickoff
 ```
 
-Include `--global` if you installed globally.
+This removes this product's named skills across agents in the current project. Include `--global` if you installed globally.
 
 ## Plugins
 

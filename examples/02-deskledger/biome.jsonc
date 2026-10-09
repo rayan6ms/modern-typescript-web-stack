@@ -4,6 +4,7 @@
   "files": {
     "includes": [
       "!src/routeTree.gen.ts",
+      "!drizzle/meta",
       "!docs/stack",
       "!.task-tmp",
       "!.local",

@@ -96,11 +96,11 @@
     "publication_edits": [
       {
         "file": "docs/stack-decisions.md",
-        "reason": "Replace trial-host paths with portable locations; historical facts retained."
+        "reason": "Replace trial-host paths with portable locations and document subsequent migration-tooling corrections; historical facts retained."
       },
       {
         "file": "README.md",
-        "reason": "Add publication scope, evidence links and reproduction limits."
+        "reason": "Add publication scope, evidence links, reproduction limits and links to subsequent tooling corrections."
       },
       {
         "file": "LICENSE",
@@ -109,6 +109,30 @@
       {
         "file": "docs/shadcn-ui-MIT.txt",
         "reason": "Preserve the upstream notice for copied shadcn/ui component code."
+      },
+      {
+        "file": "scripts/check-db.ts",
+        "reason": "Post-publication bug fix: handle database construction failures without exposing connection URLs."
+      },
+      {
+        "file": "package.json",
+        "reason": "Post-publication bug fix: supply the tooling-only Postgres.js driver required by Drizzle Kit migrations."
+      },
+      {
+        "file": "bun.lock",
+        "reason": "Lock the tooling-only Postgres.js driver required by Drizzle Kit; runtime remains Bun SQL."
+      },
+      {
+        "file": "infra/postgres-init.sh",
+        "reason": "Post-publication bug fix: grant database CREATE to the separate migrator so Drizzle Kit can initialize its journal schema; application permissions remain restricted."
+      },
+      {
+        "file": "drizzle.config.ts",
+        "reason": "Post-publication bug fix: reject malformed migration URLs before driver diagnostics can disclose credentials."
+      },
+      {
+        "file": "biome.jsonc",
+        "reason": "Post-publication bug fix: exclude Drizzle-owned migration metadata from formatting checks; authored schema/configuration/scripts remain checked."
       }
     ]
   },

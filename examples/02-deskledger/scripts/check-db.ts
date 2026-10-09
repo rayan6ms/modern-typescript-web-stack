@@ -48,7 +48,15 @@ if (!url) {
   process.exit(1);
 }
 
-const database = createDatabase(url);
+let database: ReturnType<typeof createDatabase>;
+try {
+  database = createDatabase(url);
+} catch {
+  console.error(
+    "Database configuration is invalid; check the local connection URL privately."
+  );
+  process.exit(1);
+}
 // Overall CLI deadline covers pool waiting too; no retries or unrelated process control.
 const deadline = setTimeout(() => {
   console.error("Database check exceeded its 15-second deadline.");
