@@ -2,7 +2,7 @@
 set -eu
 
 product='modern-typescript-web-stack'
-version='0.1.10'
+version='0.1.11'
 if command -v bun >/dev/null 2>&1; then
   runtime=bun
 elif command -v node >/dev/null 2>&1; then

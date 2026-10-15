@@ -14,6 +14,8 @@ Choose checks from the real manifests, configuration, runtime target, and initia
 
 Use existing meaningful tests for implemented behavior. Add a focused test only when a setup boundary needs it; do not add empty tests, no-op check scripts, or test frameworks just to fill a checklist. Performance, accessibility, security, recovery, and provider claims need their own applicable evidence; passing starter checks cannot establish them for the future application.
 
+Run installed code diagnostics under the selected profile's website-quality guidance, reviewing entry-point coverage and findings. Exercise configured accessibility checks on prepared states and applicable production-route lab checks separately from local `verify`. Record field monitoring and site-wide audit work as deferred when deployment, content, or access is still needed, with a concrete revisit trigger; do not claim those checks passed on a starter shell.
+
 ## Resolve failures without broadening the stack
 
 Inspect the failing command and diagnostics. Fix defects introduced by setup, then rerun the affected check and its dependents. Once relevant checks pass, repeat or broaden them only for new changes, failures, or unresolved concerns. Do not disable checks, loosen strictness, conceal errors, or substitute an unselected stack to manufacture a pass.

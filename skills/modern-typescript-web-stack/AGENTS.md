@@ -37,6 +37,7 @@ New architecture starts with architecture/tooling and selected capabilities. Loc
 | --- | --- |
 | New architecture; framework, runtime, rendering, or backend selection | [Architecture and profiles](references/architecture.md) |
 | Dependencies, Ultracite, native Bun APIs, builds/workspaces, or CI tools | [Tooling](references/tooling.md) |
+| Code/dependency diagnostics; accessibility, browser performance, or SEO audits | [Website quality checks](references/quality.md) |
 | API/schema/domain behavior; async services or Effect | [Backend contracts](references/backend.md) |
 | PostgreSQL queries, pools, migrations, or recovery | [PostgreSQL/Drizzle](references/postgresql.md) |
 | Turso/libSQL, tenant databases, or offline/sync behavior | [Turso](references/turso.md) |

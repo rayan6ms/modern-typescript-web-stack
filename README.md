@@ -18,14 +18,14 @@ A good fit for SaaS, dashboards, marketplaces, and internal tools.
 | Tooling | Bun, Vite, Ultracite with Biome |
 | Hosting | Cloudflare Workers or a regional Bun server |
 
-Use Astro for content sites, Convex for reactive shared data, or Turso for embedded data and sync. The [stack guide](docs/stack.md) explains these choices and covers images, payments, monorepos, deployment, and scaling.
+Use Astro for content sites, Convex for reactive shared data, or Turso for embedded data and sync. The [stack guide](docs/stack.md) explains these choices and covers images, payments, monorepos, deployment, quality checks, and scaling.
 
 ## Use with your agent
 
 With [Bun](https://bun.com/docs/installation) and [Git](https://git-scm.com/downloads), run:
 
 ```sh
-bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.10
+bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.11
 ```
 
 <details>
@@ -34,19 +34,19 @@ bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.10
 With curl and either Bun or Node.js 22+ (Linux/macOS):
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/rayan6ms/modern-typescript-web-stack/v0.1.10/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/rayan6ms/modern-typescript-web-stack/v0.1.11/install.sh | sh
 ```
 
 With Node.js 22+ and Git:
 
 ```sh
-npx --yes github:rayan6ms/modern-typescript-web-stack#v0.1.10
+npx --yes github:rayan6ms/modern-typescript-web-stack#v0.1.11
 ```
 
 With pnpm, Node.js 22+ and Git:
 
 ```sh
-pnpm dlx github:rayan6ms/modern-typescript-web-stack#v0.1.10
+pnpm dlx github:rayan6ms/modern-typescript-web-stack#v0.1.11
 ```
 
 </details>
@@ -62,7 +62,7 @@ It will be [describe your website and its main features].
 
 The agent asks about your website and prepares a starting project. For project-local skills, run `modern-stack init --local`. Use `modern-typescript-web-stack` for ongoing development.
 
-[Installation options](docs/installation.md) · [Example projects](examples/README.md)
+[Installation and updates](docs/installation.md) · [Example projects](examples/README.md)
 
 ## License
 

@@ -10,6 +10,8 @@ For new setup, explicitly pass `--pm bun --linter biome` to the pinned Ultracite
 
 For maintained repositories, use Renovate for reviewed update PRs, or suitable Dependabot/existing automation. Review lockfiles/changelogs and validate coupled toolchain upgrades.
 
+For Knip, framework diagnostics, and applicable audit tooling, follow [website quality checks](quality.md).
+
 ## Versions and compatibility
 
 - Verify selected/changed APIs, maturity, adapters, and runtime support against installed source/types or official docs; prefer supported stable compatible release combinations. If a needed integration requires a prerelease, establish its purpose, target/version support limits, and validation/fallback before selection; pin it and record those limits. Local checks do not establish production support. Resolve incompatibility within the affected version/adapter boundary before considering a wider change.

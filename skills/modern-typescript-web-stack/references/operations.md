@@ -13,6 +13,8 @@ Runtime/hosting-target changes also use [architecture](architecture.md); query/m
 
 ## Verification and delivery gates
 
+Apply [website quality checks](quality.md) for relevant code diagnostics, accessibility, lab/field browser measurements, and public-site crawls.
+
 Use affected packages' existing checks. New applications need discoverable type, lint/format, build, and meaningful behavior checks. Run the documented verification umbrella where present and inspect its actual coverage; complete affected explicit build/integration checks separately. Test database/provider, browser, migration/restore, and failure boundaries when changed. Use the supported Workers environment and Bun for Bun-specific behavior; retain existing Vitest suites.
 
 Inspect changed UI at representative viewports and with keyboard interaction, checking focus after asynchronous loading, retry, or validation completes. Small content/style/accessibility fixes can use direct inspection and existing checks; avoid tests/infrastructure solely for a checklist. Use isolated bounded fixtures without production secrets/data.

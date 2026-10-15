@@ -340,6 +340,18 @@ Declare package exports and task dependencies, keeping server-only code out of b
 
 For Effect services, test expected-error mapping, cancellation, resource cleanup, concurrency limits, and retry deadlines with replaceable provider services. For a Turso deployment, run database integration tests against the selected engine and access mode, including synchronization conflicts, contention, restarts, and backup restoration.
 
+### Website quality checks
+
+- **[Knip](https://knip.dev/):** the default for unused dependencies, exports, and files in JavaScript/TypeScript workspaces. Configure framework entry points and review findings before removing code.
+- **[React Doctor](https://github.com/millionco/react-doctor):** recommended for React-specific code reviews and performance diagnostics alongside the existing linter, type checks, and tests.
+- **Astro projects:** keep official [`astro check`](https://docs.astro.build/en/guides/typescript/); add community [Astro Doctor](https://doctor.santi020k.com/) diagnostics after checking compatibility and rule fit.
+- **[`@axe-core/playwright`](https://playwright.dev/docs/accessibility-testing):** include automated accessibility scans in representative browser journeys, alongside manual keyboard and screen-reader checks.
+- **[Lighthouse CI](https://web.dev/articles/lighthouse-ci):** the default automated lab check for route budgets against production builds. Use [WebPageTest](https://www.webpagetest.org/) around launch and material delivery changes for deeper waterfall and visual comparisons under repeatable conditions.
+- **[`web-vitals`](https://web.dev/articles/vitals-measurement-getting-started) or existing real-user monitoring:** collect deployed-site LCP, INP, and CLS; report field percentiles separately from lab results.
+- **[Sitebulb](https://sitebulb.com/):** a commercial desktop/cloud crawler for technical SEO on public indexable sites, especially content sites and stores. Arrange a crawl when site-wide auditing is useful.
+
+Install applicable code-checking tools as pinned development dependencies. Keep production-build audits in explicit commands or separate CI jobs. Review findings and measured regressions rather than chasing perfect aggregate scores.
+
 ## Performance acceptance criteria
 
 Use real devices and the 75th percentile of field data. The current Core Web Vitals “good” thresholds are LCP ≤ 2.5 s, INP ≤ 200 ms, and CLS ≤ 0.1. These are user-experience targets, not a promise that every route will meet them.

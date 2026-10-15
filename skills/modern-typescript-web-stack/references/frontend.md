@@ -4,6 +4,8 @@ Use for rendering/UI behavior, state, forms, accessibility, browser delivery, or
 
 For Convex subscriptions/SSR identity, also use the [selected backend policy](convex.md). File ownership/upload lifecycle is covered by [data services](data-services.md).
 
+For automated accessibility, browser performance, and public-site SEO audits, use [website quality checks](quality.md).
+
 ## UI, state, accessibility, and browser performance
 
 - Deliver responsive UI suited to the product/brand, working controls, relevant loading/empty/error/success/denied states, and recoverable input. Add only needed shadcn/ui components in React; preserve suitable design systems.

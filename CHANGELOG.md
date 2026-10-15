@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.11 — 2026-10-15
+
+- Add framework-aware code diagnostics, accessibility checks, browser performance audits, and technical SEO guidance.
+- Clarify CLI and skill updates, project-local refreshes, and preserving website policy snapshots.
+
 ## 0.1.10 — 2026-10-09
 
 - A single agent picker with Other agents, preserved selections, and search across all agents.

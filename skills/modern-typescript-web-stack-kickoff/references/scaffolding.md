@@ -42,6 +42,8 @@ Create only the structure needed to run the selected components and their checks
 
 Use one JavaScript package manager and its lockfile per workspace; Cargo's lockfile is separate. A second deployable does not by itself require a monorepo orchestrator. Follow the selected profile's actual sharing/build criteria and choose only the needed components of its UI, testing, caching, and integration recommendations.
 
+Read the selected profile's website-quality reference when preparing checks. Install its applicable code diagnostics as pinned development tools, configure actual framework entry points, and expose non-mutating scripts. Keep Astro's framework check where applicable. Integrate automated accessibility into selected browser journeys; prepare production-route performance checks when the initial surface supports useful measurements. Record later audit triggers and any access requirements in the existing decision record. Hosted audits and commercial crawlers are workflows to arrange when needed, not dependencies to install into every starter.
+
 ## Install selected components and configure prerequisites
 
 Install only components selected for the initial scope, distinguishing runtime from development dependencies. Align generator-selected versions with the compatible foundation and pin local toolchains/tools as required by the profile. Create the initial lockfile with the selected manager; preserve a compatible existing lockfile on continuation, updating only for intentional dependency changes. Do not regenerate lockfiles as a routine retry or use frozen/locked flags before an initial lockfile exists.
