@@ -12,6 +12,8 @@ For maintained repositories, use Renovate for reviewed update PRs, or suitable D
 
 For Knip, framework diagnostics, and applicable audit tooling, follow [website quality checks](quality.md).
 
+Selected Marko/HTMX foundations also follow their [rendering profile](rendering-profiles.md), including template checks and scoped formatter coverage.
+
 ## Versions and compatibility
 
 - Verify selected/changed APIs, maturity, adapters, and runtime support against installed source/types or official docs; prefer supported stable compatible release combinations. If a needed integration requires a prerelease, establish its purpose, target/version support limits, and validation/fallback before selection; pin it and record those limits. Local checks do not establish production support. Resolve incompatibility within the affected version/adapter boundary before considering a wider change.

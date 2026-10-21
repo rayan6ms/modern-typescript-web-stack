@@ -29,13 +29,14 @@ Apply rules to affected services and the requested stage, using existing convent
 
 ## Load guidance for the task
 
-Read mapped policies before selecting, changing, or reviewing their boundary. Read the current core and applicable references completely; retrieve clipped text and skip duplicate reads. Resolve links relative to this file and update paths when merging elsewhere. Report missing required guidance without inventing it; continue independent authorized work.
+Read mapped policies before selecting, changing, or reviewing their boundary. Read the current core completely and all reference sections applicable to the task; retrieve clipped text and skip duplicate reads. Resolve links relative to this file and update paths when merging elsewhere. Report missing required guidance without inventing it; continue independent authorized work.
 
 New architecture starts with architecture/tooling and selected capabilities. Local text/style fixes can use core/project context; deeper behavior/configuration changes use references. Read only the selected database profile and affected linked boundaries.
 
 | Affected work | Read |
 | --- | --- |
 | New architecture; framework, runtime, rendering, or backend selection | [Architecture and profiles](references/architecture.md) |
+| Selected Marko or HTMX rendering | [Rendering profiles](references/rendering-profiles.md) |
 | Dependencies, Ultracite, native Bun APIs, builds/workspaces, or CI tools | [Tooling](references/tooling.md) |
 | Code/dependency diagnostics; accessibility, browser performance, or SEO audits | [Website quality checks](references/quality.md) |
 | API/schema/domain behavior; async services or Effect | [Backend contracts](references/backend.md) |

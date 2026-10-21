@@ -6,6 +6,8 @@ For Convex subscriptions/SSR identity, also use the [selected backend policy](co
 
 For automated accessibility, browser performance, and public-site SEO audits, use [website quality checks](quality.md).
 
+For selected Marko or HTMX, use its [rendering profile](rendering-profiles.md) for UI/state/form choices. React-specific libraries below apply to React UI; accessibility, security, image delivery, and browser budgets apply across profiles.
+
 ## UI, state, accessibility, and browser performance
 
 - Deliver responsive UI suited to the product/brand, working controls, relevant loading/empty/error/success/denied states, and recoverable input. Add only needed shadcn/ui components in React; preserve suitable design systems.

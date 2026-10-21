@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.13 — 2026-10-21
+
+- Add Marko and HTMX rendering profiles with framework-specific tooling and UI/server boundaries.
+
 ## 0.1.12 — 2026-10-20
 
 - Add quality-based AVIF/JPEG XL selection, responsive fallbacks, and image processing guidance.

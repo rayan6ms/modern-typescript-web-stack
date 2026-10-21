@@ -94,6 +94,14 @@ As checked on 2026-10-08, TanStack Start is documented as a release candidate. T
 
 No framework guarantees a small page. Keep server-only code out of client imports, inspect the production bundle, and load interactive modules on demand.
 
+### Marko for streaming and resumability
+
+**[Marko 6](https://markojs.com/docs/introduction/welcome-to-marko)** is a recommended alternative when streaming dynamic HTML, reducing browser startup work, and fine-grained updates fit the application, particularly storefronts and marketplaces. Use compatible Marko Run/Vite integration and verify the selected Bun or edge deployment. Choose components that fit Marko; React shadcn/ui and hooks do not transfer directly. Include `@marko/type-check` for templates and scoped Prettier/`prettier-plugin-marko` where the default formatter lacks support. Compare production routes before claiming an improvement; React/TanStack Start remains the general default.
+
+### HTMX for HTML-driven applications
+
+**[HTMX](https://htmx.org/docs/)** is recommended for server-rendered forms, search, pagination, and partial updates when a rich client framework adds little value. Use escaping templates with existing server routes or Hono, sharing the same domain services and authorization. Return HTML for UI updates and retain JSON/oRPC/OpenAPI for consumers that need them. Preserve full-page navigation and native forms where possible, and verify validation, focus, history, CSRF protection, and full-page versus fragment caching. Offline-heavy or highly local interaction may favor a client framework. These are alternative rendering profiles; install the libraries required by the chosen profile.
+
 ### Native Bun capabilities
 
 For Bun-hosted code or build tools, consider native APIs when they cover the required operations:
@@ -387,7 +395,7 @@ Track server time to first byte, cache hit rate, query latency, bundle size by r
 
 | Category | Recommended starting point | Alternatives or scale path |
 | --- | --- | --- |
-| Framework | TanStack Start | React Router, Next.js, SolidStart 2, Astro |
+| Framework | TanStack Start | React Router, Next.js, SolidStart 2, Astro; Marko for streaming/resumability; server templates + HTMX for HTML-driven UI |
 | Language | TypeScript, strict mode | Rust/Go service for a measured native hot path |
 | Runtime | Cloudflare Workers or Bun, selected by deployment shape | Node.js only for a verified dependency/host requirement Bun cannot satisfy |
 | Build | Vite | Rsbuild where its ecosystem or build graph is a better fit |
