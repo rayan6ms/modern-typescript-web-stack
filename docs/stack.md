@@ -117,13 +117,30 @@ These APIs require Bun execution. Using Bun to install or build an application d
 
 Choose responsive markup, image transformation, and cached delivery together. A product gallery needs correctly sized variants and `srcset`/`sizes`; re-encoding an upload alone does not provide responsive delivery. Reserve lazy loading for off-screen images and discover the LCP image promptly.
 
+Prefer the format with the best visual quality and compression balance for the actual image and rendered size: usually the smallest file that meets the intended quality. Evaluate **AVIF and JPEG XL (`.jxl`)** for photographs; JXL is particularly useful for high-fidelity/lossless images and progressive rendering. Compare visual results rather than identical numeric quality settings, and account for encoding cost and browser decoding time. Keep useful WebP and JPEG/PNG fallbacks. [AVIF is widely supported](https://web-platform-dx.github.io/web-features-explorer/features/avif/); [JPEG XL coverage](https://caniuse.com/jpegxl) still varies by browser/version.
+
+Use native [`<picture>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/picture) or a framework equivalent to put the preferred format first. The browser selects the first supported matching source; it does not compare file sizes. For an image where JXL wins the comparison, a simple format fallback is:
+
+```html
+<picture>
+  <source type="image/jxl" srcset="/images/coast.jxl" />
+  <source type="image/avif" srcset="/images/coast.avif" />
+  <source type="image/webp" srcset="/images/coast.webp" />
+  <img src="/images/coast.jpg" width="1280" height="853" alt="Waves reaching a rocky coast" />
+</picture>
+```
+
+Put AVIF first when it gives the better result. Generate width-based `srcset`/`sizes` for responsive layouts; `<figure>` can wrap the picture and a caption but does not select formats. For a service that negotiates output using `Accept`, separate format variants in CDN/cache keys and send `Vary: Accept` where appropriate.
+
 - **[Astro `<Image>` / `<Picture>`](https://docs.astro.build/en/guides/images/):** start here in the content profile, using a deployment-compatible image service. A passthrough service performs no optimization.
 - **[Unpic](https://unpic.pics/img/):** the recommended responsive component for provider-backed React/Solid images when the framework does not already supply a suitable component. Configure a supported CDN/service or a custom transformer; Unpic generates provider URLs and loading attributes, delegating processing to that provider.
 - **[vite-imagetools](https://github.com/JonasKruckenberg/imagetools/blob/main/packages/vite/README.md):** build-time sizes, formats, and `srcset` data for imported static Vite assets, using Sharp underneath. Avoid processing the same asset through overlapping pipelines.
 - **[Cloudflare Images transformations](https://developers.cloudflare.com/images/optimization/transformations/overview/):** managed transformation and edge caching, including an R2-backed design. R2 supplies storage; Images supplies processing.
-- **[imgproxy](https://docs.imgproxy.net/):** a separate libvips-based HTTP image service when operating your own transformer fits the application; pair it with a CDN/cache.
+- **[imgproxy](https://docs.imgproxy.net/):** a separate libvips-based HTTP image service when operating your own transformer fits the application; pair it with a CDN/cache. It supports [still AVIF and JPEG XL output](https://docs.imgproxy.net/latest/image_formats_support); verify the deployed version and configuration. Check each provider/framework's supported formats before selecting a pipeline.
 
-**[Bun.Image](https://bun.com/docs/runtime/image)** is a conditional processing engine for Bun-hosted jobs or build tools, with native resizing and re-encoding without a separate addon. Use **[Sharp](https://sharp.pixelplumbing.com/)** when required formats or transformations favor its broader support; Sharp also runs under Bun. As checked on 2026-10-08, Bun's AVIF/HEIC support is unavailable on Linux and depends on OS codecs/hardware elsewhere. Verify the deployment target. Bun Image does not supply responsive markup or an automatic optimization/cache endpoint; existing [Next.js image optimization](https://nextjs.org/docs/messages/install-sharp) still requires Sharp with its standard optimizer.
+Prefer **[Sharp](https://sharp.pixelplumbing.com/)** for portable resizing and AVIF/WebP output; it also runs under Bun. For JPEG XL variants, use **[libjxl's `cjxl`](https://github.com/libjxl/libjxl/blob/main/doc/man/cjxl.txt)** in bounded build/upload jobs. Preserve originals and derive variants without repeated lossy re-encoding. Sharp's [JXL output](https://sharp.pixelplumbing.com/api-output/#jxl) is experimental and excluded from prebuilt binaries, so Sharp-backed integrations do not automatically provide production JXL encoding.
+
+**[Bun.Image](https://bun.com/docs/runtime/image)** is a conditional processing engine for Bun-hosted jobs or build tools, with native resizing and re-encoding without a separate addon. As checked on 2026-10-20, Bun's AVIF/HEIC support is unavailable on Linux and depends on OS codecs/hardware elsewhere; no JXL encoder is documented. Verify the deployment target. Bun Image does not supply responsive markup or an automatic optimization/cache endpoint; existing [Next.js image optimization](https://nextjs.org/docs/messages/install-sharp) still requires Sharp with its standard optimizer.
 
 Reuse build/upload-time variants where practical; choose cached on-demand transformation when changing sizes or media volume justify it. Key variants by source version and transform settings, preserving private-file authorization in originals, variants, and caches. Bound input bytes/pixels, source access, variants, and processing concurrency. Compare visual quality, output bytes, cold processing, cache hits, and cost before claiming one engine is better.
 
@@ -178,6 +195,8 @@ As checked on 2026-10-07, **[Effect 4.0](https://effect.website/blog/releases/ef
 ### PostgreSQL and Drizzle
 
 Validate Drizzle migrations in CI and apply them through a controlled deployment step, with a least-privilege application role, statement timeouts, and indexes derived from real query plans. Keep transactions short. Back up the database and periodically restore a backup into an isolated environment. Drizzle is a query and schema tool; it does not replace a data model, migration review, or database observability.
+
+For disposable agent databases, branch previews, and migration tests with frequent cloning and expiry, consider **[PGX](https://github.com/pgrundev/pgx)**, the Rust database runtime at [pgx.dev](https://pgx.dev/). It targets fast provisioning and low idle overhead; query execution is not universally faster. Copy-on-write cloning needs a supporting storage backend. Use sanitized fixtures, task-specific database URLs, and TTLs, and verify the actual Drizzle driver/migrations against its [compatibility gate](https://github.com/pgrundev/pgx/blob/main/docs/pgx/compatibility-gate.md). As checked on 2026-10-20, it is beta, not crash-safe, and cannot load existing PostgreSQL C extensions; one runtime shares a crash domain. Keep PostgreSQL for production and integration checks of required semantics. Pin a tested release and revisit these limits on upgrades.
 
 ### Turso and embedded SQLite-compatible data
 
@@ -340,6 +359,12 @@ Declare package exports and task dependencies, keeping server-only code out of b
 
 For Effect services, test expected-error mapping, cancellation, resource cleanup, concurrency limits, and retry deadlines with replaceable provider services. For a Turso deployment, run database integration tests against the selected engine and access mode, including synchronization conflicts, contention, restarts, and backup restoration.
 
+### Faster TypeScript feedback
+
+Recommend **[tsrs](https://github.com/oxc-project/tsrs)** for fast local checking when its current release supports the project's TypeScript version, configuration, and framework. Pin it as a development dependency and expose a separate `types:fast` script such as `tsrs --noEmit -p tsconfig.json`, run with `bun run --bun types:fast`; adapt the command for the project's configs/references. While it is experimental, keep supported official TypeScript and framework checks in `verify` and CI, including `astro check` for Astro code.
+
+Check the [compatibility report](https://github.com/oxc-project/tsrs/blob/main/docs/COMPATIBILITY.md) before adoption and upgrades. Compare diagnostics, checked files, failure exit codes, developer wait, and memory on representative project code. Bound worker/memory settings and separate incremental caches when needed; keep existing emit and editor workflows unless changing them has its own benefit.
+
 ### Website quality checks
 
 - **[Knip](https://knip.dev/):** the default for unused dependencies, exports, and files in JavaScript/TypeScript workspaces. Configure framework entry points and review findings before removing code.
@@ -366,6 +391,7 @@ Track server time to first byte, cache hit rate, query latency, bundle size by r
 | Language | TypeScript, strict mode | Rust/Go service for a measured native hot path |
 | Runtime | Cloudflare Workers or Bun, selected by deployment shape | Node.js only for a verified dependency/host requirement Bun cannot satisfy |
 | Build | Vite | Rsbuild where its ecosystem or build graph is a better fit |
+| Type checking | Supported official TypeScript and framework checks | tsrs for fast local feedback after compatibility validation |
 | Lint and format | Ultracite presets + Biome | Ultracite + Oxlint/Oxfmt; suitable existing configuration; supplementary ESLint for uncovered rules |
 | Workspace | Bun workspaces + Turborepo | pnpm workspaces; a single application may need neither |
 | API | oRPC for TypeScript; OpenAPI for external clients | Hono as an independent HTTP edge/API framework; Convex-generated functions in its profile |
@@ -378,7 +404,7 @@ Track server time to first byte, cache hit rate, query latency, bundle size by r
 | Database | PostgreSQL + Drizzle | Convex backend profile for reactive application data; Turso for embedded data, sync, or tenant databases; reviewed SQL or a purpose-built store |
 | Cache | CDN/HTTP cache | Redis or Valkey for hot data and coordination |
 | Files | Cloudflare R2 or S3-compatible storage | Native Convex storage in its profile; specialized media processing/delivery |
-| Images | Supported framework components or Unpic with reusable variants | vite-imagetools for static assets; Bun Image or Sharp for processing; Cloudflare Images or imgproxy for delivery |
+| Images | Responsive framework components or Unpic; AVIF/JXL chosen by visual quality and bytes, with fallbacks | Sharp/vite-imagetools for AVIF/WebP; cjxl for JXL; suitable Bun Image jobs; Cloudflare Images or imgproxy for delivery |
 | Native Bun APIs | S3Client, SQL, or Markdown when Bun execution and requirements fit | Runtime-compatible SDKs, platform bindings, or an existing content pipeline |
 | Jobs | Inngest, Trigger.dev, or Cloudflare Queues/Workflows | Native Convex scheduling in its profile; a dedicated queue/event platform for proven scale |
 | Email | Resend | Postmark, AWS SES |

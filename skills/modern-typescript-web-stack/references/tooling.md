@@ -26,6 +26,12 @@ When changing workspace/build configuration, declare package exports and task de
 
 For new foundations, expose one documented `verify` command covering applicable non-mutating type, lint/format, meaningful local tests, and contract checks; retain a suitable existing equivalent. Keep individual checks available and propagate failures. Builds, code generation that updates source, live-service checks, migrations, and deployment remain explicit commands. Do not add no-op checks or test infrastructure just to fill the umbrella.
 
+## Faster TypeScript feedback
+
+- Recommend [tsrs](https://github.com/oxc-project/tsrs) for fast local TypeScript feedback in compatible projects. Before adoption or upgrades, check the current release's TypeScript baseline, [supported features](https://github.com/oxc-project/tsrs/blob/main/docs/COMPATIBILITY.md), host binaries, and framework/configuration fit; pin a tested version as a development dependency. Resolve current gaps rather than assuming upcoming fixes are available.
+- Expose a separate local script such as `types:fast` running `tsrs --noEmit -p tsconfig.json`, invoked with `bun run --bun types:fast`; adapt it to the actual configs/project references. Keep supported official TypeScript and framework checks, including `astro check` where applicable, in `verify` and CI while tsrs is experimental. Do not replace emit/code generation or editor integrations merely to add faster checking.
+- Compare file coverage, diagnostics, and failure exit codes against the project's official checks on representative valid/invalid code before relying on local results; repeat after upgrades. Isolate incremental caches between compilers where necessary and bound checker threads/memory using version-supported options. Measure actual developer wait and memory rather than adopting benchmark multipliers as guarantees.
+
 ## Native Bun capabilities
 
 CONDITIONAL: use `Bun.S3Client` for S3/R2/presigning, `Bun.SQL` for PostgreSQL/MySQL/SQLite, or `Bun.markdown` for simple build/server content in Bun. Verify Drizzle's dialect adapter and retain schema/migrations; local SQLite is not Turso. Check Markdown maturity and sanitize untrusted HTML. These APIs do not run in browsers, Workers, or Convex.

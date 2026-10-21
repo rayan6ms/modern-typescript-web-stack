@@ -25,7 +25,7 @@ Use Astro for content sites, Convex for reactive shared data, or Turso for embed
 With [Bun](https://bun.com/docs/installation) and [Git](https://git-scm.com/downloads), run:
 
 ```sh
-bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.11
+bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.12
 ```
 
 <details>
@@ -34,19 +34,19 @@ bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.11
 With curl and either Bun or Node.js 22+ (Linux/macOS):
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/rayan6ms/modern-typescript-web-stack/v0.1.11/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/rayan6ms/modern-typescript-web-stack/v0.1.12/install.sh | sh
 ```
 
 With Node.js 22+ and Git:
 
 ```sh
-npx --yes github:rayan6ms/modern-typescript-web-stack#v0.1.11
+npx --yes github:rayan6ms/modern-typescript-web-stack#v0.1.12
 ```
 
 With pnpm, Node.js 22+ and Git:
 
 ```sh
-pnpm dlx github:rayan6ms/modern-typescript-web-stack#v0.1.11
+pnpm dlx github:rayan6ms/modern-typescript-web-stack#v0.1.12
 ```
 
 </details>

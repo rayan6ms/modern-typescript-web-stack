@@ -20,9 +20,12 @@ For automated accessibility, browser performance, and public-site SEO audits, us
 
 ## Images and delivery
 
+- Prefer the smallest output that meets the intended visual quality at the rendered size. Evaluate AVIF and JPEG XL (`.jxl`) for photographic images, including JXL for high-fidelity/lossless or progressive delivery; compare visual results rather than identical numeric quality settings. Account for encode/decode cost and retain only useful variants.
+- Use native `<picture>` or a framework equivalent with typed `<source>` elements, the preferred format first, and a working JPEG/PNG `<img>` fallback; include WebP where useful. The browser uses the first supported matching source, not the smallest file. Verify target-browser support; JPEG XL coverage is still incomplete. `<figure>` groups media/captions and does not select formats. For `Accept`-negotiated delivery, separate format variants in CDN/cache keys and send `Vary: Accept` where the response depends on that header.
 - Use Astro `Image`/`Picture` with a compatible service; passthrough does not transform. Default to Unpic for provider-backed React/Solid images without a suitable framework component. Use Sharp-backed vite-imagetools when imported Vite assets need build-time variants. Avoid overlapping pipelines.
-- Consider `Bun.Image` for supported transforms in Bun jobs/builds; use Sharp for broader formats/operations. Await async terminals to keep encoding off the JS thread. Verify codecs: Bun AVIF/HEIC currently lacks Linux support and depends on OS/hardware elsewhere. Bun Image provides no responsive markup or endpoint/cache; Next.js's standard optimizer requires Sharp.
-- Reuse build/upload variants where practical. Choose Cloudflare Images for managed transforms/edge caching or imgproxy behind a CDN/cache for self-operated delivery. R2 only stores objects.
+- Prefer Sharp for portable resizing and AVIF/WebP output, and [libjxl's `cjxl`](https://github.com/libjxl/libjxl/blob/main/doc/man/cjxl.txt) for build/upload-time JPEG XL encoding. Preserve originals and derive variants without repeated lossy re-encoding. Sharp's [JXL output](https://sharp.pixelplumbing.com/api-output/#jxl) is experimental and absent from prebuilt binaries; do not rely on it or assume Sharp-backed integrations support JXL.
+- Consider `Bun.Image` for supported transforms in Bun jobs/builds. Await async terminals to keep encoding off the JS thread. Verify codecs: Bun AVIF/HEIC currently lacks Linux support and depends on OS/hardware elsewhere; no JXL encoder is documented. Bun Image provides no responsive markup or endpoint/cache; Next.js's standard optimizer requires Sharp.
+- Reuse build/upload variants where practical. Choose Cloudflare Images for managed transforms/edge caching or imgproxy behind a CDN/cache for self-operated delivery. Verify the chosen service/version's output formats; imgproxy supports still AVIF/JXL, but provider/framework format support is not interchangeable. R2 only stores objects.
 - Generate appropriate `srcset`/`sizes` with preserved aspect ratio/stable dimensions; load LCP images promptly and lazy-load off-screen images. Version source/transform cache keys and preserve private-file authorization for originals, variants, and caches.
 - Bound source access, bytes/pixels, variants, and concurrency. Compare equivalent visual quality, output bytes, cold/cache-hit behavior, resources, and cost before performance claims.
 
@@ -31,3 +34,6 @@ For automated accessibility, browser performance, and public-site SEO audits, us
 Use documentation matching the installed version.
 
 - [Core Web Vitals](https://web.dev/articles/vitals)
+- [Native picture sources and format fallbacks](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/picture)
+- [AVIF support](https://web-platform-dx.github.io/web-features-explorer/features/avif/) and [JPEG XL support](https://caniuse.com/jpegxl)
+- [imgproxy image formats](https://docs.imgproxy.net/latest/image_formats_support) and [Bun.Image platform support](https://bun.com/docs/runtime/image#platform-backends)
