@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.14 — 2026-11-03
+
+- Prefer compatible built-in Bun type checking, with coverage validation and framework checks retained.
+- Add measured CI tuning for caching, affected tasks, runners, and test isolation.
+
 ## 0.1.13 — 2026-10-21
 
 - Add Marko and HTMX rendering profiles with framework-specific tooling and UI/server boundaries.

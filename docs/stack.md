@@ -365,13 +365,15 @@ Use Bun workspaces and Turborepo when packages share a build graph. Pin Bun and 
 
 Declare package exports and task dependencies, keeping server-only code out of browser imports. [Cache reproducible tasks](https://turborepo.dev/docs/crafting-your-repository/caching) with their inputs, outputs, and [build-affecting environment values](https://turborepo.dev/docs/crafting-your-repository/using-environment-variables). Keep code generation separate from deploy/migration commands; external mutations and persistent tasks must execute rather than be restored from cache. Exclude secrets/private data from cached artifacts and logs.
 
+Measure checkout, installation, build/test, and cache-transfer time before tuning CI. Use bounded parallelism and reliable affected-task selection in the existing build graph; runner upgrades and clone changes should address a measured cost. See the [CI guidance](../skills/modern-typescript-web-stack/references/tooling.md#build-and-ci-performance) for cache correctness, Git history, test isolation, and optional hooks.
+
 For Effect services, test expected-error mapping, cancellation, resource cleanup, concurrency limits, and retry deadlines with replaceable provider services. For a Turso deployment, run database integration tests against the selected engine and access mode, including synchronization conflicts, contention, restarts, and backup restoration.
 
-### Faster TypeScript feedback
+### TypeScript checking and faster feedback
 
-Recommend **[tsrs](https://github.com/oxc-project/tsrs)** for fast local checking when its current release supports the project's TypeScript version, configuration, and framework. Pin it as a development dependency and expose a separate `types:fast` script such as `tsrs --noEmit -p tsconfig.json`, run with `bun run --bun types:fast`; adapt the command for the project's configs/references. While it is experimental, keep supported official TypeScript and framework checks in `verify` and CI, including `astro check` for Astro code.
+For new compatible projects, prefer built-in **[Bun type checking](https://bun.com/docs/runtime/check)** with a pinned supporting release, using a script such as `bun check --no-script -p tsconfig.json`. Match its bundled TypeScript baseline to the framework, configuration, and editor, and use `-b` where all referenced projects need checking. The `--no-script` flag prevents a package's `check` script from shadowing the checker.
 
-Check the [compatibility report](https://github.com/oxc-project/tsrs/blob/main/docs/COMPATIBILITY.md) before adoption and upgrades. Compare diagnostics, checked files, failure exit codes, developer wait, and memory on representative project code. Bound worker/memory settings and separate incremental caches when needed; keep existing emit and editor workflows unless changing them has its own benefit.
+Compare coverage, diagnostics, and failure exits with supported official TypeScript before switching; retain the existing checker until compatibility is established and keep framework checks such as `astro check`. Bun check emits neither declarations nor incremental build info. **[tsrs](https://github.com/oxc-project/tsrs)** remains an alternative local accelerator when its [compatibility](https://github.com/oxc-project/tsrs/blob/main/docs/COMPATIBILITY.md) and measured benefit justify it; retain accepted project-wide and framework checks when adding experimental feedback. Avoid redundant default accelerators and bound checker resources. The [checking guidance](../skills/modern-typescript-web-stack/references/tooling.md#typescript-checking-and-faster-feedback) covers adoption and command scope.
 
 ### Website quality checks
 
@@ -399,7 +401,7 @@ Track server time to first byte, cache hit rate, query latency, bundle size by r
 | Language | TypeScript, strict mode | Rust/Go service for a measured native hot path |
 | Runtime | Cloudflare Workers or Bun, selected by deployment shape | Node.js only for a verified dependency/host requirement Bun cannot satisfy |
 | Build | Vite | Rsbuild where its ecosystem or build graph is a better fit |
-| Type checking | Supported official TypeScript and framework checks | tsrs for fast local feedback after compatibility validation |
+| Type checking | Bun check after compatibility validation, plus required framework checks | Supported official TypeScript; tsrs for justified local feedback |
 | Lint and format | Ultracite presets + Biome | Ultracite + Oxlint/Oxfmt; suitable existing configuration; supplementary ESLint for uncovered rules |
 | Workspace | Bun workspaces + Turborepo | pnpm workspaces; a single application may need neither |
 | API | oRPC for TypeScript; OpenAPI for external clients | Hono as an independent HTTP edge/API framework; Convex-generated functions in its profile |
