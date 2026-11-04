@@ -21,6 +21,8 @@ Inspect changed UI at representative viewports and with keyboard interaction, ch
 
 Support performance claims with relevant before/after measurements, workload, region, device, and cache conditions; lab results do not establish field/SLO compliance. Retain applicable integration invariants.
 
+For CPU-heavy JavaScript/WASM benchmarks, compare baseline and candidate on equivalent inputs and required results. Prevent constant-folded/eliminated work, reset mutated fixtures, and keep benchmark reporting outside timed regions. Include affected construction/conversion and cleanup costs at their actual frequency, plus the relevant request/journey cost. Repeat interleaved baseline/candidate runs and report absolute changes and variability; retain the baseline when gains are inconclusive. Label proxy-hardware results and limit target-specific claims until representative validation is available.
+
 Complete requested work and fix its regressions. After relevant checks pass, broaden only for new changes, failures, or unresolved risks; report prerequisite blockers rather than endlessly retrying. Labeled prototypes are valid scoped deliverables; never present mocks/untested assumptions as production behavior.
 
 Report delivered behavior, material deviations, actual checks/measurements, and remaining limits. Commit when requested or required; pushing/publishing needs its own authorization.

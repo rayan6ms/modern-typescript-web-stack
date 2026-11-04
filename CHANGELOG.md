@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.15 — 2026-11-04
+
+- Strengthen CPU-path benchmark validity, cost accounting, and baseline decisions.
+
 ## 0.1.14 — 2026-11-03
 
 - Prefer compatible built-in Bun type checking, with coverage validation and framework checks retained.
