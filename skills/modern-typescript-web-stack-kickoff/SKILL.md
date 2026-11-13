@@ -5,7 +5,7 @@ description: Initialize and verify a minimal website foundation using the Modern
 
 # Modern TypeScript Kickoff
 
-Prepare the smallest verified initial foundation that fits the user's known requirements and the selected stack's goals. For planning-only requests, produce the foundation plan. Keep applicable defaults unless the user explicitly chooses otherwise or a concrete constraint justifies a scoped departure.
+Prepare the smallest verified initial foundation that fits the user's known requirements and the selected stack's goals. For planning-only requests, produce the foundation plan. Keep applicable defaults unless an explicit user choice, a concrete constraint, or evidence of a material project-specific benefit justifies a scoped departure.
 
 ## Bundled profile
 
@@ -40,8 +40,8 @@ Distinguish facts, user choices, and provisional assumptions. An unanswered ques
 1. Start from the selected profile's applicable defaults and supported branches. A content-only branch or omission of an unnecessary database follows the profile; it is not a reason to replace the rest of the stack.
 2. Map required capabilities to their recommended tools and boundaries. Feature names such as "realtime", "AI", or "high traffic" alone do not justify changing a framework, database, runtime, or deployment architecture. Establish the specific requirement and assess how the defaults address it.
 3. Add conditional components for concrete launch needs or credible workload requirements, checking compatibility. Do not install the catalog in anticipation of possible future features. Distinguish a selected tool's initial applicability from its availability for later use.
-4. Depart from a default for an explicit user choice, a concrete conflict with a requirement, a verified support gap, or credible workload evidence. Record the user's explicit choice or explain why the default is insufficient, then identify the smallest affected boundary, the tradeoff, and how the alternative will be validated. Meet the selected profile's evidence requirements for that boundary; estimates do not establish benchmark results. An agent's preference or general claim that something is faster is insufficient. Keep unverified compatibility concerns visible as open checks.
-5. Preserve accepted choices across follow-ups. Reconsider the affected boundary when the user changes a requirement, a recorded trigger occurs, or evidence establishes a relevant limitation. A new feature or newer dependency version does not authorize a broad redesign or migration.
+4. Depart from a default for an explicit user choice, a concrete requirement, a verified support gap, or evidence of a material project-specific improvement. Apply the profile's evaluation rules to the smallest affected boundary, comparing the expected benefit with compatibility, maintenance, operating, and migration costs. Record the basis, tradeoff, and planned validation. Meet the profile's evidence requirements; estimates do not establish benchmark results. An agent's preference or general claim that something is faster is insufficient. Keep unverified compatibility concerns visible as open checks.
+5. Preserve accepted choices across follow-ups. Reconsider the affected boundary when the user changes a requirement, a recorded trigger occurs, or evidence establishes a relevant constraint or material benefit. A new feature or newer dependency version does not authorize a broad redesign or migration.
 
 Routine default choices need no comparison exercise or extra approval. Explicit user requirements take precedence over profile preferences; explain material conflicts rather than silently overriding them. Resolve material uncertainty through the interview and preserve existing authorization boundaries.
 

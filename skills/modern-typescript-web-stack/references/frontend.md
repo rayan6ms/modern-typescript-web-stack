@@ -8,9 +8,14 @@ For automated accessibility, browser performance, and public-site SEO audits, us
 
 For selected Marko or HTMX, use its [rendering profile](rendering-profiles.md) for UI/state/form choices. React-specific libraries below apply to React UI; accessibility, security, image delivery, and browser budgets apply across profiles.
 
+## Design workflow
+
+Use the [on-demand skill catalog](agent-skills.md) to obtain and load the appropriate design, browser, and component companions. Impeccable is the primary design default; Anthropic's frontend-design keeps small, quick changes simpler. Combine complementary roles, preserving the selected framework, components, brand, accessibility requirements, and browser budgets. Reuse recorded product decisions instead of repeating kickoff intake.
+
 ## UI, state, accessibility, and browser performance
 
 - Deliver responsive UI suited to the product/brand, working controls, relevant loading/empty/error/success/denied states, and recoverable input. Add only needed shadcn/ui components in React; preserve suitable design systems.
+- Consider beta [UI SDK](https://github.com/vercel-labs/ui) for explicitly selected behavior composition or a concrete gap in existing primitives. Use its matching framework adapter and `ui-sdk` skill when selected or already present; retain shadcn/ui and suitable existing primitives otherwise. Do not expose application actions to agents merely because the library supports it.
 - Use accessible primitives and aim for WCAG 2.2 AA, including semantic structure, labels, contrast, keyboard/focus behavior, and reduced motion. Check actual behavior beyond automated scans, including meaningful focus after loading, retry, and validation transitions complete. Preserve or deliberately move focus as the interaction requires; do not restore it over a user's move elsewhere.
 - Use route data, TanStack Query, or the selected Convex integration for remote state. Include relevant identity/tenant parameters in stable keys, invalidate deliberately, and scope SSR hydration correctly. Never share private query caches across users.
 - Keep client-owned state in component state/Zustand without mirroring server state across stores.

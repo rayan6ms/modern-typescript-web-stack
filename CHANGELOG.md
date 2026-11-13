@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.17 — 2026-11-13
+
+- Add on-demand companion skills with task-based selection and agent-specific installation.
+- Prefer Impeccable for substantial design work and Anthropic's frontend-design for small changes.
+- Protect managed updates and unrelated files, report activation prerequisites, and retain companion helpers in project policy snapshots.
+- Evaluate implementation alternatives using project needs, evidence, compatibility, and total cost.
+- Generate companion artifacts from the selected source revision and refresh Antigravity directory support.
+
 ## 0.1.16 — 2026-11-13
 
 - Add browser-platform guidance using Google’s official Modern Web Guidance as a preferred maintained source.

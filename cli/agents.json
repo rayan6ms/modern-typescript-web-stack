@@ -24,8 +24,11 @@
     "id": "antigravity",
     "label": "Antigravity",
     "local": ".agents/skills",
-    "global": "HOME/.gemini/antigravity/skills",
-    "popular": false
+    "global": "HOME/.gemini/config/skills",
+    "popular": false,
+    "legacyGlobal": [
+      "HOME/.gemini/antigravity/skills"
+    ]
   },
   {
     "id": "antigravity-cli",

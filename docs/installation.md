@@ -7,25 +7,25 @@ Setup installs the CLI and both skills globally. You choose the agents; none is 
 With [Bun](https://bun.com/docs/installation) and [Git](https://git-scm.com/downloads):
 
 ```sh
-bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.16
+bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.17
 ```
 
 With curl and either Bun or Node.js 22+ (Linux/macOS):
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/rayan6ms/modern-typescript-web-stack/v0.1.16/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/rayan6ms/modern-typescript-web-stack/v0.1.17/install.sh | sh
 ```
 
 With Node.js 22+ and Git:
 
 ```sh
-npx --yes github:rayan6ms/modern-typescript-web-stack#v0.1.16
+npx --yes github:rayan6ms/modern-typescript-web-stack#v0.1.17
 ```
 
 With pnpm, Node.js 22+ and Git:
 
 ```sh
-pnpm dlx github:rayan6ms/modern-typescript-web-stack#v0.1.16
+pnpm dlx github:rayan6ms/modern-typescript-web-stack#v0.1.17
 ```
 
 The picker starts with popular agents in alphabetical order. **Other agents** opens the full list in the same picker; Tab switches between views and preserves your selections. Search finds any supported agent directly. Space selects agents and Enter confirms. All popular agents appear when the terminal has room; smaller terminals show a visible range and indicate more agents below.
@@ -74,6 +74,20 @@ Review and back up skill customizations before accepting replacement. `--force` 
 Kickoff saves a project policy snapshot, usually under `docs/stack/`. Skill updates leave that snapshot, project decisions, and application dependencies unchanged.
 
 To refresh an existing website, ask your agent to compare its snapshot with the newly installed profile, merge the applicable policy changes while preserving local rules and decisions, and update the snapshot's provenance and decision record. Preserve the upstream `SOURCE.json` marker and label local modifications separately. Review the resulting diff and run checks for any affected configuration. Dependency upgrades or architecture migrations are separate work; rerunning kickoff is unnecessary.
+
+## On-demand companion skills
+
+The stack guides agents to the relevant design, browser, component, and security skills using its [catalog](../skills/modern-typescript-web-stack/references/agent-skills.md). Setup installs none of these companions. Agents use the bundled helper, or you can run:
+
+```sh
+modern-stack skill list
+modern-stack skill ui-sdk --agent codex
+modern-stack skill security-audit --agent claude-code
+```
+
+Each command reuses an accessible copy or installs only that skill for the specified agent. Explicit `--local` or `--global` restricts lookup and installation to that scope; without either flag, a missing skill installs globally. Use `--check` for an offline package check or `--dry-run` to preview. Required engines, host activation, application libraries, and audit capabilities are reported separately. Removing the stack preserves these separately installed companions.
+
+After updating the stack CLI, use `modern-stack skill <id> --agent <agent-id> --global --update` for deliberate companion updates. Updates apply the catalog pin and preserve edited or unrecognized copies; they do not fetch an unreviewed upstream HEAD.
 
 ## Removal
 

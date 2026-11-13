@@ -18,6 +18,12 @@ Reviews/plans return findings; edits/deployments need a request. Requested proto
 
 Apply rules to affected services and the requested stage, using existing conventions and needed boundaries. Small fixes need no architecture note, infrastructure, or unrelated builds/load/restore tests. Missing access/tools limits specific checks, not independent authorized work.
 
+## Evaluate implementation choices
+
+Before a material design or implementation choice, ask whether the current approach or profile default best serves the task. Consider suitable libraries, tools, native or existing capabilities, algorithms, data structures, and techniques that could remove work, improve behavior, or simplify implementation. The catalog is a starting point; evaluate unlisted options by the same criteria. When there is a credible reason to reconsider, compare the baseline with the most promising alternative using current documentation, analysis of the affected code or queries, or focused measurements. Weigh gains against compatibility, maturity, maintenance, operating cost, and migration effort. Label assumptions; material speed or resource claims need comparable measurements of the affected path.
+
+Prefer the smallest justified improvement and retain compatible defaults when gains are uncertain. Keep evaluation within affected decisions; straightforward fixes need no research exercise. Recommend worthwhile changes outside the authorized scope without applying them.
+
 ## Default foundation
 
 - Use strict TypeScript, React + TanStack Start, and supported Vite for interactive apps; Astro with minimal islands for content. Start with one deployable and required services; static content needs no server/database.
@@ -33,6 +39,8 @@ Read mapped policies before selecting, changing, or reviewing their boundary. Re
 
 New architecture starts with architecture/tooling and selected capabilities. Local text/style fixes can use core/project context; deeper behavior/configuration changes use references. Read only the selected database profile and affected linked boundaries.
 
+For matching design, browser, component-library, or security-review work, use the [on-demand skill catalog](references/agent-skills.md) to select, find/install, and load the needed companions. Load only applicable roles.
+
 | Affected work | Read |
 | --- | --- |
 | New architecture; framework, runtime, rendering, or backend selection | [Architecture and profiles](references/architecture.md) |
@@ -44,7 +52,7 @@ New architecture starts with architecture/tooling and selected capabilities. Loc
 | Turso/libSQL, tenant databases, or offline/sync behavior | [Turso](references/turso.md) |
 | Convex functions/data, subscriptions, auth, storage, or scheduling | [Convex](references/convex.md) |
 | Caches, uploads/file lifecycle, or durable jobs/workflows | [Data services](references/data-services.md) |
-| UI/state/forms/accessibility, browser performance, or images | [Frontend and images](references/frontend.md) |
+| Visual design, UI/state/forms/accessibility, browser performance, or images | [Frontend and images](references/frontend.md) |
 | Browser APIs/support, native HTML/CSS, text scaling, scheduling, or page lifecycle | [Browser platform](references/browser-platform.md) |
 | Auth/sessions; product providers, webhooks, or AI actions | [Integrations](references/integrations.md) |
 | Observability, production/recovery, rollout, or release validation | [Operations and delivery](references/operations.md) |

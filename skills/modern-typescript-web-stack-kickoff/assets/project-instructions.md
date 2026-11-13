@@ -8,7 +8,7 @@ Read the [local stack core](docs/stack/AGENTS.md) for its goals, defaults, invar
 
 Use the [decision record](docs/stack-decisions.md) for the project brief, current foundation, constraints, and setup state. Check relevant decision entries before work that touches their scope; unrelated small edits need no full history review.
 
-Keep applicable stack defaults and accepted project choices. Explicit user requirements take precedence over defaults. A departure needs an explicit user choice or a concrete, documented reason meeting the selected profile's evidence requirements; ordinary feature requests and agent tool preferences do not justify replacing the foundation. Reconsider only the affected boundary when requirements change or relevant evidence warrants it. Recorded choices do not authorize migrations or broader actions.
+Keep applicable stack defaults and accepted project choices. Explicit user requirements take precedence over defaults. Use the core's evaluation rules for material implementation choices, including alternatives that could simplify the work or improve results. A departure needs an explicit user choice or a documented requirement or material benefit meeting the profile's evidence requirements. Reconsider only the affected boundary when requirements change or relevant evidence warrants it. Recorded choices do not authorize migrations or broader actions.
 
 ## Deferred decisions and updates
 

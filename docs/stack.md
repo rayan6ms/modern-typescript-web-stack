@@ -41,7 +41,7 @@ It is a good fit for SaaS products, dashboards, marketplaces, AI products, inter
 4. Measure Core Web Vitals and API latency with representative data.
 5. Use representative load tests and capacity estimates to choose caches, workers, and read models before the expected traffic arrives.
 
-The core is the recommended application foundation. Use its defaults for new work unless an existing architecture or concrete constraint favors an alternative; no comparison exercise is needed for every dependency. Capability sections recommend tools when the product needs that feature, including at launch. A selected backend profile replaces overlapping core choices at its boundary; use its supported data, API, and job capabilities. This guide does not require every reader to deploy every component.
+The core is the recommended application foundation. Use its defaults for new work unless an existing architecture, concrete constraint, or evidenced project-specific benefit favors an alternative. Weigh improvements against compatibility, maintenance, operating, and migration costs; routine dependencies need no comparison exercise. Capability sections recommend tools when the product needs that feature, including at launch. A selected backend profile replaces overlapping core choices at its boundary; use its supported data, API, and job capabilities. Install the components the product needs.
 
 ## Architecture
 
@@ -113,6 +113,10 @@ For Bun-hosted code or build tools, consider native APIs when they cover the req
 These APIs require Bun execution. Using Bun to install or build an application does not make them available in browser code, Workers, or Convex functions. Preserve suitable existing SDKs when broader features or runtime portability matter.
 
 ## UI and browser state
+
+Use [Impeccable](https://github.com/pbakaus/impeccable) as the default agent design skill for new interfaces and substantial visual work. Anthropic's [frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design) is the lightweight alternative for small, quick UI changes. Both are installed separately from this stack; use one primary design skill per task and preserve the project's brand and components.
+
+Agents find or install relevant companions on demand using the [skill catalog](../skills/modern-typescript-web-stack/references/agent-skills.md). [UI SDK](https://github.com/vercel-labs/ui) is a beta option for custom behavior composition with framework adapters; retain the default primitives unless a concrete need or user choice favors it. Cloudflare's security-audit skill supports focused security guidance and explicitly requested audits.
 
 - Start with [shadcn/ui](https://ui.shadcn.com/) and Tailwind CSS for new React UI without an existing design system. Add the components you need and adapt their source to the product. [Radix](https://www.radix-ui.com/) supplies accessible primitives used by many components; verify the chosen version's primitives and test the resulting UI. Astro pages and Solid UI can use framework-compatible components without adding React for this recommendation.
 - Use CSS Modules or plain CSS when existing conventions or styling requirements favor them.

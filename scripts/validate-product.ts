@@ -70,6 +70,18 @@ export function validate(rootArg: string) {
   ]) {
     check(existsSync(resolve(root, file)), `Missing ${file}`);
   }
+  // Older source revisions predate companion routing and remain valid exports.
+  const companionFiles = [
+    `skills/${name}/references/agent-skills.md`,
+    `skills/${name}/scripts/ensure-skill.mjs`,
+    `skills/${name}/scripts/THIRD_PARTY_NOTICES.md`,
+  ];
+  if (
+    companionFiles.some((file) => existsSync(resolve(root, file))) ||
+    readFileSync(resolve(root, `skills/${name}/AGENTS.md`), "utf8").includes("references/agent-skills.md")
+  )
+    for (const file of companionFiles)
+      check(existsSync(resolve(root, file)), `Missing ${file}`);
   const cli = json("cli/product.json");
   const pkg = json("package.json");
   const command = name.startsWith("modern") ? "modern-stack" : "performance-stack";

@@ -4,6 +4,8 @@ Use for browser API/support decisions, native HTML/CSS interactions, text scalin
 
 ## Preferred maintained source
 
+Obtain and load the `modern-web-guidance` companion through the [on-demand catalog](agent-skills.md) for applicable browser work; installation and guide lookup are separate steps.
+
 Use Google's official [Modern Web Guidance](https://github.com/GoogleChrome/modern-web-guidance) as a preferred source for current web-platform patterns and pitfalls. For substantive platform choices, unfamiliar APIs, or compatibility questions, consult the relevant guides through its catalog or `modern-web-guidance search` and `retrieve` commands. Retrieve only applicable guides; routine edits need no repeated search or catalog-wide scan. Use `legacy-scan` for requested broad modernization reviews and verify its findings; it covers only part of the catalog.
 
 Use a verified, pinned CLI version with the project's package-manager preferences when adding the tool; it is development guidance, not an application runtime dependency or required global installation. Direct guide URLs remain usable without the CLI. Check current MDN/Baseline data and matching framework documentation for the actual target. Adapt examples to the selected framework and strict types; newer APIs do not justify weakening types, raising the build target blindly, or replacing compatible libraries.

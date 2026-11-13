@@ -13,6 +13,7 @@ docs/
   stack/
     AGENTS.md
     references/
+    scripts/             # when supplied with the profile
     SOURCE.json          # when supplied with the profile
 ```
 
@@ -22,7 +23,7 @@ Merge with existing instructions and records; preserve user rules, accepted choi
 
 ## Keep one local profile snapshot
 
-Copy the selected profile's core `AGENTS.md`, complete `references/` directory, and supplied `SOURCE.json` marker into the local policy location. Keep their contents and relative layout intact, including currently unused references needed for future tasks. The marker identifies the upstream package revision; copying it does not imply that the snapshot contains every upstream file. Copying a policy file does not select or install its technologies. Use real project files so continuation does not depend on the source checkout, global skill installation, symlinks, or this kickoff package. The profile's README, skill entrypoint, and UI metadata are unnecessary for project-policy use.
+Copy the selected profile's core `AGENTS.md`, complete `references/` directory, `scripts/` directory when supplied (including notices), and supplied `SOURCE.json` marker into the local policy location. Keep their contents and relative layout intact, including currently unused references needed for future tasks. The scripts preserve on-demand companion lookup/installation after kickoff; do not install the whole companion catalog during setup. The marker identifies the upstream package revision; copying it does not imply that the snapshot contains every upstream file. Copying a policy file does not select or install its technologies. Use real project files so continuation does not depend on the source checkout, global skill installation, symlinks, or this kickoff package. The profile's README, skill entrypoint, and UI metadata are unnecessary for project-policy use.
 
 Check that the required source files and their local links are available before activating routing to the snapshot. If guidance is missing, keep the affected handoff pending, save known decisions within scope, and report the gap; do not emit links to absent files or describe the policy as complete.
 
@@ -34,7 +35,7 @@ Adapt the project-instruction template into the root `AGENTS.md`, or the instruc
 
 The entrypoint must tell the next agent to read the local selected core and use its task-to-reference routing. It must point to the current decision record for project constraints, selected capabilities, relevant open choices, and setup/command state. Keep changing selections, decision statuses, and check results in that record rather than duplicating them in root instructions. Persist project constraints, not temporary task restrictions such as "documentation only"; later work follows its own request and existing authorization. Load task-relevant detail rather than the whole reference catalog or decision history for every edit.
 
-Persist the conservative selection rule: applicable profile defaults remain the baseline; explicit user choices and documented project-specific decisions refine them. Ordinary feature requests do not justify wholesale replacement. A decision record describes choices and state, not authorization for migrations, external mutations, or broader work.
+Persist the conservative selection rule and the core's evaluation rules: applicable profile defaults remain the baseline; explicit user choices, concrete requirements, and evidenced project-specific improvements can refine affected decisions. Ordinary feature requests do not justify wholesale replacement. A decision record describes choices and state, not authorization for migrations, external mutations, or broader work.
 
 Persist the continuation rule: when a task reaches a deferred decision's trigger or blocked scope, ask its recorded question before dependent implementation, while proceeding on independent authorized work. Accepted choices remain in place during unrelated tasks. Changes to requirements or evidence reopen only the affected boundary, following the selected policy's evidence requirements and the user's authorization.
 

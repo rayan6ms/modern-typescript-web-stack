@@ -23,6 +23,8 @@ jobs:
           WEB_STACK_CLI_PREFIX: ${{ runner.temp }}/web-stack-installer-cli
         run: |
           bun cli/index.mjs --agent codex
+          node cli/index.mjs skill list
+          node cli/index.mjs skill ui-sdk --agent codex --dry-run
           node cli/index.mjs init --local --agent cursor
           node cli/index.mjs remove --local --agent cursor
           bun cli/index.mjs remove --agent codex
