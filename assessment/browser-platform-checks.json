@@ -1,0 +1,174 @@
+{
+  "checked_on": "2026-11-13",
+  "environment": {
+    "runtime": "Bun 1.4.4",
+    "browser": "Headless Chromium 156.0.8078.4",
+    "platform": "Linux"
+  },
+  "scope": "Typography corrections on served production output; historical trial evidence and scores unchanged.",
+  "layout_conditions": {
+    "viewport_css_px": [
+      [
+        1280,
+        900
+      ],
+      [
+        320,
+        900
+      ]
+    ],
+    "root_font_css_px": [
+      16,
+      32
+    ],
+    "text_spacing_override": {
+      "line_height": 1.5,
+      "paragraph_margin_bottom": "2em",
+      "letter_spacing": "0.12em",
+      "word_spacing": "0.16em"
+    },
+    "checks": [
+      "No document horizontal overflow",
+      "No visible in-flow element extending past viewport",
+      "Screenshot inspection"
+    ]
+  },
+  "demos": [
+    {
+      "id": "01-cedar-journal",
+      "css_sha256": "6b367c8d4da0b8303953b7f5a01b0d310caabd8bf91bf2282ed69de23e8d8c71",
+      "commands": [
+        {
+          "argv": [
+            "bun",
+            "install",
+            "--frozen-lockfile",
+            "--network-concurrency",
+            "2",
+            "--concurrent-scripts",
+            "2"
+          ],
+          "exit_code": 0
+        },
+        {
+          "argv": [
+            "bun",
+            "run",
+            "check"
+          ],
+          "exit_code": 0
+        },
+        {
+          "argv": [
+            "bun",
+            "run",
+            "build"
+          ],
+          "exit_code": 0
+        }
+      ]
+    }
+  ],
+  "browser_results": [
+    {
+      "label": "cedar-wide",
+      "width": 1280,
+      "scroll": 1280,
+      "root": 16,
+      "h1": 86.4,
+      "overflow": []
+    },
+    {
+      "label": "cedar-320-16",
+      "width": 320,
+      "scroll": 320,
+      "root": 16,
+      "h1": 44.8,
+      "overflow": []
+    },
+    {
+      "label": "cedar-320-32",
+      "width": 320,
+      "scroll": 320,
+      "root": 32,
+      "h1": 89.6,
+      "overflow": []
+    },
+    {
+      "label": "cedar-1280-32",
+      "width": 1280,
+      "scroll": 1280,
+      "root": 32,
+      "h1": 108.8,
+      "overflow": []
+    },
+    {
+      "label": "cedar-narrow-text-spacing",
+      "width": 320,
+      "scroll": 320,
+      "root": 32,
+      "h1": 89.6,
+      "overflow": []
+    },
+    {
+      "label": "cedar",
+      "behavior": "passed",
+      "pageErrors": [],
+      "health": null
+    },
+    {
+      "label": "cedar-article-wide",
+      "width": 1280,
+      "scroll": 1280,
+      "root": 16,
+      "h1": 86.4,
+      "overflow": []
+    },
+    {
+      "label": "cedar-article-320-16",
+      "width": 320,
+      "scroll": 320,
+      "root": 16,
+      "h1": 44.8,
+      "overflow": []
+    },
+    {
+      "label": "cedar-article-320-32",
+      "width": 320,
+      "scroll": 320,
+      "root": 32,
+      "h1": 89.6,
+      "overflow": []
+    },
+    {
+      "label": "cedar-article-1280-32",
+      "width": 1280,
+      "scroll": 1280,
+      "root": 32,
+      "h1": 108.8,
+      "overflow": []
+    },
+    {
+      "label": "cedar-article-narrow-text-spacing",
+      "width": 320,
+      "scroll": 320,
+      "root": 32,
+      "h1": 89.6,
+      "overflow": []
+    },
+    {
+      "label": "cedar-article",
+      "behavior": "passed",
+      "pageErrors": [],
+      "health": null
+    }
+  ],
+  "limits": [
+    "Chromium only; no Firefox, WebKit, real-device, webview, OS text-scale or screen-reader certification.",
+    "A 32px root font simulates an enlarged font preference; it is not a browser zoom or OS-setting test.",
+    "No field performance, deployment, full accessibility conformance, or new trial score is claimed."
+  ],
+  "behavior_checks": [
+    "Cedar homepage and article: keyboard skip link moves focus to main content with enlarged text and spacing."
+  ]
+}

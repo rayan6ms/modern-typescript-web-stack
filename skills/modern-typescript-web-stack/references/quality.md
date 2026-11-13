@@ -10,7 +10,9 @@ Use when configuring code diagnostics, accessibility tests, browser performance 
 
 Pin applicable project tools as development dependencies and expose non-mutating check scripts. Diagnose unsupported entry points or false positives rather than blanket-ignoring directories. Document narrow suppressions with their reason. These diagnostics complement separate type checks and behavior tests; use actionable findings rather than an aggregate health score as the acceptance criterion.
 
-## Accessibility
+## Browser compatibility and accessibility
+
+Select critical journeys and browser/device checks from the recorded support policy, including relevant mobile/webview behavior. Playwright engine projects complement real target-device checks where engine/version differences matter; Chromium-only lab results do not establish cross-browser behavior. Include text resizing, reflow, and keyboard/focus states for affected UI. Use the [browser platform guidance](browser-platform.md) for feature support and fallback choices.
 
 DEFAULT when preparing Playwright journeys: integrate [`@axe-core/playwright`](https://playwright.dev/docs/accessibility-testing) into representative pages and interaction states, including open dialogs, validation errors, and loaded content. Keep manual keyboard, focus, zoom/reflow, and relevant screen-reader checks. Automated scans cover only part of accessibility and do not establish WCAG conformance. Small changes can use existing checks without adding a new browser-test framework.
 
@@ -19,6 +21,8 @@ DEFAULT when preparing Playwright journeys: integrate [`@axe-core/playwright`](h
 - DEFAULT automated lab tool: [Lighthouse CI](https://web.dev/articles/lighthouse-ci) against representative production output. Configure route-specific metric and asset budgets under a repeatable browser/device/network profile. Use repeated runs and account for variability when setting regression gates; avoid treating a perfect overall score as the product goal. Prepare the job once real routes and a production build make its results useful.
 - Use [WebPageTest](https://www.webpagetest.org/) before launch and for material loading/delivery changes or unexplained regressions. Compare waterfalls, visual progress, rendering, and loading metrics under documented device, connection, location, and cache conditions. Repeat runs and report their variation; test the affected production routes rather than a development server. Keep private content and credentials out of public reports.
 - For deployed sites, collect field LCP, INP, and CLS using [`web-vitals`](https://web.dev/articles/vitals-measurement-getting-started) or a compatible existing real-user monitoring provider. Reuse existing instrumentation, bound collection, and respect the project's data/privacy requirements. Report field percentiles separately from lab results; an initial-load lab test does not establish field INP or Core Web Vitals compliance.
+
+For poor INP, use existing RUM attribution or `web-vitals/attribution` to distinguish input delay, processing, and presentation delay before optimizing. Use supported Long Animation Frames details for additional script/style/layout attribution; absent APIs leave those details unavailable. Bound sampling/payloads, redact sensitive URLs/selectors, and reuse existing instrumentation.
 
 Keep builds, server-starting lab jobs, and hosted audits explicit or in a separate CI job; the local `verify` umbrella stays non-mutating and independent of external service access. Record relevant routes, artifact/release, conditions, results, and remaining limits in the existing project record.
 

@@ -25,3 +25,9 @@ Provider events can be duplicated or arrive out of order. Protect state transiti
 - Authenticate the caller and authorize each action against the actual resource and tenant. Test cross-tenant and denial paths. Use mature identity flows; do not invent password storage or token protocols.
 - Protect browser sessions with secure, httpOnly, appropriately scoped cookies; rotate identifiers after sign-in/privilege changes. Enforce CSRF defenses for cookie-authenticated writes and explicit CORS rules. Add request/body limits, rate limits, safe headers, and server-side secret storage.
 - Treat uploads, HTML, outbound URLs, redirects, and provider content as untrusted; enforce appropriate escaping/access restrictions.
+
+## Browser content and identity boundaries
+
+Use escaped text/framework interpolation for ordinary content. Intentionally supported rich HTML needs a maintained, context-appropriate sanitizer at each rendering boundary, including SSR and email where applicable; browser-only sanitization cannot protect server output. Native `setHTML()` is an option when supported, with a verified sanitizer fallback and consistent rules. Avoid raw HTML sinks, regex sanitizers, and unsafe post-sanitization mutations.
+
+CSP and Trusted Types add protection rather than replace sanitization. Verify framework/library cooperation and use a report-only rollout before enforcing a new policy. Validate redirect/message origins with parsed URLs and explicit trusted boundaries; same-site status or a hostname substring does not grant trust. Preserve mature identity/passkey-provider integrations instead of replacing them solely to call newer browser APIs. Consult Google's [security guides](https://github.com/GoogleChrome/modern-web-guidance/tree/main/skills/modern-web-guidance/guides/security) for the affected capability and [browser support policy](browser-platform.md#browser-support-and-native-behavior) for target checks.

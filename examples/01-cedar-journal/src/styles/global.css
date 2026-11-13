@@ -35,19 +35,20 @@
     font-family: Georgia, "Times New Roman", serif;
     font-weight: 400;
     line-height: 1.12;
+    overflow-wrap: anywhere;
   }
   h1 {
     margin: 1rem 0 1.5rem;
-    font-size: clamp(2.8rem, 7vw, 5.4rem);
+    font-size: clamp(2.8rem, calc(1.4rem + 5vw), 5.4rem);
     letter-spacing: -0.045em;
   }
   h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2rem, calc(1rem + 2vw), 3rem);
     letter-spacing: -0.03em;
   }
   h3 {
     margin: 0 0 0.75rem;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-size: clamp(1.8rem, calc(1rem + 1.5vw), 2.5rem);
   }
   p {
     margin: 0 0 1.25rem;

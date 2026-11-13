@@ -44,11 +44,15 @@
       },
       {
         "file": "README.md",
-        "reason": "Add publication scope, evidence links and reproduction limits."
+        "reason": "Add publication scope, evidence links and reproduction limits, including subsequent typography corrections."
       },
       {
         "file": "LICENSE",
         "reason": "Add the MIT notice to keep copied standalone demos licensed."
+      },
+      {
+        "file": "src/styles/global.css",
+        "reason": "Improve user text scaling and narrow-layout wrapping; original trial results and scores are unchanged."
       }
     ]
   },

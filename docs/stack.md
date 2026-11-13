@@ -121,6 +121,8 @@ These APIs require Bun execution. Using Bun to install or build an application d
 - Use TanStack Table for behavior and your design system for presentation.
 - Use Lucide for consistent icons. [Motion for React](https://motion.dev/docs/react) (formerly Framer Motion) is recommended for coordinated transitions, layout animation, and gestures. Use CSS for simple transitions, respect reduced motion, and load animation code only on routes that need it.
 
+Use Google's official **[Modern Web Guidance](https://github.com/GoogleChrome/modern-web-guidance)** for current browser-platform patterns. Prefer suitable native HTML/CSS, preserve essential fallbacks, and record browser/device requirements. The [browser platform reference](../skills/modern-typescript-web-stack/references/browser-platform.md) covers forms, text scaling, scheduling, fonts, navigation, and page lifecycle without changing the framework defaults.
+
 ## Images and delivery
 
 Choose responsive markup, image transformation, and cached delivery together. A product gallery needs correctly sized variants and `srcset`/`sizes`; re-encoding an upload alone does not provide responsive delivery. Reserve lazy loading for off-screen images and discover the LCP image promptly.

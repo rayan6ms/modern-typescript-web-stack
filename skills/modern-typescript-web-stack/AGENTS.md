@@ -45,6 +45,7 @@ New architecture starts with architecture/tooling and selected capabilities. Loc
 | Convex functions/data, subscriptions, auth, storage, or scheduling | [Convex](references/convex.md) |
 | Caches, uploads/file lifecycle, or durable jobs/workflows | [Data services](references/data-services.md) |
 | UI/state/forms/accessibility, browser performance, or images | [Frontend and images](references/frontend.md) |
+| Browser APIs/support, native HTML/CSS, text scaling, scheduling, or page lifecycle | [Browser platform](references/browser-platform.md) |
 | Auth/sessions; product providers, webhooks, or AI actions | [Integrations](references/integrations.md) |
 | Observability, production/recovery, rollout, or release validation | [Operations and delivery](references/operations.md) |
 

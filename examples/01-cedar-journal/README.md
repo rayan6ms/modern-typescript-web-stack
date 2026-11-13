@@ -27,7 +27,7 @@ Read [AGENTS.md](AGENTS.md) and the authoritative [decision record](docs/stack-d
 
 ## Published demo scope
 
-This is a portable copy of frozen trial `166ba75`, assessed using source guidance `ff254aa`. It retains that historical policy and dependency versions; current guidance is distributed separately. See [assessment](../../assessment/REPORT.md), [prepared requirements](../../assessment/cases/01-cedar-journal/brief.md), and [answers](../../assessment/cases/01-cedar-journal/answers.md).
+This began as a portable copy of trial `166ba75`, assessed using source guidance `ff254aa`. It retains that historical policy and dependency versions; current guidance is distributed separately. Later [demo corrections](../../assessment/REPORT.md#demo-corrections) improve text scaling; original scores are unchanged. See [assessment](../../assessment/REPORT.md), [prepared requirements](../../assessment/cases/01-cedar-journal/brief.md), and [answers](../../assessment/cases/01-cedar-journal/answers.md).
 
 No secrets, dependency caches, build output, database volumes, or Git history are included. Historical results apply to the original host/state. Run the documented checks again on your environment. The interactive adapter is a pinned prerelease; review support before production use.
 

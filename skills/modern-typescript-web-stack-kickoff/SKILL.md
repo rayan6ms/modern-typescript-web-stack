@@ -29,7 +29,7 @@ Read the user's brief and available project context first. Ask concise, grouped 
 - Public content and SEO, interactive workflows, accounts/roles, and persistent or shared data.
 - Relevant data ownership, tenancy, realtime/offline behavior, uploads, background work, and external integrations.
 - Known hosting, regional/data residency, budget, operational, and integration constraints; required technologies or existing services.
-- Expected usage and critical user journeys. Ask for rough estimates when useful; label assumptions and unknown performance budgets.
+- Expected usage, critical user journeys, and material browser/device or accessibility constraints. Ask for rough estimates when useful; label assumptions and unknown performance budgets.
 
 Ask only relevant questions the brief has not answered. Accept "undecided" and avoid asking the user to select routine libraries. Use follow-ups for answers that materially affect a boundary; a complete brief needs no ritual questionnaire. Never request credentials as interview answers or include them in the plan.
 

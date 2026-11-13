@@ -4,7 +4,7 @@ Use for rendering/UI behavior, state, forms, accessibility, browser delivery, or
 
 For Convex subscriptions/SSR identity, also use the [selected backend policy](convex.md). File ownership/upload lifecycle is covered by [data services](data-services.md).
 
-For automated accessibility, browser performance, and public-site SEO audits, use [website quality checks](quality.md).
+For automated accessibility, browser performance, and public-site SEO audits, use [website quality checks](quality.md). Native HTML/CSS, browser support, forms/text scaling, scheduling, and lifecycle use [browser platform guidance](browser-platform.md).
 
 For selected Marko or HTMX, use its [rendering profile](rendering-profiles.md) for UI/state/form choices. React-specific libraries below apply to React UI; accessibility, security, image delivery, and browser budgets apply across profiles.
 
@@ -17,7 +17,7 @@ For selected Marko or HTMX, use its [rendering profile](rendering-profiles.md) f
 - Use TanStack Form/native forms with runtime schemas and server validation for server-bound submissions; local interactions need no backend. Prefer supported native submission/progressive enhancement. Use TanStack Table for behavioral tables, accessible presentation, and virtualization when measured rendering cost requires it.
 - Verify server-rendered forms before hydration or when JavaScript does not load. Provide working native submission or a clear fallback that cannot submit. A client `preventDefault` alone leaves default GET submission available and can expose named fields in the URL.
 - Prefer Lucide for a consistent icon set and CSS for simple transitions. Add Motion only for interactions whose behavior needs it; honor reduced motion and route-level loading.
-- Minimize critical-route bytes and execution: use appropriate pre-rendering/caching/streaming, route splitting, responsive images, stable dimensions, font subsets, and deferred optional libraries. Discover LCP resources promptly.
+- Minimize critical-route bytes and execution: use appropriate pre-rendering/caching/streaming, route splitting, responsive images, stable dimensions, font subsets preserving required glyph coverage, and deferred optional libraries. Discover LCP resources promptly.
 - Define route-specific budgets and measure compressed JavaScript, execution/hydration, TTFB, and field behavior. Core Web Vitals targets are LCP <= 2.5 s, INP <= 200 ms, CLS <= 0.1 at the 75th percentile of field data; verify current definitions before publishing them. Lab results do not establish field compliance.
 
 ## Images and delivery

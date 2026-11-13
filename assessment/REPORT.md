@@ -20,6 +20,12 @@ The scored outputs used frozen local guidance and retained selected defaults, co
 
 A code review on 2026-10-09 reproduced credential exposure from malformed database URLs and missing migration prerequisites in the DeskLedger copy. Database construction and migration configuration now reject those inputs with safe diagnostics. Postgres.js supplies Drizzle Kit's tooling driver, and fresh database initialization gives the separate migrator the `CREATE` privilege needed for its journal schema. Bun SQL remains the application driver. An isolated rootless Podman database verified startup, restricted-role checks, stop/restart, generation of a disposable schema, real migration, an idempotent rerun, and application-role use. The disposable schema was not added to the demo. These corrections do not rescore or alter the original trial records.
 
+## Demo corrections
+
+A browser-platform review on 2026-11-13 updated Cedar's fluid headings to include font-relative sizing and allow long words to wrap. These changes improve accommodation of user text preferences; they do not revise the original trial scores or evidence. See the [current check record](browser-platform-checks.json).
+
+Current verification passed a frozen install, Astro type check, Ultracite check and production build on Bun 1.4.4. Headless Chromium 156 checked served homepage/article output at 1280 and 320 CSS pixels, with 16px and 32px root-font settings and an additional narrow text-spacing override. No horizontal overflow was found; keyboard skip links worked. Enlarged root fonts simulate user preferences, not OS/device settings. Other browser engines and screen readers were not checked.
+
 ## Scope and known limits
 
 The installs passed on an existing Linux/Bun 1.4.0 host and cache. This was not a clean-machine or cross-platform certification. Interactive foundations use a documented pinned Nitro prerelease; passing local checks does not establish production support. No deployment, traffic capacity, field Core Web Vitals, auth/payment behavior, or complete application is claimed.
