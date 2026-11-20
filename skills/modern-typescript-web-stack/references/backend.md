@@ -26,6 +26,8 @@ When selected, use Effect for the substantial async/service boundary, not every 
 - Use version-supported Standard Schema adapters with compatible service requirements and wire transformations. Check module stability/API compatibility; core stability does not cover every module.
 - Keep server imports out of browser bundles. Measure client-side adoption against equivalent plain TypeScript; comparisons to old Effect versions do not prove superiority. Test affected errors, cleanup, cancellation, retries, time, and concurrency.
 
+Keep the OpenAPI version compatible with the handler, validator, and downstream generators. For example, `openapi-typescript` documents 3.0 and 3.1 support. Verify every consumer before introducing 3.2 features. See [openapi-typescript](https://openapi-ts.dev/introduction).
+
 ## Official documentation
 
 Use documentation matching the installed version.

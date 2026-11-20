@@ -6,9 +6,9 @@ Use for browser API/support decisions, native HTML/CSS interactions, text scalin
 
 Obtain and load the `modern-web-guidance` companion through the [on-demand catalog](agent-skills.md) for applicable browser work; installation and guide lookup are separate steps.
 
-Use Google's official [Modern Web Guidance](https://github.com/GoogleChrome/modern-web-guidance) as a preferred source for current web-platform patterns and pitfalls. For substantive platform choices, unfamiliar APIs, or compatibility questions, consult the relevant guides through its catalog or `modern-web-guidance search` and `retrieve` commands. Retrieve only applicable guides; routine edits need no repeated search or catalog-wide scan. Use `legacy-scan` for requested broad modernization reviews and verify its findings; it covers only part of the catalog.
+Use Google's official [Modern Web Guidance](https://github.com/GoogleChrome/modern-web-guidance) for applicable browser work. Search at the start with one action-oriented English phrase of two to five words per platform capability. Keep queries generic and framework-free, such as `yield long tasks`. Retrieve the matching use-case and discipline guides, including the JavaScript guide where relevant. Reuse guides already loaded for the task. Reserve `legacy-scan` for requested broad modernization and verify its findings.
 
-Use a verified, pinned CLI version with the project's package-manager preferences when adding the tool; it is development guidance, not an application runtime dependency or required global installation. Direct guide URLs remain usable without the CLI. Check current MDN/Baseline data and matching framework documentation for the actual target. Adapt examples to the selected framework and strict types; newer APIs do not justify weakening types, raising the build target blindly, or replacing compatible libraries.
+Use the pinned CLI release that matches the selected skill and pass the `--skill-version` value from its instructions to `search`. For the bundled v1.0.1 pin, use `bun x --bun modern-web-guidance@1.0.1` with the documented subcommand. Bundled Markdown guides work offline. Check current MDN/Baseline data and matching framework documentation for the actual target. Preserve strict types, build targets, and compatible libraries when adapting examples.
 
 ## Browser support and native behavior
 
@@ -25,7 +25,7 @@ Use a verified, pinned CLI version with the project's package-manager preference
 
 ## Rendering and responsive interactions
 
-- Profile blocking work before choosing chunking, workers, or scheduling. `scheduler.yield()` needs support detection and a task-yielding fallback; a resolved promise only yields to microtasks. Choose work slices from responsiveness measurements, not a universal 50 ms allowance. Keep worker transfer/startup costs and cancellation relevant to the task.
+- Profile blocking work before choosing chunking, workers, or scheduling. `scheduler.yield()` splits work already in progress. Use `scheduler.postTask()` to schedule queued work and a `TaskController` when its priority needs to change or it needs cancellation. Feature-detect these APIs and use a fallback that yields to the task queue. Choose slices from responsiveness measurements and account for worker startup and transfer costs.
 - Consider `content-visibility: auto` with an appropriate intrinsic-size estimate for heavy off-screen sections; it defers rendering, not arbitrary JavaScript or network work. Avoid measurements that force skipped subtrees to render. Virtualize only for a measured benefit, preserving keyboard navigation, reading order, find-in-page, and relevant printing; pagination or containment may fit better.
 - Pause optional visual work or unnecessary polling when hidden/off-screen where safe, and resynchronize on return. Do not pause authoritative work or discard required updates merely because a component is invisible.
 

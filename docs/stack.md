@@ -71,7 +71,7 @@ The browser and server share schemas, not database models. A route validates unt
 | Layer | Default | Use it when | Reconsider when |
 | --- | --- | --- | --- |
 | Language | TypeScript with `strict` | The team and product are TypeScript-first | A CPU-bound service or existing Rust/Go platform dominates |
-| Full-stack framework | [TanStack Start](https://tanstack.com/start/latest/docs/framework/react/overview) | You want typed routing, SSR, streaming, server functions, and Vite/Rsbuild deployment options | You require a framework with a fully stable release today; evaluate [React Router](https://reactrouter.com/) or a mature alternative |
+| Full-stack framework | [TanStack Start](https://tanstack.com/start/latest/docs/framework/react/overview) | You want typed routing, SSR, streaming, server functions, and Vite/Rsbuild deployment options | Existing operations or a specific integration favors [React Router](https://reactrouter.com/) or Next.js |
 | Build | [Vite](https://vite.dev/guide/) | Fast development and a portable production build | Your host requires a different official adapter |
 | Application runtime | Cloudflare Workers for the edge profile; Bun for a regional server | Workers bindings and distributed ingress, or Bun execution close to PostgreSQL | Choose using database latency, runtime API support, and workload tests |
 | Local tooling | Bun package manager and script runner | Fast installs, workspaces, and local execution | pnpm is a package-manager alternative; pin the runtime separately |
@@ -83,13 +83,13 @@ The browser and server share schemas, not database models. A route validates unt
 | SQL access | Drizzle ORM plus SQL migrations | Typed queries with a thin abstraction | Complex SQL or performance hot paths should use reviewed SQL directly |
 | Validation | Zod through Standard Schema for new general-purpose/shared contracts | Runtime validation at every trust boundary | Valibot for browser bundle/integration needs; Effect Schema for Effect services; native Convex validators in its profile; retain suitable existing schemas |
 
-As checked on 2026-10-08, TanStack Start is documented as a release candidate. Treat it as a deliberate choice: pin it, run upgrade tests, and keep the hosting adapter replaceable. Its server functions are not a reason to expose an internal database shape.
+TanStack Start 1.169 is the first stable line. Its Vite path requires Vite 8 or later. Upgrades from the release candidate need changes to validation, session helpers, Nitro setup, and error handling where those APIs are used. See the [migration guide](https://tanstack.com/start/latest/docs/framework/react/migrate-from-release-candidate).
 
 ### React versus other frontends
 
 - **React + TanStack Start:** the default here when ecosystem breadth, hiring, and typed routing matter.
-- **React Router or Next.js:** reasonable choices when your organization already operates them or a stable release policy matters more than this guide's router choice.
-- **SolidStart 2:** a strong alternative for fine-grained reactivity and a smaller client runtime; verify the libraries you need and your deployment adapter.
+- **React Router or Next.js:** reasonable choices when your organization already operates them or needs a specific integration.
+- **SolidStart 2:** an alternative for fine-grained reactivity. Its current framework release requires Solid 1 and a compatible router. Evaluate Solid 2 separately for a client-only project with compatible dependencies.
 - **Astro:** prefer it for content-first pages. Add React/Solid islands only where interaction exists.
 
 No framework guarantees a small page. Keep server-only code out of client imports, inspect the production bundle, and load interactive modules on demand.
@@ -108,7 +108,7 @@ For Bun-hosted code or build tools, consider native APIs when they cover the req
 
 - **[S3Client](https://bun.com/docs/runtime/s3):** S3-compatible object access and presigned uploads, including R2. Verify the provider's required operations and credential/signing behavior; Workers can use its native R2 binding.
 - **[Bun.SQL](https://bun.com/docs/runtime/sql):** PostgreSQL, MySQL, and SQLite access. Keep Drizzle's schema and reviewed migrations where selected. Its documented [Bun SQL/PostgreSQL](https://orm.drizzle.team/docs/connect-bun-sql) and [bun:sqlite](https://orm.drizzle.team/docs/sqlite/connect-bun-sqlite) adapters are distinct; verify the chosen dialect and driver rather than assuming every Bun SQL backend shares an adapter. Local SQLite is not a Turso integration.
-- **[Bun.markdown](https://bun.com/docs/runtime/markdown):** straightforward build/server content rendering. As checked on 2026-10-08, the API is documented as unstable; pin and test it, and retain an existing content pipeline when its features are needed. Sanitize untrusted HTML output before rendering it.
+- **[Bun.markdown](https://bun.com/docs/runtime/markdown):** straightforward build/server content rendering. The API is documented as unstable; pin and test it, and retain an existing content pipeline when its features are needed. Sanitize untrusted HTML output before rendering it.
 
 These APIs require Bun execution. Using Bun to install or build an application does not make them available in browser code, Workers, or Convex functions. Preserve suitable existing SDKs when broader features or runtime portability matter.
 
@@ -154,7 +154,7 @@ Put AVIF first when it gives the better result. Generate width-based `srcset`/`s
 
 Prefer **[Sharp](https://sharp.pixelplumbing.com/)** for portable resizing and AVIF/WebP output; it also runs under Bun. For JPEG XL variants, use **[libjxl's `cjxl`](https://github.com/libjxl/libjxl/blob/main/doc/man/cjxl.txt)** in bounded build/upload jobs. Preserve originals and derive variants without repeated lossy re-encoding. Sharp's [JXL output](https://sharp.pixelplumbing.com/api-output/#jxl) is experimental and excluded from prebuilt binaries, so Sharp-backed integrations do not automatically provide production JXL encoding.
 
-**[Bun.Image](https://bun.com/docs/runtime/image)** is a conditional processing engine for Bun-hosted jobs or build tools, with native resizing and re-encoding without a separate addon. As checked on 2026-10-20, Bun's AVIF/HEIC support is unavailable on Linux and depends on OS codecs/hardware elsewhere; no JXL encoder is documented. Verify the deployment target. Bun Image does not supply responsive markup or an automatic optimization/cache endpoint; existing [Next.js image optimization](https://nextjs.org/docs/messages/install-sharp) still requires Sharp with its standard optimizer.
+**[Bun.Image](https://bun.com/docs/runtime/image)** is a conditional processing engine for Bun-hosted jobs or build tools, with native resizing and re-encoding without a separate addon. Bun's AVIF/HEIC support is unavailable on Linux and depends on OS codecs/hardware elsewhere; no JXL encoder is documented. Verify the deployment target. Bun Image does not supply responsive markup or an automatic optimization/cache endpoint; existing [Next.js image optimization](https://nextjs.org/docs/messages/install-sharp) still requires Sharp with its standard optimizer.
 
 Reuse build/upload-time variants where practical; choose cached on-demand transformation when changing sizes or media volume justify it. Key variants by source version and transform settings, preserving private-file authorization in originals, variants, and caches. Bound input bytes/pixels, source access, variants, and processing concurrency. Compare visual quality, output bytes, cold processing, cache hits, and cost before claiming one engine is better.
 
@@ -202,7 +202,7 @@ Keep TanStack Start, Hono, and oRPC as transport boundaries. Implement domain op
 
 Effect adds a programming model to learn and execution overhead to measure. Plain functions and `async`/`await` remain appropriate for simpler services. Keep server-only dependencies out of browser imports and measure any client-side adoption. Ordinary fibers, retries, and in-memory queues do not persist work across restarts; retain a durable job/workflow system when that requirement exists.
 
-As checked on 2026-10-07, **[Effect 4.0](https://effect.website/blog/releases/effect/40)** is stable and has a published long-term support policy, while some modules retain unstable or experimental status. Pin compatible versions and use documentation for the installed major. Its [Bun platform integration](https://effect.website/docs/v4/platform/introduction) supports the regional runtime profile; on Workers, choose compatible integrations and test in `workerd`. The reported v4 improvements compare Effect versions, not Effect against equivalent plain TypeScript.
+**[Effect 4](https://effect.website/blog/releases/effect/40)** is stable and has a published long-term support policy, while some modules retain unstable or experimental status. Pin compatible versions and use documentation for the installed major. Its [Bun platform integration](https://effect.website/docs/v4/platform/introduction) supports the regional runtime profile; on Workers, choose compatible integrations and test in `workerd`. The reported v4 improvements compare Effect versions, not Effect against equivalent plain TypeScript.
 
 ## Data and infrastructure
 
@@ -210,13 +210,13 @@ As checked on 2026-10-07, **[Effect 4.0](https://effect.website/blog/releases/ef
 
 Validate Drizzle migrations in CI and apply them through a controlled deployment step, with a least-privilege application role, statement timeouts, and indexes derived from real query plans. Keep transactions short. Back up the database and periodically restore a backup into an isolated environment. Drizzle is a query and schema tool; it does not replace a data model, migration review, or database observability.
 
-For disposable agent databases, branch previews, and migration tests with frequent cloning and expiry, consider **[PGX](https://github.com/pgrundev/pgx)**, the Rust database runtime at [pgx.dev](https://pgx.dev/). It targets fast provisioning and low idle overhead; query execution is not universally faster. Copy-on-write cloning needs a supporting storage backend. Use sanitized fixtures, task-specific database URLs, and TTLs, and verify the actual Drizzle driver/migrations against its [compatibility gate](https://github.com/pgrundev/pgx/blob/main/docs/pgx/compatibility-gate.md). As checked on 2026-10-20, it is beta, not crash-safe, and cannot load existing PostgreSQL C extensions; one runtime shares a crash domain. Keep PostgreSQL for production and integration checks of required semantics. Pin a tested release and revisit these limits on upgrades.
+For disposable agent databases, branch previews, or repeated migration tests, consider [PGBoxDB](https://github.com/pgrundev/pgboxdb), formerly PGX. It targets fast provisioning and low idle overhead. Copy-on-write clones need a supporting filesystem. Use sanitized fixtures, task-specific URLs, and TTLs. Verify the Drizzle driver and migrations against its [compatibility gate](https://github.com/pgrundev/pgboxdb/blob/v0.2.0/docs/pgboxdb/compatibility-gate.md). The v0.2.0 tag targets PostgreSQL 18 compatibility. Keep authoritative data and production-semantics tests on PostgreSQL.
 
 ### Turso and embedded SQLite-compatible data
 
 **[Turso](https://docs.turso.tech/introduction)** is a database alternative when the application benefits from embedded SQL, local operation with synchronization, or independent databases per tenant, user, or agent. This profile can be selected at launch. PostgreSQL remains the general default for shared relational data and its established operational ecosystem.
 
-Distinguish **libSQL**, the older SQLite-derived engine, from **Turso Database**, the newer engine written in Rust, and from **Turso Cloud**, the managed service. Their SDKs and behavior differ. The newer engine supports MVCC with `BEGIN CONCURRENT`; its [0.8 release](https://turso.tech/blog/turso-0.8.0) improves concurrent writes. SQLite's traditional single-writer limitation should not be applied to every Turso deployment. As checked on 2026-10-07, the [project FAQ](https://github.com/tursodatabase/turso#faq) reports production use but a pre-1.0 engine with compatibility gaps and experimental features.
+Distinguish **libSQL**, the older SQLite-derived engine, from **Turso Database**, the newer engine written in Rust, and from **Turso Cloud**, the managed service. Their SDKs and behavior differ. The newer engine supports MVCC with `BEGIN CONCURRENT`; its [0.8 release](https://turso.tech/blog/turso-0.8.0) improves concurrent writes. SQLite's traditional single-writer limitation should not be applied to every Turso deployment. The [project FAQ](https://github.com/tursodatabase/turso#faq) reports production use but a pre-1.0 engine with compatibility gaps and experimental features.
 
 [Drizzle's libSQL integration](https://orm.drizzle.team/docs/sqlite/connect-turso) provides a documented TypeScript path. Its separate [Turso Database](https://orm.drizzle.team/docs/sqlite/connect-turso-database) and [Turso Sync](https://orm.drizzle.team/docs/sqlite/connect-turso-sync) adapters are currently documented on the RC release line; match ORM/Kit versions and verify installed exports before selecting them. Changing from PostgreSQL requires reviewing SQL dialect, schemas, types, constraints, and migrations. Check the authentication adapter and other database integrations too.
 
@@ -293,7 +293,7 @@ Choose using relevance tests and response-time targets as well as data size. Tra
 
 ### AI
 
-**Default: [Vercel AI SDK](https://sdk.vercel.ai/)** for streamed responses, provider abstraction, and tool calling in TypeScript. **LangChain** is an option for orchestration and integrations; **LlamaIndex** is an option for ingestion, indexing, and retrieval workflows. These libraries overlap in some features but do not replace one another in every role. A provider's direct SDK is often sufficient for a single simple integration.
+**Default: [Vercel AI SDK](https://ai-sdk.dev/)** for streamed responses, provider abstraction, and tool calling in TypeScript. AI SDK 7 is ESM-only. Upgrade core and provider packages together and test them on the chosen runtime. **LangChain** is an option for orchestration and integrations. **LlamaIndex** is an option for ingestion, indexing, and retrieval. A provider's direct SDK can cover a single simple integration.
 
 Choose based on the actual task and supported runtime. Keep provider calls behind a domain interface, bound time and token use, propagate cancellation, and validate model output. Authorize tool actions independently from the model's request. Evaluate quality, latency, and cost together.
 

@@ -41,15 +41,15 @@ The helper checks skill files and reports `requirements` plus any `activationNot
 
 - **impeccable:** The launcher fetches its checksum-verified engine on first use. New design may contact the visual catalog. Hooks and live mode remain opt-in.
 - **frontend-design:** Text-only guidance; no separate engine. Reuse the existing brief and keep the change scoped.
-- **modern-web-guidance:** Search/retrieve uses a separate guidance CLI and may need network access; bundled guides are available offline. Follow stack runtime, typing, and browser-support requirements.
+- **modern-web-guidance:** The catalog pins v1.0.1. Match the search/retrieve CLI to the skill version and follow its query instructions. Bundled guides are available offline. Apply the project's runtime, typing, and browser-support requirements.
 - **shadcn:** Use the selected React workspace and its configured shadcn CLI. Registry access may need network; do not initialize or change components during skill installation.
-- **ui-sdk:** Requires selected @ui-sdk/core and the matching framework adapter for implementation. Prefer documentation bundled with the application package version. The skill alone installs no runtime library or agent-action exposure.
+- **ui-sdk:** Use the docs bundled with the selected @ui-sdk package and adapter. The beta.13 Solid adapter requires Solid 2 and @solidjs/web. Installing the skill installs no application packages or agent-action access.
 - **security-audit:** Focused questions use guidance mode. Full audits require independent agents; target-code execution additionally requires the skill's restricted OS sandbox. File installation establishes neither capability.
 
 Host discovery may expose both design skills; this catalog guides task ownership while preserving host settings and upstream files.
 
 ## Workflow boundaries
 
-- **Impeccable:** keep hooks/live editing opt-in. If live mode is requested, set `IMPECCABLE_LIVE_COPY_AGENT=chat` or `off` before starting it; its default fallback can launch an agent with permissions bypassed. Do not run project initialization during skill installation. If design work later needs `PRODUCT.md`, derive known facts from the existing brief/decision record and ask only for genuinely missing design choices.
+- **Impeccable:** use available host browser tools for visual checks. Hooks, live editing, browser extensions, sign-in, and design-document compaction require their own scope. If live mode is requested, set `IMPECCABLE_LIVE_COPY_AGENT=chat` or `off` before startup to prevent its permission-bypassing fallback. If work needs `PRODUCT.md`, reuse the existing brief and ask only for missing design choices.
 - **UI SDK:** currently beta. Select it for a concrete component/behavior requirement or explicit user choice, retaining suitable default primitives elsewhere. Installing the skill does not install `@ui-sdk/*` or authorize `createAgent`/WebMCP access to application actions; configure such capabilities only when required, with normal authorization boundaries.
 - **Security-audit:** use guidance mode for questions and focused reviews. Full audits require an explicit audit/report request and the skill's independent verification workflow. Target-code execution requires its OS-enforced sandbox, network isolation, allowlisted environment, scratch-only writes, and resource limits. Without those controls, inspect source and report the precise validation blocker; do not execute target code or claim completed verification. Respect host delegation rules and user budgets.

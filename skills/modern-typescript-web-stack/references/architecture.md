@@ -11,7 +11,7 @@ Establish rendering, data/tenant ownership and consistency, deployment constrain
 | Concern | Default | Conditional alternative |
 | --- | --- | --- |
 | Application language | TypeScript with `strict` | A native service only for an existing platform or measured workload requiring it |
-| Interactive full-stack web | React + TanStack Start | React Router/Next.js for release policy or existing operations; SolidStart for ecosystem/runtime fit; [Marko for streaming/resumability or server templates + HTMX for HTML-driven interactions](rendering-profiles.md) |
+| Interactive full-stack web | React + stable TanStack Start | React Router/Next.js for existing operations or ecosystem fit; SolidStart when its supported Solid major fits; [Marko for streaming/resumability or server templates + HTMX for HTML-driven interactions](rendering-profiles.md) |
 | Content-first site | Astro with minimal interactive islands | Full application framework when authenticated interactions require it |
 | Build | Framework-supported Vite | Rsbuild or another supported build path when compatibility or measured build requirements justify it |
 | Local runtime and package manager | Bun | pnpm for package management when Bun is unsuitable; npm only when both are unsuitable |
@@ -42,17 +42,21 @@ Keep suitable existing validators; use Zod for new general-purpose/shared schema
 
 Use Astro pre-rendering and React/Solid islands for identified interactions. Add sessions, SSR, persistence, or APIs only for required behavior.
 
+Astro 7 defaults to Vite 8 and the Sätteri Markdown pipeline. When migrating a site with remark/rehype plugins, port them or keep the documented `@astrojs/markdown-remark` processor. Check rendered Markdown/MDX and framework diagnostics against the actual content before switching. See the [Astro 7 upgrade guide](https://docs.astro.build/en/guides/upgrade-to/v7/).
+
 ### Regional application profile
 
 Run the supported Bun production build near its authoritative data and latency-sensitive providers. Verify applicable auth, database, streaming, shutdown, and artifact behavior; a working development server does not establish production compatibility.
 
 TanStack Start's documented Bun path currently requires React/React DOM 19. Match the framework, Vite, and deployment-plugin versions and plugin order to the installed release's hosting guide. Choose one production adapter; do not combine Nitro and Cloudflare deployment plugins for the same server build.
 
+TanStack Start 1.169 is the first stable line and requires Vite 8 or later for the Vite path. When upgrading a release candidate, move server-function and middleware validation to `.validator()`, use `nitro/vite` for Nitro, and review session-cookie migration and error/response behavior. Verify actual auth, errors, cookies, and streaming on the built target. See the [upstream migration guide](https://tanstack.com/start/latest/docs/framework/react/migrate-from-release-candidate).
+
 ### Workers profile
 
 Choose Workers for compatible distributed request handling and relevant platform bindings. Use the framework's supported Cloudflare integration. MUST test runtime behavior in `workerd` with the supported integration or an authorized preview.
 
-Do not equate Workers with Bun or a full Node runtime. Check supported APIs, shims, native modules, filesystem assumptions, CPU limits, request lifetime, and background execution. For PostgreSQL, evaluate Hyperdrive and Worker Placement using actual database distance and sequential query count. Hyperdrive read caching does not automatically invalidate on writes; use a cache-disabled path for read-after-write requirements.
+With the Cloudflare Vite plugin, deploy the generated artifact and config. Let Wrangler find the generated config during a dry run or pass that config explicitly. Select named environments at build time and carry the generated config, build output, and `.wrangler/deploy/config.json` together across jobs. Check supported APIs, shims, native modules, filesystem assumptions, CPU limits, request lifetime, and background execution. Evaluate Hyperdrive and Worker Placement using database distance and sequential queries. Hyperdrive does not invalidate read caches on writes. Use a cache-disabled path for read-after-write requirements.
 
 In every profile, cache only data whose freshness and authorization rules permit it. Partition private caches by the correct identity/tenant or bypass shared caching. Set deliberate cache headers and invalidation rules.
 

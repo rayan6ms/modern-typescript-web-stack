@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.18 — 2026-11-20
+
+- Update TanStack Start guidance for 1.169 stable and document TypeScript, Astro, Ultracite, and Workers compatibility.
+- Refresh Google's Modern Web Guidance, Impeccable, and UI SDK pins.
+- Document HTMX 4, PostgreSQL 19 adoption checks, and the PGBoxDB rename.
+
 ## 0.1.17 — 2026-11-13
 
 - Add on-demand companion skills with task-based selection and agent-specific installation.

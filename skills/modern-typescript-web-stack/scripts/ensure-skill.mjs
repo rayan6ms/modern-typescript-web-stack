@@ -589,7 +589,7 @@ var companion_catalog_default = [
     role: "Primary design skill",
     when: "Default for new interfaces, substantial visual changes, design systems, and iterative critique/refinement. More workflow and tooling than a small edit needs.",
     repo: "pbakaus/impeccable",
-    ref: "c4cd1924c389f68d37c687d9c2bbf13f12547c41",
+    ref: "b49177d32788f2dc585c42831d845dacf1ebed2c",
     license: "LICENSE",
     paths: {
       codex: ".agents/skills/impeccable",
@@ -676,7 +676,7 @@ var companion_catalog_default = [
     role: "Browser platform companion",
     when: "HTML/CSS/client JavaScript, native interactions, browser support, accessibility, loading, images, or lifecycle. Use its relevant guides; it complements design and component skills rather than choosing the visual style.",
     repo: "GoogleChrome/modern-web-guidance",
-    ref: "4dd968349e54ca45a05dd5c818fb035c9054b022",
+    ref: "64a6d708f5a43f2cd3fde5d4d7db3905ba1bdf65",
     license: "LICENSE",
     paths: {
       default: "skills/modern-web-guidance"
@@ -684,7 +684,7 @@ var companion_catalog_default = [
     requiredFiles: [
       "guides/accessibility/accessibility.md"
     ],
-    requirements: "Search/retrieve uses a separate guidance CLI and may need network access; bundled guides are available offline. Follow stack runtime, typing, and browser-support requirements."
+    requirements: "The catalog pins v1.0.1. Match the search/retrieve CLI to the skill version and follow its query instructions. Bundled guides are available offline. Apply the project's runtime, typing, and browser-support requirements."
   },
   {
     id: "shadcn",
@@ -708,7 +708,7 @@ var companion_catalog_default = [
     role: "Selected UI SDK implementation companion",
     when: "The user selects UI SDK or the affected workspace uses @ui-sdk/*; compose or extend its behaviors, framework adapters, keyboard/focus/ARIA, and agent interactions. Beta: do not replace suitable existing primitives merely to use this skill.",
     repo: "vercel-labs/ui",
-    ref: "8ff6bcf7100d48230a3fab8c72475d99316cc58a",
+    ref: "f01f1739644ce83a0ba09fafc591d4050a2bbe83",
     license: "LICENSE",
     paths: {
       default: "packages/core/skills/ui-sdk"
@@ -719,7 +719,7 @@ var companion_catalog_default = [
       "references/agent-ready.md",
       "references/testing.md"
     ],
-    requirements: "Requires selected @ui-sdk/core and the matching framework adapter for implementation. Prefer documentation bundled with the application package version. The skill alone installs no runtime library or agent-action exposure."
+    requirements: "Use the docs bundled with the selected @ui-sdk package and adapter. The beta.13 Solid adapter requires Solid 2 and @solidjs/web. Installing the skill installs no application packages or agent-action access."
   },
   {
     id: "security-audit",

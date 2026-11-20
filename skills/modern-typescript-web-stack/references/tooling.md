@@ -6,7 +6,9 @@ Use for dependency, lint/format, build, workspace, CI toolchain, or native Bun A
 
 DEFAULT: apply Ultracite's `core` and relevant framework presets to the selected engine, which still lints/formats. Pin compatible versions, expose local check/fix scripts, run non-mutating checks in CI, and verify Bun execution. Merge generated agent rules with project policy; select supported editor/agent hooks deliberately and review fixes. Retain suitable configs for scoped fixes and separate TypeScript checks.
 
-For new setup, explicitly pass `--pm bun --linter biome` to the pinned Ultracite initializer, or `--linter oxlint` when that engine is selected. Unspecified noninteractive setup currently defaults to Oxlint/Oxfmt. Oxlint JS plugins require that engine; do not add them to Biome configuration.
+For new setup, explicitly pass `--pm bun --linter biome` to the pinned Ultracite initializer, or `--linter oxlint` when that engine is selected. Match the engine peers and review the resulting config. Oxlint JS plugins require Oxlint.
+
+Ultracite 8 consolidates generated rules into `AGENTS.md` and can migrate agent or editor files during `init`. Inspect the diff when upgrading and preserve project rules. Generate configuration in a scratch project or merge presets directly when an existing project's setup should remain intact. The universal agent option is `--agents universal`. Hooks, editor integrations, and automatic skill installation are separate choices.
 
 For maintained repositories, use Renovate for reviewed update PRs, or suitable Dependabot/existing automation. Review lockfiles/changelogs and validate coupled toolchain upgrades.
 
@@ -35,9 +37,12 @@ For new foundations, expose one documented `verify` command covering applicable 
 - Parallelize independent tasks within CPU/memory limits; sequence generators before consumers. In a useful workspace graph, use the selected orchestrator's affected-task support, including dependents and shared configuration/lockfile changes. If the graph or base/head history cannot establish the affected set, run the full applicable checks.
 - Consider partial/blobless clones only when checkout is expensive, accounting for lazy fetches. They differ from shallow history: preserve the commits/merge base needed for affected checks and versioning.
 - Keep Vitest file isolation by default. Disable it only for selected suites after checking shared module/global/DOM state, cleanup, and order dependence, and measuring the benefit. Follow the installed version's [performance guidance](https://vitest.dev/guide/improving-performance.html).
+- Match Vitest and Vite to the runtime integration. For Workers tests, use the [Cloudflare pool](https://developers.cloudflare.com/workers/testing/vitest-integration/) with its supported Vitest line. Pool 0.23.x declares Vitest 4.1 peers. Check those constraints before upgrading a Workers suite to Vitest 5.
 - Choose larger/faster runners, including providers such as Blacksmith, when timings and cost justify them. Optional project-scoped pre-push hooks should run quick targeted checks; required validation remains in CI, since hooks can be bypassed. Preserve existing hook tooling.
 
 ## TypeScript checking and faster feedback
+
+- [TypeScript 7](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/) ships the native compiler as stable `typescript`. Check removed options and explicitly list needed ambient `types`. Keep a compatible TypeScript 6 toolchain or the supported compatibility package where tooling relies on the old compiler API. For example, `@astrojs/check` 0.9.12 declares TypeScript 5/6 peers. Keep framework diagnostics and required emit separate when using Bun's TypeScript 7-based checker.
 
 - For new compatible foundations, prefer built-in [Bun type checking](https://bun.com/docs/runtime/check) using a pinned supporting Bun release. Check its bundled TypeScript baseline against the framework, configs, and editor; installing another `typescript` version does not change Bun's checker. Retain supported official TypeScript when compatibility requires it; changing language versions solely for speed is not a prerequisite.
 - Expose a project-wide `typecheck` script such as `bun check --no-script -p tsconfig.json`; use `-b` when all referenced projects need checking. `--no-script` prevents a package's `check` script from shadowing the checker. Include application, configuration, and test code in the selected configs; entry-point or staged-file checks can miss other affected code. Bound concurrency with supported options such as `--threads 2`, adjusted to the host.

@@ -17,6 +17,8 @@ CONDITIONAL: choose Convex for reactive shared data when integrated TypeScript f
 - Derive indexes, bounded reads/pagination, and subscription scope from access patterns. Evaluate limits, contention, recomputation, client delivery, and cost with representative data/subscribers.
 - Record hosting mode, region, budget, and recovery/export. Coordinate schema/data migrations, generated clients, and compatible releases.
 
+Use TanStack's stable release and migration guide for framework APIs when a Convex example still targets the Start release candidate. Verify the Convex client, auth integration, and server loader together on the selected runtime.
+
 ## Official documentation
 
 Use documentation matching the installed version.

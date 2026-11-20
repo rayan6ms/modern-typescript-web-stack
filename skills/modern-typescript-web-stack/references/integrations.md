@@ -20,6 +20,8 @@ MUST NOT let a model, client-supplied user ID, feature flag, or UI visibility st
 
 Provider events can be duplicated or arrive out of order. Protect state transitions from stale events and retrieve authoritative provider state when ordering cannot be established safely. Test reversed delivery as well as duplicate delivery for stateful webhook integrations.
 
+AI SDK 7 packages are ESM-only. Upgrade the core and provider packages together and verify import resolution, streamed responses, cancellation, and tool contracts on the actual Bun or Workers target. Use the [AI SDK 7 migration guide](https://ai-sdk.dev/docs/migration-guides/migration-guide-7-0).
+
 ## Sessions and untrusted content
 
 - Authenticate the caller and authorize each action against the actual resource and tenant. Test cross-tenant and denial paths. Use mature identity flows; do not invent password storage or token protocols.

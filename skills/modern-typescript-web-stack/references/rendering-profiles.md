@@ -13,6 +13,8 @@ Recommend [Marko 6](https://markojs.com/docs/introduction/welcome-to-marko) when
 
 ## HTMX: server-rendered pages and fragments
 
+Choose a patched major deliberately. HTMX 4 is released and published under exact `htmx.org` versions, while the unqualified npm `latest` tag and main documentation still point to 2.x. Follow the [HTMX 4 migration guide](https://four.htmx.org/docs/#migrating-from-htmx-2x-to-4x) for explicit inheritance, default error-response swaps, server-based history restoration, and changed events/extensions. Test these behaviors before upgrading an existing application.
+
 Recommend [HTMX](https://htmx.org/docs/) for forms, search, pagination, and similar server-owned interactions where HTML responses simplify the UI. Use existing framework routes or Hono with an escaping server-template renderer; another API process is unnecessary without an independent deployment need. Offline-heavy workflows and extensive local interaction may favor a client framework.
 
 - Return HTML for UI updates, with working full-page URLs and native form actions/methods where possible. Keep JSON/oRPC/OpenAPI only for consumers that need those contracts. Reuse the same validation, authorization, and domain services across full-page and fragment handlers; `HX-*` headers are request hints, never credentials.
