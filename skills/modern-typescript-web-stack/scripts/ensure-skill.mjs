@@ -599,6 +599,7 @@ var companion_catalog_default = [
       "github-copilot": ".github/skills/impeccable",
       opencode: ".opencode/skills/impeccable",
       antigravity: ".agent/skills/impeccable",
+      "antigravity-cli": ".agent/skills/impeccable",
       devin: ".devin/skills/impeccable",
       grok: ".grok/skills/impeccable",
       "hermes-agent": ".hermes/skills/impeccable",
@@ -643,6 +644,7 @@ var companion_catalog_default = [
       "github-copilot": ".github/skills",
       opencode: ".opencode/skills",
       antigravity: ".agent/skills",
+      "antigravity-cli": ".agent/skills",
       devin: ".devin/skills",
       grok: ".grok/skills",
       "hermes-agent": ".hermes/skills",
@@ -654,6 +656,9 @@ var companion_catalog_default = [
       "mistral-vibe": ".vibe/skills",
       replit: ".agents/skills",
       rovodev: ".rovodev/skills"
+    },
+    globalDirectories: {
+      pi: "HOME/.pi/agent/skills"
     }
   },
   {
@@ -790,8 +795,7 @@ function skillDirectory(agent, global, context) {
     VIBE: context.env.VIBE_HOME || join(context.home, ".vibe"),
     HERMES: context.env.HERMES_HOME || join(context.home, ".hermes"),
     AUTOHAND: context.env.AUTOHAND_HOME || join(context.home, ".autohand"),
-    GROK: context.env.GROK_HOME || join(context.home, ".grok"),
-    SARVAM: context.env.SARVAM_HOME || join(context.home, ".sarvam")
+    GROK: context.env.GROK_HOME || join(context.home, ".grok")
   };
   const [token, ...parts] = agent.global.split("/");
   const root = roots[token];
@@ -1045,7 +1049,12 @@ function ensureCompanion(options, context, fetchSource = fetchSkill) {
     throw new Error(`Unknown agent: ${options.agent}. Use an identifier from the stack's agents command.`);
   const expected = sourceFor(companion, agent.id);
   const nativeLocal = companion.localDirectories?.[agent.id];
-  const selectedAgent = nativeLocal ? { ...agent, local: nativeLocal } : agent;
+  const nativeGlobal = companion.globalDirectories?.[agent.id];
+  const selectedAgent = {
+    ...agent,
+    ...nativeLocal ? { local: nativeLocal } : {},
+    ...nativeGlobal ? { global: nativeGlobal } : {}
+  };
   if (!existsSync2(context.cwd) || !lstatSync2(realpathSync2(context.cwd)).isDirectory())
     throw new Error(`Project directory does not exist: ${context.cwd}`);
   const directories = projectDirectories(realpathSync2(context.cwd));
@@ -1063,8 +1072,13 @@ function ensureCompanion(options, context, fetchSource = fetchSkill) {
         candidates.push(join2(cwd, ".codex/skills"));
     }
   if (options.local !== true) {
-    if (agent.global)
-      candidates.push(skillDirectory(agent, true, context));
+    if (selectedAgent.global)
+      candidates.push(skillDirectory(selectedAgent, true, context));
+    if (selectedAgent.global !== agent.global && agent.global) {
+      const shared = skillDirectory(agent, true, context);
+      candidates.push(shared);
+      sharedAliases.add(join2(shared, companion.id));
+    }
     if (agent.id === "codex")
       candidates.push(join2(context.env.CODEX_HOME || join2(context.home, ".codex"), "skills"));
     for (const legacy of agent.legacyGlobal || [])
@@ -1205,14 +1219,16 @@ Reuse an accessible companion; missing skills install globally. --local/--global
   let project = process.cwd(), scope;
   for (let index = 1;index < args.length; index++) {
     const arg = args[index];
-    if (arg === "--agent" || arg === "--project") {
-      const value = args[++index];
+    if (arg === "--agent" || arg.startsWith("--agent=")) {
+      const value = arg.includes("=") ? arg.slice("--agent=".length) : args[++index];
       if (!value || value.startsWith("--"))
-        throw new Error(`${arg} needs a value.`);
-      if (arg === "--agent")
-        options.agent = value;
-      else
-        project = resolve3(value);
+        throw new Error("--agent needs a value.");
+      options.agent = value;
+    } else if (arg === "--project" || arg.startsWith("--project=")) {
+      const value = arg.includes("=") ? arg.slice("--project=".length) : args[++index];
+      if (!value || value.startsWith("--"))
+        throw new Error("--project needs a value.");
+      project = resolve3(value);
     } else if (arg === "--local" || arg === "--global") {
       if (scope && scope !== arg)
         throw new Error("Choose either --local or --global.");

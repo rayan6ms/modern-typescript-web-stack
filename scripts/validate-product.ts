@@ -144,7 +144,7 @@ export function validate(rootArg: string) {
         /^(?:[a-zA-Z0-9_.-]+\/)*skills$/.test(agent.local) &&
         !agent.local.split("/").some((part) => part === "." || part === "..") &&
         (agent.global === null ||
-          /^(HOME|CONFIG|CLAUDE|VIBE|HERMES|AUTOHAND|GROK|SARVAM)\/(?:[a-zA-Z0-9_.-]+\/)*skills$/.test(
+          /^(HOME|CONFIG|CLAUDE|VIBE|HERMES|AUTOHAND|GROK)\/(?:[a-zA-Z0-9_.-]+\/)*skills$/.test(
             agent.global,
           )),
     ),

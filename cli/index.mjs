@@ -26,7 +26,7 @@ var __toESM = (mod, isNodeMode, target) => {
       return cached;
   }
   target = mod != null ? __create(__getProtoOf(mod)) : {};
-  const to = isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target;
+  const to = isNodeMode || !mod || !mod.__esModule || !__hasOwnProp.call(mod, "default") ? __defProp(target, "default", { value: mod, enumerable: true }) : target;
   if (mod && typeof mod === "object" || typeof mod === "function") {
     for (let key of __getOwnPropNames(mod))
       if (!__hasOwnProp.call(to, key))
@@ -537,7 +537,7 @@ function renderAgentFrame({
   const selected = choices.filter((choice) => choice.selected).length;
   if (done)
     return {
-      frame: `  ${aborted ? muted("Cancelled") : import_kleur.default.green(`${selected} agents selected`)}`,
+      frame: `  ${aborted ? muted("Cancelled") : import_kleur.default.green(`${selected} ${selected === 1 ? "agent" : "agents"} selected`)}`,
       visible: [],
       start: 0,
       end: 0,
@@ -572,7 +572,7 @@ function renderAgentFrame({
     lines.push(muted("    No agents match this search"));
   lines.push(actionLine);
   const remaining = end < visible.length;
-  const range = pageSize < visible.length ? columns >= 44 ? `Showing ${start + 1}–${end} of ${visible.length} | ${start && remaining ? "↑↓" : start ? "↑" : "↓"} more agents` : `${start + 1}–${end} of ${visible.length} | ${start && remaining ? "↑↓" : start ? "↑" : "↓"} more agents` : `${visible.length} agents`;
+  const range = pageSize < visible.length ? columns >= 44 ? `Showing ${start + 1}–${end} of ${visible.length} | ${start && remaining ? "↑↓" : start ? "↑" : "↓"} more agents` : `${start + 1}–${end} of ${visible.length} | ${start && remaining ? "↑↓" : start ? "↑" : "↓"} more agents` : `${visible.length} ${visible.length === 1 ? "agent" : "agents"}`;
   lines.push(error ? import_kleur.default.yellow("  Select an agent with Space") : muted(`  ${range}`));
   return { frame: lines.join(`
 `), visible, start, end, pageSize };
@@ -741,7 +741,7 @@ class StyledConfirm extends import_confirm.default {
     if (this.firstRender)
       this.out.write(import_sisteransi.cursor.hide);
     else
-      this.out.write(import_util.clear(this.outputText, this.out.columns));
+      this.out.write(import_util.clear(this.outputText, this.out.columns || 80));
     import_prompt.default.prototype.render.call(this);
     this.outputText = `  ${import_kleur.default.bold(this.msg)} ${muted(this.done ? this.value ? "Yes" : "No" : this.initialValue ? "(Y/n)" : "(y/N)")}`;
     this.out.write(this.outputText);
@@ -760,24 +760,24 @@ var confirm = (options) => ask(StyledConfirm, options);
 // installer:picker.ts
 class Cancelled extends Error {
 }
-async function ask2(prompt) {
+async function ask2(prompt, cancelledMessage = "Cancelled. Nothing was installed.") {
   try {
     return await prompt;
   } catch (error) {
     if (error instanceof Error && error.message === "cancelled") {
-      console.log("Cancelled. Nothing was installed.");
+      console.log(cancelledMessage);
       throw new Cancelled;
     }
     throw error;
   }
 }
-async function selectAgents(agents, global) {
+async function selectAgents(agents, global, cancelledMessage) {
   return ask2(multiselect({
     choices: agents.filter((agent) => !global || agent.global).map((agent) => ({ value: agent.id, title: agent.label, popular: agent.popular }))
-  }));
+  }), cancelledMessage);
 }
-async function allowReplacement(message) {
-  return Boolean(await ask2(confirm({ message, initial: false })));
+async function allowReplacement(message, cancelledMessage) {
+  return Boolean(await ask2(confirm({ message, initial: false }), cancelledMessage));
 }
 
 // installer:companion-cli.ts
@@ -1379,6 +1379,7 @@ var companion_catalog_default = [
       "github-copilot": ".github/skills/impeccable",
       opencode: ".opencode/skills/impeccable",
       antigravity: ".agent/skills/impeccable",
+      "antigravity-cli": ".agent/skills/impeccable",
       devin: ".devin/skills/impeccable",
       grok: ".grok/skills/impeccable",
       "hermes-agent": ".hermes/skills/impeccable",
@@ -1423,6 +1424,7 @@ var companion_catalog_default = [
       "github-copilot": ".github/skills",
       opencode: ".opencode/skills",
       antigravity: ".agent/skills",
+      "antigravity-cli": ".agent/skills",
       devin: ".devin/skills",
       grok: ".grok/skills",
       "hermes-agent": ".hermes/skills",
@@ -1434,6 +1436,9 @@ var companion_catalog_default = [
       "mistral-vibe": ".vibe/skills",
       replit: ".agents/skills",
       rovodev: ".rovodev/skills"
+    },
+    globalDirectories: {
+      pi: "HOME/.pi/agent/skills"
     }
   },
   {
@@ -1577,8 +1582,7 @@ function skillDirectory(agent, global, context) {
     VIBE: context.env.VIBE_HOME || join(context.home, ".vibe"),
     HERMES: context.env.HERMES_HOME || join(context.home, ".hermes"),
     AUTOHAND: context.env.AUTOHAND_HOME || join(context.home, ".autohand"),
-    GROK: context.env.GROK_HOME || join(context.home, ".grok"),
-    SARVAM: context.env.SARVAM_HOME || join(context.home, ".sarvam")
+    GROK: context.env.GROK_HOME || join(context.home, ".grok")
   };
   const [token, ...parts] = agent.global.split("/");
   const root = roots[token];
@@ -1695,17 +1699,37 @@ function planCLI(root, product, context) {
     return { operations: [], conflicts: [], directories: [target] };
   if (inside(source, canonical(target)) || inside(canonical(target), source))
     throw new Error("CLI source and installation directories overlap.");
-  if (stat(target) && readJSON(join(target, "cli/product.json")).id !== product.id)
-    throw new Error(`Another installation occupies ${target}`);
+  const targetStat = stat(target);
+  if (targetStat) {
+    let existingId;
+    try {
+      existingId = targetStat.isDirectory() ? readJSON(join(target, "cli/product.json")).id : undefined;
+    } catch {
+      existingId = undefined;
+    }
+    if (existingId !== product.id)
+      throw new Error(`Another installation occupies ${target}`);
+  }
   const marker = `Managed by ${product.command}`;
-  if (stat(launcher) && !readFileSync(launcher, "utf8").includes(marker))
+  const launcherStat = stat(launcher);
+  if (launcherStat && (!launcherStat.isFile() || !readFileSync(launcher, "utf8").includes(marker)))
     throw new Error(`Another command occupies ${launcher}`);
   const entry = join(target, "cli/index.mjs");
   const quote = (value) => "'" + value.replaceAll("'", "'\\''") + "'";
   const bytes = process.platform === "win32" ? `@echo off\r
 REM ${marker}\r
 where bun >nul 2>nul\r
-if errorlevel 1 (node "${entry.replaceAll("%", "%%")}" %*) else (bun "${entry.replaceAll("%", "%%")}" %*)\r
+if not errorlevel 1 (\r
+  bun "${entry.replaceAll("%", "%%")}" %*\r
+  exit /b %errorlevel%\r
+)\r
+where node >nul 2>nul\r
+if not errorlevel 1 (\r
+  node "${entry.replaceAll("%", "%%")}" %*\r
+  exit /b %errorlevel%\r
+)\r
+echo Install Bun or Node.js 22+ to run ${product.command}. 1>&2\r
+exit /b 1\r
 ` : `#!/bin/sh
 # ${marker}
 if command -v bun >/dev/null 2>&1; then exec bun ${quote(entry)} "$@"; fi
@@ -1946,7 +1970,12 @@ function ensureCompanion(options, context, fetchSource = fetchSkill) {
     throw new Error(`Unknown agent: ${options.agent}. Use an identifier from the stack's agents command.`);
   const expected = sourceFor(companion, agent.id);
   const nativeLocal = companion.localDirectories?.[agent.id];
-  const selectedAgent = nativeLocal ? { ...agent, local: nativeLocal } : agent;
+  const nativeGlobal = companion.globalDirectories?.[agent.id];
+  const selectedAgent = {
+    ...agent,
+    ...nativeLocal ? { local: nativeLocal } : {},
+    ...nativeGlobal ? { global: nativeGlobal } : {}
+  };
   if (!existsSync2(context.cwd) || !lstatSync2(realpathSync2(context.cwd)).isDirectory())
     throw new Error(`Project directory does not exist: ${context.cwd}`);
   const directories = projectDirectories(realpathSync2(context.cwd));
@@ -1964,8 +1993,13 @@ function ensureCompanion(options, context, fetchSource = fetchSkill) {
         candidates.push(join2(cwd, ".codex/skills"));
     }
   if (options.local !== true) {
-    if (agent.global)
-      candidates.push(skillDirectory(agent, true, context));
+    if (selectedAgent.global)
+      candidates.push(skillDirectory(selectedAgent, true, context));
+    if (selectedAgent.global !== agent.global && agent.global) {
+      const shared = skillDirectory(agent, true, context);
+      candidates.push(shared);
+      sharedAliases.add(join2(shared, companion.id));
+    }
     if (agent.id === "codex")
       candidates.push(join2(context.env.CODEX_HOME || join2(context.home, ".codex"), "skills"));
     for (const legacy of agent.legacyGlobal || [])
@@ -2106,14 +2140,16 @@ Reuse an accessible companion; missing skills install globally. --local/--global
   let project = process.cwd(), scope;
   for (let index = 1;index < args.length; index++) {
     const arg = args[index];
-    if (arg === "--agent" || arg === "--project") {
-      const value = args[++index];
+    if (arg === "--agent" || arg.startsWith("--agent=")) {
+      const value = arg.includes("=") ? arg.slice("--agent=".length) : args[++index];
       if (!value || value.startsWith("--"))
-        throw new Error(`${arg} needs a value.`);
-      if (arg === "--agent")
-        options.agent = value;
-      else
-        project = resolve3(value);
+        throw new Error("--agent needs a value.");
+      options.agent = value;
+    } else if (arg === "--project" || arg.startsWith("--project=")) {
+      const value = arg.includes("=") ? arg.slice("--project=".length) : args[++index];
+      if (!value || value.startsWith("--"))
+        throw new Error("--project needs a value.");
+      project = resolve3(value);
     } else if (arg === "--local" || arg === "--global") {
       if (scope && scope !== arg)
         throw new Error("Choose either --local or --global.");
@@ -2179,7 +2215,10 @@ async function main() {
       const value = arg.includes("=") ? arg.slice(8) : args[++i];
       if (!value || value.startsWith("-"))
         throw new Error("--agent needs an agent identifier. Run agents to list them.");
-      chosen.push(...value.split(","));
+      const parts = value.split(",");
+      if (parts.some((part) => !part.trim()))
+        throw new Error("--agent contains an empty identifier. Run agents to list them.");
+      chosen.push(...parts.map((part) => part.trim()));
     } else if (arg === "--force")
       force = true;
     else if (arg === "--dry-run")
@@ -2227,8 +2266,10 @@ skill     Find/install one on-demand companion; use skill --help
   const tty = Boolean(process.stdin.isTTY && process.stdout.isTTY);
   if (!chosen.length && !tty)
     throw new Error(`Interactive setup needs a terminal. Use --agent <id>; run ${product.command} agents to list choices.`);
-  console.log(heading(`${product.title} · ${global ? "Global" : "Project"} installation`));
-  const selected = chosen.length ? [...new Set(chosen)] : await selectAgents(agents, global);
+  const actionLabel = action === "remove" ? "removal" : "installation";
+  const cancelledMessage = action === "remove" ? "Cancelled. Nothing was removed." : "Cancelled. Nothing was installed.";
+  console.log(heading(`${product.title} · ${global ? "Global" : "Project"} ${actionLabel}`));
+  const selected = chosen.length ? [...new Set(chosen)] : await selectAgents(agents, global, cancelledMessage);
   const targets = agents.filter((agent) => selected.includes(agent.id));
   const plan = planSkills(root, product, targets, global, context, action === "remove");
   const cli = action === "setup" ? planCLI(root, product, context) : undefined;
@@ -2246,16 +2287,26 @@ skill     Find/install one on-demand companion; use skill --help
   if (plan.conflicts.length && !force) {
     if (!tty)
       throw new Error("Existing or edited skills would be replaced. Use --force to replace them explicitly.");
-    if (!await allowReplacement(`Replace ${plan.conflicts.length} existing or edited skill copies?`))
+    if (!await allowReplacement(`Replace ${plan.conflicts.length} existing or edited skill copies?`, cancelledMessage))
       throw new Cancelled;
   }
   applyOperations([...cli?.operations || [], ...plan.operations], cli ? root : undefined);
-  for (const directory of plan.directories)
-    console.log(`${action === "remove" ? "Removed" : "Installed"} both skills: ${directory}`);
+  for (const directory of plan.directories) {
+    if (action === "remove") {
+      const removed = plan.operations.some((operation) => dirname3(operation.target) === directory);
+      console.log(removed ? `Removed skills: ${directory}` : `No skills installed: ${directory}`);
+    } else
+      console.log(`Installed both skills: ${directory}`);
+  }
   if (cli?.operations.length) {
     const bin = dirname3(cli.operations.at(-1).target);
     console.log(`CLI installed: ${cli.operations.at(-1).target}`);
-    if (!(process.env.PATH || "").split(process.platform === "win32" ? ";" : ":").includes(bin))
+    const normalizePathEntry = (entry) => {
+      const normalized = resolve4(entry.trim());
+      return process.platform === "win32" ? normalized.toLowerCase() : normalized;
+    };
+    const pathEntries = (process.env.PATH || "").split(process.platform === "win32" ? ";" : ":").filter((entry) => entry.trim()).map(normalizePathEntry);
+    if (!pathEntries.includes(normalizePathEntry(bin)))
       console.log(`Add ${bin} to PATH to use ${product.command} from your terminal.`);
   }
   if (action !== "remove")

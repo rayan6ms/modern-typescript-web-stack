@@ -4,9 +4,9 @@ Use for dependency, lint/format, build, workspace, CI toolchain, or native Bun A
 
 ## Linting and dependency maintenance
 
-DEFAULT: apply Ultracite's `core` and relevant framework presets to the selected engine, which still lints/formats. Pin compatible versions, expose local check/fix scripts, run non-mutating checks in CI, and verify Bun execution. Merge generated agent rules with project policy; select supported editor/agent hooks deliberately and review fixes. Retain suitable configs for scoped fixes and separate TypeScript checks.
+DEFAULT: apply Ultracite's `core` and relevant framework presets over Oxlint + Oxfmt (or over Biome when a single binary is preferred). Pin compatible versions, expose local check/fix scripts, run non-mutating checks in CI, and verify Bun execution. Merge generated agent rules with project policy; select supported editor/agent hooks deliberately and review fixes. Retain suitable configs for scoped fixes and separate TypeScript checks.
 
-For new setup, explicitly pass `--pm bun --linter biome` to the pinned Ultracite initializer, or `--linter oxlint` when that engine is selected. Match the engine peers and review the resulting config. Oxlint JS plugins require Oxlint.
+For new setup, explicitly pass `--pm bun --linter oxlint` to the pinned Ultracite initializer, or `--linter biome` when that engine is selected. Match the engine peers and review the resulting config. For type-aware lint rules (such as floating promises), use `oxlint --type-aware` with stable `oxlint-tsgolint` (or `tsrs` when compatible), or Biome v2's `types` domain (`noFloatingPromises`) when using Biome. Oxlint JS plugins require Oxlint.
 
 Ultracite 8 consolidates generated rules into `AGENTS.md` and can migrate agent or editor files during `init`. Inspect the diff when upgrading and preserve project rules. Generate configuration in a scratch project or merge presets directly when an existing project's setup should remain intact. The universal agent option is `--agents universal`. Hooks, editor integrations, and automatic skill installation are separate choices.
 
@@ -19,7 +19,7 @@ Selected Marko/HTMX foundations also follow their [rendering profile](rendering-
 ## Versions and compatibility
 
 - Verify selected/changed APIs, maturity, adapters, and runtime support against installed source/types or official docs; prefer supported stable compatible release combinations. If a needed integration requires a prerelease, establish its purpose, target/version support limits, and validation/fallback before selection; pin it and record those limits. Local checks do not establish production support. Resolve incompatibility within the affected version/adapter boundary before considering a wider change.
-- Pin supported patched toolchains/local tools and use one package-manager lockfile per workspace. Frozen installs need a lockfile. Preserve working tools for unrelated fixes.
+- Pin supported patched toolchains/local tools and use one package-manager lockfile per workspace. Frozen installs need a lockfile. Under Bun, preserve default-deny lifecycle scripts (`trustedDependencies` only for reviewed packages, noting it replaces Bun's default allowlist), configure a release cooldown (`minimumReleaseAge` in `bunfig.toml`), and run `bun audit` alongside `--frozen-lockfile`. Preserve working tools for unrelated fixes.
 - MUST type-check application code with a compatible checker. Plain transpilation, execution, and bundling do not check types; Bun's explicit `check`/`--check` mode is a separate capability.
 - Use Bun explicitly for compatible tools; `--bun` overrides Node shebangs, not incompatibility. Another runtime needs a verified unmet Bun requirement; upstream metadata alone is insufficient. pnpm manages packages, not execution. Fetch missing tools at verified versions.
 - Prefer rootless Podman, Docker when unsuitable, and `uv` for Python. Containers are optional.

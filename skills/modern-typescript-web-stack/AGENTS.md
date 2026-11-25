@@ -30,8 +30,8 @@ Prefer the smallest justified improvement and retain compatible defaults when ga
 - Prefer Bun for local tooling and regional execution; select Workers for a compatible edge profile. Use pnpm when Bun is unsuitable and npm only when both are unsuitable. Node needs a verified dependency/host requirement Bun cannot satisfy. Prefer rootless Podman, Docker when unsuitable, and `uv` for Python.
 - Use oRPC for TypeScript clients, OpenAPI for public/polyglot contracts, and Hono for an independent HTTP boundary. Use Effect for substantial failure/resource/concurrency handling and plain functions for simpler services.
 - Start with PostgreSQL + Drizzle and reviewed migrations for relational persistence. Use Zod/Standard Schema for new shared contracts; retain suitable validators. Selected backend profiles govern their data boundary; Convex also replaces overlapping RPC choices.
-- For React UI, start with needed shadcn/ui components and Tailwind; use TanStack Query for required remote caching and component state for local interaction. Prefer compatible existing design systems. Use framework image components or Unpic for provider-backed responsive delivery.
-- Use Ultracite presets + Biome, or Ultracite over selected Oxlint/Oxfmt; retain separate TypeScript checks. Use Vitest, Testing Library, and Playwright for applicable tests, and Renovate for maintained repositories. Bun workspaces/Turborepo need real sharing or multiple deployables.
+- For React UI, start with needed shadcn/ui components (Base UI default, or Radix via `-b radix`) and Tailwind; use TanStack Query for required remote caching and component state for local interaction. Prefer compatible existing design systems. Use framework image components or Unpic for provider-backed responsive delivery.
+- Use Ultracite presets + Oxlint/Oxfmt (with `oxlint --type-aware` where useful), or Ultracite over Biome; retain separate TypeScript checks. Use Vitest, Testing Library, and Playwright for applicable tests, and Renovate for maintained repositories. Bun workspaces/Turborepo need real sharing or multiple deployables.
 
 ## Load guidance for the task
 

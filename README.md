@@ -15,7 +15,7 @@ A good fit for SaaS, dashboards, marketplaces, and internal tools.
 | Database | PostgreSQL + Drizzle |
 | Authentication | Better Auth |
 | Complex async workflows | [Effect](https://effect.website/docs/v4/getting-started/why-effect) |
-| Tooling | Bun, Vite, Ultracite with Biome |
+| Tooling | Bun, Vite, Ultracite with Oxlint + Oxfmt |
 | Hosting | Cloudflare Workers or a regional Bun server |
 
 Use Astro for content sites, Convex for reactive shared data, or Turso for embedded data and sync. The [stack guide](docs/stack.md) explains these choices and covers images, payments, monorepos, deployment, quality checks, and scaling.
@@ -25,7 +25,7 @@ Use Astro for content sites, Convex for reactive shared data, or Turso for embed
 With [Bun](https://bun.com/docs/installation) and [Git](https://git-scm.com/downloads), run:
 
 ```sh
-bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.18
+bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.19
 ```
 
 <details>
@@ -34,19 +34,19 @@ bun x --bun github:rayan6ms/modern-typescript-web-stack#v0.1.18
 With curl and either Bun or Node.js 22+ (Linux/macOS):
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/rayan6ms/modern-typescript-web-stack/v0.1.18/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/rayan6ms/modern-typescript-web-stack/v0.1.19/install.sh | sh
 ```
 
 With Node.js 22+ and Git:
 
 ```sh
-npx --yes github:rayan6ms/modern-typescript-web-stack#v0.1.18
+npx --yes github:rayan6ms/modern-typescript-web-stack#v0.1.19
 ```
 
 With pnpm, Node.js 22+ and Git:
 
 ```sh
-pnpm dlx github:rayan6ms/modern-typescript-web-stack#v0.1.18
+pnpm dlx github:rayan6ms/modern-typescript-web-stack#v0.1.19
 ```
 
 </details>

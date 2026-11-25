@@ -11,23 +11,23 @@ Establish rendering, data/tenant ownership and consistency, deployment constrain
 | Concern | Default | Conditional alternative |
 | --- | --- | --- |
 | Application language | TypeScript with `strict` | A native service only for an existing platform or measured workload requiring it |
-| Interactive full-stack web | React + stable TanStack Start | React Router/Next.js for existing operations or ecosystem fit; SolidStart when its supported Solid major fits; [Marko for streaming/resumability or server templates + HTMX for HTML-driven interactions](rendering-profiles.md) |
+| Interactive full-stack web | React + stable TanStack Start | React Router/Next.js for existing operations or ecosystem fit; Solid 2 (`@solidjs/vite-plugin` Start mode) or SolidStart 2 (Solid 1 maintenance line) when Solid fits; [Marko for streaming/resumability or server templates + HTMX for HTML-driven interactions](rendering-profiles.md) |
 | Content-first site | Astro with minimal interactive islands | Full application framework when authenticated interactions require it |
 | Build | Framework-supported Vite | Rsbuild or another supported build path when compatibility or measured build requirements justify it |
 | Local runtime and package manager | Bun | pnpm for package management when Bun is unsuitable; npm only when both are unsuitable |
 | Application runtime | Bun for regional execution, Workers for a compatible edge profile | Node.js only for a verified dependency/host requirement Bun cannot satisfy |
-| Typed application contract | oRPC for TypeScript API consumers | OpenAPI for external/public/polyglot consumers; Convex functions in its profile; HTML forms/fragments for template-driven UI |
+| Typed application contract | TanStack Start server functions for web-only apps; oRPC for multi-client TypeScript/OpenAPI | OpenAPI for external/public/polyglot consumers; Convex functions in its profile; HTML forms/fragments for template-driven UI |
 | Independent HTTP service | Hono | Framework server routes when a separate service boundary is unnecessary |
 | Domain and async services | Effect for substantial failure, resource, or concurrency handling | Plain functions and `async`/`await` for simpler services |
 | Transactional database | PostgreSQL | Convex backend profile for reactive application data; Turso for embedded data, sync, or independent tenant databases; another store for a demonstrated access pattern |
 | SQL access | Drizzle + reviewed SQL migrations | Direct reviewed SQL for complex queries and hot paths |
 | Runtime schemas | Zod through Standard Schema for new general-purpose/shared contracts | Valibot for browser bundle/integration needs; Effect Schema for an Effect service; native Convex validators in its backend profile |
-| UI | shadcn/ui + supported accessible primitives, Tailwind for React | Framework-compatible components, CSS Modules/native CSS, or an existing design system |
+| UI | shadcn/ui (Base UI default, or Radix) + Tailwind for React | Framework-compatible components, CSS Modules/native CSS, or an existing design system |
 | Remote state | TanStack Query where caching/refetching is needed | Framework route data alone when sufficient; supported Convex reactive client/integration in its profile |
 | Local state | Component state | Zustand for shared client-owned state with a real ownership boundary |
 | Workspace | One application | Bun workspaces + Turborepo for actual shared packages or multiple deployables |
 | Tests | Vitest, Testing Library, Playwright | Supported Workers integration for `workerd`; real-database integration tests for persistence |
-| Lint and format | Ultracite presets + Biome | Ultracite + Oxlint/Oxfmt; supplementary ESLint for necessary uncovered rules |
+| Lint and format | Ultracite presets + Oxlint/Oxfmt | Ultracite + Biome; supplementary ESLint for necessary uncovered rules |
 | Dependency updates | Renovate for maintained repositories | Dependabot or existing suitable automation |
 
 Overlapping frameworks, validators, stores, and orchestrators need distinct roles. Evaluate application behavior, not popularity or install speed.

@@ -16,7 +16,7 @@ When a task reaches a deferred entry's revisit trigger or blocked scope, ask its
 
 Maintain decisions in the local record. Keep each ID attached to its original subject. Resolve answered scope in place, retaining remaining questions and triggers under that ID. Use new IDs for new material decisions; preserve replaced selections as superseded with replacement references. Update the affected implementation/check state when work lands, keeping selection separate from installation and verification.
 
-Keep the record current and compact: replace obsolete check summaries, store each fact once, and group routine defaults. Before and after editing handoff documents, count their words using the same tool (for example, `wc -w`); review growth for duplication. For small projects, use soft upper targets of 500 words for root stack guidance and 1,000 for the decision record. Compaction-only work should reduce size. Preserve necessary commands, constraints, provenance, decision IDs, open questions/triggers and verification limits. Report counts and justified excess briefly in the task response; do not add size-history logs or trim unrelated user rules to meet a target.
+Keep the record current and compact: replace obsolete check summaries, store each fact once, and group routine defaults. For small projects, aim for soft upper targets of 500 words for root stack guidance and 1,000 for the decision record; during explicit compaction tasks, measure with `wc -w` before and after and report counts briefly in the task response. Preserve necessary commands, constraints, provenance, decision IDs, open questions/triggers, and verification limits; do not add size-history logs or trim unrelated user rules to meet a target.
 
 ## Commands and continuation
 

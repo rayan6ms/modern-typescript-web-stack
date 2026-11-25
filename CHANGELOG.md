@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.19 — 2026-11-25
+
+- Align Ultracite's default engine to Oxlint + Oxfmt (with `oxlint --type-aware`), retaining Biome as the single-binary alternative.
+- Replace Lemon Squeezy with Paddle, Stripe Managed Payments, and Polar.sh; move Auth.js to legacy/existing status; document shadcn/ui's Base UI default alongside Radix.
+- Clarify TanStack Start server functions vs. oRPC, add React Compiler 1.0, `@convex-dev/better-auth`, Bun supply-chain hardening (`trustedDependencies`, `minimumReleaseAge`), PostgreSQL 19, HTMX 4, Solid 2 Start mode, Bun type checking, and AI prompt-injection/cost bounds.
+- Fix provider-specific global companion isolation (`pi` vs. `codex`), add `antigravity-cli` Impeccable mapping, support `--agent=`/`--project=` in companion CLI, harden Windows/PATH/target checks, and polish CLI/picker output.
+
 ## 0.1.18 — 2026-11-20
 
 - Update TanStack Start guidance for 1.169 stable and document TypeScript, Astro, Ultracite, and Workers compatibility.

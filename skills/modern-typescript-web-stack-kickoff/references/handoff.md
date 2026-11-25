@@ -39,7 +39,7 @@ Persist the conservative selection rule and the core's evaluation rules: applica
 
 Persist the continuation rule: when a task reaches a deferred decision's trigger or blocked scope, ask its recorded question before dependent implementation, while proceeding on independent authorized work. Accepted choices remain in place during unrelated tasks. Changes to requirements or evidence reopen only the affected boundary, following the selected policy's evidence requirements and the user's authorization.
 
-Persist compact record maintenance in the project entrypoint too: future agents replace obsolete verification summaries and update resolved questions in place, retaining actionable open choices and still-relevant constraints. Keep word-count reports in the task response, outside the durable record. Superseded entries describe replaced selections, not every formerly unanswered question or completed setup step. Continuation cannot depend on this handoff reference being loaded again.
+Persist compact record maintenance in the project entrypoint too: future agents replace obsolete verification summaries and update resolved questions in place, retaining actionable open choices and still-relevant constraints. Reserve `wc -w` word-count reporting for kickoff handoff and explicit compaction tasks (in the task response, outside the durable record) rather than every routine edit. Superseded entries describe replaced selections, not every formerly unanswered question or completed setup step. Continuation cannot depend on this handoff reference being loaded again.
 
 ## Write the durable decision record
 

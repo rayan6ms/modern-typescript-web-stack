@@ -75,9 +75,9 @@ The browser and server share schemas, not database models. A route validates unt
 | Build | [Vite](https://vite.dev/guide/) | Fast development and a portable production build | Your host requires a different official adapter |
 | Application runtime | Cloudflare Workers for the edge profile; Bun for a regional server | Workers bindings and distributed ingress, or Bun execution close to PostgreSQL | Choose using database latency, runtime API support, and workload tests |
 | Local tooling | Bun package manager and script runner | Fast installs, workspaces, and local execution | pnpm is a package-manager alternative; pin the runtime separately |
-| Lint and format | [Ultracite](https://www.ultracite.ai/docs) presets over Biome | Consistent formatting, lint rules, and agent guidance | Ultracite over Oxlint + Oxfmt for a dedicated fast toolchain; preserve suitable existing configuration |
+| Lint and format | [Ultracite](https://www.ultracite.ai/docs) presets over Oxlint + Oxfmt | Fast linting (including type-aware rules via `oxlint-tsgolint` or `tsrs`), formatting, and agent guidance | Ultracite over Biome for a single-binary integrated toolchain; preserve suitable existing configuration |
 | Monorepo | Bun workspaces + Turborepo | Multiple deployables or genuine shared package/task boundaries, when dependencies support Bun | Use pnpm workspaces when Bun is unsuitable; one application can stay a single package |
-| API contract | oRPC for TypeScript clients; OpenAPI for external/polyglot clients | Typed clients without hand-maintained DTOs | Convex-native functions in its backend profile; public APIs need language-neutral contracts |
+| API contract | TanStack Start server functions for web-only apps; oRPC for multi-client TypeScript/OpenAPI; OpenAPI for external/polyglot clients | Zero-overhead colocated server calls, or a centralized typed RPC + OpenAPI router | Convex-native functions in its backend profile; public APIs need language-neutral contracts |
 | Application logic | Effect for nontrivial domain services and async processing | Typed expected failures, dependencies, resource scopes, and controlled concurrency | Plain functions and `async`/`await` are sufficient for simpler CRUD |
 | Database | PostgreSQL | Transactions, relational queries, and a mature operational ecosystem | Convex backend profile for reactive application data; Turso for embedded data, sync, or independent tenant databases; a purpose-built store for another access pattern |
 | SQL access | Drizzle ORM plus SQL migrations | Typed queries with a thin abstraction | Complex SQL or performance hot paths should use reviewed SQL directly |
@@ -87,9 +87,9 @@ TanStack Start 1.169 is the first stable line. Its Vite path requires Vite 8 or 
 
 ### React versus other frontends
 
-- **React + TanStack Start:** the default here when ecosystem breadth, hiring, and typed routing matter.
+- **React + TanStack Start:** the default here when ecosystem breadth, hiring, and typed routing matter. Consider enabling [React Compiler 1.0](https://react.dev/learn/react-compiler) (`babel-plugin-react-compiler`) with Rules of React lint checks to automate memoization on React 19 + Vite, testing legacy third-party components before broad rollout.
 - **React Router or Next.js:** reasonable choices when your organization already operates them or needs a specific integration.
-- **SolidStart 2:** an alternative for fine-grained reactivity. Its current framework release requires Solid 1 and a compatible router. Evaluate Solid 2 separately for a client-only project with compatible dependencies.
+- **Solid 2 / SolidStart 2:** an alternative for fine-grained reactivity. Solid 2 moves SSR and server functions into `@solidjs/vite-plugin` Start mode, while standalone SolidStart 2 remains a maintenance bridge for Solid 1 ecosystems. Check component, router, and test compatibility before choosing either line.
 - **Astro:** prefer it for content-first pages. Add React/Solid islands only where interaction exists.
 
 No framework guarantees a small page. Keep server-only code out of client imports, inspect the production bundle, and load interactive modules on demand.
@@ -100,7 +100,7 @@ No framework guarantees a small page. Keep server-only code out of client import
 
 ### HTMX for HTML-driven applications
 
-**[HTMX](https://htmx.org/docs/)** is recommended for server-rendered forms, search, pagination, and partial updates when a rich client framework adds little value. Use escaping templates with existing server routes or Hono, sharing the same domain services and authorization. Return HTML for UI updates and retain JSON/oRPC/OpenAPI for consumers that need them. Preserve full-page navigation and native forms where possible, and verify validation, focus, history, CSRF protection, and full-page versus fragment caching. Offline-heavy or highly local interaction may favor a client framework. These are alternative rendering profiles; install the libraries required by the chosen profile.
+**[HTMX](https://htmx.org/docs/)** is recommended for server-rendered forms, search, pagination, and partial updates when a rich client framework adds little value. Choose a patched major deliberately: HTMX 4 is released under exact `htmx.org` versions (with explicit inheritance, default error-response swaps, and server-based history restoration), while npm `latest` still points to 2.x; follow the [HTMX 4 migration guide](https://four.htmx.org/docs/#migrating-from-htmx-2x-to-4x) when upgrading. Use escaping templates with existing server routes or Hono, sharing the same domain services and authorization. Return HTML for UI updates and retain JSON/oRPC/OpenAPI for consumers that need them. Preserve full-page navigation and native forms where possible, and verify validation, focus, history, CSRF protection, and full-page versus fragment caching. Offline-heavy or highly local interaction may favor a client framework. These are alternative rendering profiles; install the libraries required by the chosen profile.
 
 ### Native Bun capabilities
 
@@ -118,7 +118,7 @@ Use [Impeccable](https://github.com/pbakaus/impeccable) as the default agent des
 
 Agents find or install relevant companions on demand using the [skill catalog](../skills/modern-typescript-web-stack/references/agent-skills.md). [UI SDK](https://github.com/vercel-labs/ui) is a beta option for custom behavior composition with framework adapters; retain the default primitives unless a concrete need or user choice favors it. Cloudflare's security-audit skill supports focused security guidance and explicitly requested audits.
 
-- Start with [shadcn/ui](https://ui.shadcn.com/) and Tailwind CSS for new React UI without an existing design system. Add the components you need and adapt their source to the product. [Radix](https://www.radix-ui.com/) supplies accessible primitives used by many components; verify the chosen version's primitives and test the resulting UI. Astro pages and Solid UI can use framework-compatible components without adding React for this recommendation.
+- Start with [shadcn/ui](https://ui.shadcn.com/) and Tailwind CSS for new React UI without an existing design system. Add the components you need and adapt their source to the product. New shadcn/ui setups default to [Base UI](https://base-ui.com/) primitives, with [Radix](https://www.radix-ui.com/) still supported (`-b radix`); verify the chosen version's primitives and test the resulting UI. Astro pages and Solid UI can use framework-compatible components without adding React for this recommendation.
 - Use CSS Modules or plain CSS when existing conventions or styling requirements favor them.
 - Use [TanStack Query](https://tanstack.com/query/latest) for remote server state and cache invalidation. Use a small local store such as Zustand only for genuinely client-owned state (for example, a draft or interaction preference).
 - Use TanStack Form or native forms with a Standard Schema validator. A form's server action must validate again; browser validation is an enhancement.
@@ -176,7 +176,7 @@ src/
     observability/
 ```
 
-For oRPC, mount an `RPCHandler` in a framework server route and use a server-side client during SSR to avoid a needless loopback request. A TypeScript browser client can use the RPC contract directly. Expose an OpenAPI handler for consumers that need conventional HTTP routes or generated clients in other languages. Keep the transport error format stable and map database errors to safe public errors. Use oRPC documentation for the installed major version; examples across major versions can differ.
+Use **TanStack Start server functions (`createServerFn`)** directly for a single web-only application that wants colocated, zero-overhead typed server calls without an extra API layer. Adopt **oRPC** when multiple clients share the backend (for example web + mobile/CLI), when automatic OpenAPI/REST generation alongside RPC is useful, or when you want a centralized framework-agnostic router. When oRPC is selected, mount an `RPCHandler` in a framework server route and use a server-side client during SSR to avoid a needless loopback request. A TypeScript browser client can use the RPC contract directly. Expose an OpenAPI handler for consumers that need conventional HTTP routes or generated clients in other languages. Keep the transport error format stable and map database errors to safe public errors. Use oRPC documentation for the installed major version; examples across major versions can differ.
 
 ### Where Hono fits
 
@@ -184,7 +184,7 @@ For oRPC, mount an `RPCHandler` in a framework server route and use a server-sid
 
 ### Type safety across boundaries
 
-Keep `strict` enabled and validate incoming requests, environment variables, webhooks, and provider responses at runtime. Share public schemas and inferred types across UI and API. Keep database-only columns, secrets, and internal permission flags out of response DTOs. Database types document storage; runtime schemas and constraints enforce behavior. Add type-aware lint rules for floating promises and unsafe operations where useful.
+Keep `strict` enabled and validate incoming requests, environment variables, webhooks, and provider responses at runtime. Share public schemas and inferred types across UI and API. Keep database-only columns, secrets, and internal permission flags out of response DTOs. Database types document storage; runtime schemas and constraints enforce behavior. Enable type-aware lint rules for floating promises and unsafe operations where useful—for example `oxlint --type-aware` (backed by `oxlint-tsgolint` or `tsrs`) or Biome v2's `types` domain (`noFloatingPromises`).
 
 For new general-purpose or shared contracts, start with [Zod](https://zod.dev/) through Standard Schema. Choose [Valibot](https://valibot.dev/guides/comparison/) when browser bundle constraints or integration support favor it, measuring the actual artifact before claiming a benefit. Retain an existing suitable validator and avoid duplicating the same contract across libraries. Effect services can use Effect Schema with its supported adapter.
 
@@ -208,7 +208,7 @@ Effect adds a programming model to learn and execution overhead to measure. Plai
 
 ### PostgreSQL and Drizzle
 
-Validate Drizzle migrations in CI and apply them through a controlled deployment step, with a least-privilege application role, statement timeouts, and indexes derived from real query plans. Keep transactions short. Back up the database and periodically restore a backup into an isolated environment. Drizzle is a query and schema tool; it does not replace a data model, migration review, or database observability.
+**PostgreSQL 18** remains the established baseline. [PostgreSQL 19 is released](https://www.postgresql.org/about/news/postgresql-19-released-3449/); select it for a new or planned deployment after verifying provider, Drizzle driver, extensions, migrations, pooling, and backup/restore against that target. Validate Drizzle migrations in CI and apply them through a controlled deployment step, with a least-privilege application role, statement timeouts, and indexes derived from real query plans. Keep transactions short. Back up the database and periodically restore a backup into an isolated environment. Drizzle is a query and schema tool; it does not replace a data model, migration review, or database observability.
 
 For disposable agent databases, branch previews, or repeated migration tests, consider [PGBoxDB](https://github.com/pgrundev/pgboxdb), formerly PGX. It targets fast provisioning and low idle overhead. Copy-on-write clones need a supporting filesystem. Use sanitized fixtures, task-specific URLs, and TTLs. Verify the Drizzle driver and migrations against its [compatibility gate](https://github.com/pgrundev/pgboxdb/blob/v0.2.0/docs/pgboxdb/compatibility-gate.md). The v0.2.0 tag targets PostgreSQL 18 compatibility. Keep authoritative data and production-semantics tests on PostgreSQL.
 
@@ -234,7 +234,7 @@ Databases per tenant provide a useful isolation and distribution boundary, but r
 
 For data owned by Convex, use its schemas, indexes, database functions, and generated client. This changes the database/API boundary: Convex takes the role of PostgreSQL/Drizzle and oRPC there. Its React client and documented [TanStack Start integration](https://docs.convex.dev/client/tanstack/tanstack-start/) support reactive queries; another store, API, or mirrored client cache needs a distinct purpose.
 
-Queries read reactive data, mutations enforce atomic database changes, and actions handle external services. Queries/mutations must remain deterministic. An action's separate database calls and provider effects are not one transaction, so idempotency and reconciliation still matter. Use native [argument/return validators](https://docs.convex.dev/functions/validation) and enforce resource/tenant authorization inside Convex, even when the browser calls it directly. Verify authentication for both browser and SSR.
+Queries read reactive data, mutations enforce atomic database changes, and actions handle external services. Queries/mutations must remain deterministic. An action's separate database calls and provider effects are not one transaction, so idempotency and reconciliation still matter. Use native [argument/return validators](https://docs.convex.dev/functions/validation) and enforce resource/tenant authorization inside Convex, even when the browser calls it directly. When pairing Better Auth with Convex, use the official [`@convex-dev/better-auth`](https://github.com/convex/better-auth) component rather than a SQL adapter, accounting for client-session versus Convex JWT validation timing across browser and SSR.
 
 Native [scheduling](https://docs.convex.dev/scheduling/scheduled-functions) can cover suitable background jobs, with scheduling from a mutation committed atomically. Scheduled actions are not automatically retried, and caller authentication is not propagated; required retries/reconciliation and authorization context need explicit handling.
 
@@ -270,7 +270,7 @@ These recommendations complete the product platform. Add them when the correspon
 
 ### Payments
 
-**Default: Stripe** for subscriptions, payments, and billing integrations. **Paddle** and **Lemon Squeezy** offer merchant-of-record models, which change responsibility for tax and transaction handling; compare eligibility, countries, fees, and product restrictions. Verify webhook signatures, deduplicate event IDs, and make fulfillment idempotent. Protect state transitions from out-of-order events and reconcile with authoritative provider state after missed or ambiguous deliveries.
+**Default: Stripe** for subscriptions, payments, and billing integrations. For merchant-of-record (MoR) tax and compliance handling, consider **Paddle**, **Stripe Managed Payments** (check supported countries), or **Polar.sh** for API-first developer products; compare eligibility, fees, and product restrictions. (Avoid Lemon Squeezy for new projects—Stripe closed new signups in November 2026 ahead of its March 2027 shutdown.) Verify webhook signatures, deduplicate event IDs, and make fulfillment idempotent. Protect state transitions from out-of-order events and reconcile with authoritative provider state after missed or ambiguous deliveries.
 
 ### Analytics and feature flags
 
@@ -295,7 +295,7 @@ Choose using relevance tests and response-time targets as well as data size. Tra
 
 **Default: [Vercel AI SDK](https://ai-sdk.dev/)** for streamed responses, provider abstraction, and tool calling in TypeScript. AI SDK 7 is ESM-only. Upgrade core and provider packages together and test them on the chosen runtime. **LangChain** is an option for orchestration and integrations. **LlamaIndex** is an option for ingestion, indexing, and retrieval. A provider's direct SDK can cover a single simple integration.
 
-Choose based on the actual task and supported runtime. Keep provider calls behind a domain interface, bound time and token use, propagate cancellation, and validate model output. Authorize tool actions independently from the model's request. Evaluate quality, latency, and cost together.
+Choose based on the actual task and supported runtime. Keep provider calls behind a domain interface, bound time and per-tenant token/cost budgets, propagate cancellation, and validate model output and tool arguments with runtime schemas. Treat retrieved RAG, MCP, and external web content as untrusted data to defend against indirect prompt injection, and authorize every tool action independently from the model's request. Evaluate quality, latency, and cost together.
 
 ## Hosting choices
 
@@ -311,7 +311,7 @@ Bun runs local tools and can run a regional application server; it does not run 
 
 ## Authentication and authorization
 
-[Better Auth](https://www.better-auth.com/docs/integrations/tanstack) integrates with TanStack Start and can manage sessions and common providers. Alternatives include Auth.js, Clerk, WorkOS, and a self-hosted OIDC provider. Choose based on compliance, account ownership, enterprise SSO, and operating capacity.
+[Better Auth](https://www.better-auth.com/docs/integrations/tanstack) integrates with TanStack Start and can manage sessions and common providers. Alternatives for new projects include Clerk, WorkOS, and a self-hosted OIDC provider; preserve existing Auth.js installations where appropriate, noting it is in security-only maintenance mode under the Better Auth team. Choose based on compliance, account ownership, enterprise SSO, and operating capacity.
 
 Use secure, httpOnly, appropriately scoped cookies for browser sessions; rotate session identifiers after sign-in and privilege changes; require MFA or passkeys for sensitive actions; and store secrets in the host's secret manager. Model authorization as application policy (RBAC, ABAC, or relationship checks) and test denial cases.
 
@@ -340,8 +340,8 @@ Set an SLO for the user-visible path, alert on an error-budget burn rate, and pr
 
 ## Testing and delivery
 
-- Type-check with `tsc --noEmit` in CI even if a faster compiler is used for builds.
-- Use **Ultracite by default** as the preset and CLI layer over Biome for integrated formatting/linting, or over Oxlint + Oxfmt when that toolchain is selected. It configures and invokes these tools; keep ESLint only for necessary uncovered rules.
+- Run project-wide TypeScript type checking in CI (`bun check --no-script` on compatible projects, or supported `tsc --noEmit` where required, plus framework checks such as `astro check`) even when a faster transpiler builds production bundles.
+- Use **Ultracite by default** as the preset and CLI layer over **Oxlint + Oxfmt** (adding `oxlint --type-aware` with `oxlint-tsgolint` or `tsrs` where type-aware lint rules help), or over **Biome** when a single integrated binary fits better. Keep ESLint only for necessary uncovered rules.
 - Vitest for unit and domain tests; Testing Library for behavior-focused component tests; Playwright for browser journeys; Testcontainers for a small set of real PostgreSQL integration tests.
 - Run accessibility checks, production builds, migrations, and a smoke test in CI. Keep contract tests for every external webhook and public API.
 - Use [Renovate](https://docs.renovatebot.com/modules/manager/bun/) by default for dependency-update PRs in maintained repositories. Dependabot or existing automation is suitable when it covers the repository's needs. Review lockfiles/changelogs, group coupled toolchain upgrades, and validate them before merging.
@@ -350,7 +350,7 @@ Choose Ultracite's `core` and applicable framework presets, such as React/TanSta
 
 Expose one documented `bun run verify` command (or existing equivalent) for applicable non-mutating types, lint/format, meaningful local tests, and contract checks. Keep builds, live-service checks, migrations, and deployment explicit. Prefer stable compatible release combinations; document and pin any required prerelease adapter with its support limits and validation/fallback.
 
-Use Bun with an explicit `--linter biome` or `--linter oxlint` during [setup](https://www.ultracite.ai/docs/setup), and verify actual Bun execution for the selected release; listing `bunx` alone does not establish runtime compatibility. Ultracite currently recommends Oxlint + Oxfmt upstream, but this guide retains Biome as its integrated default. Choose the engine using required rule coverage, plugin support, and repository timings.
+Use Bun with an explicit `--linter oxlint` or `--linter biome` during [setup](https://www.ultracite.ai/docs/setup), and verify actual Bun execution for the selected release; listing `bunx` alone does not establish runtime compatibility. Oxlint + Oxfmt aligns with Ultracite's upstream default and supports stable type-aware linting (`oxlint-tsgolint` or `tsrs`), while Biome remains the single-binary alternative. Choose the engine using required rule coverage, plugin support, and repository timings.
 
 For an application with genuinely shared packages, a possible repository shape is:
 
@@ -367,7 +367,7 @@ docs/adr/
 
 Do not create a package for every folder. A package should have an owner, a stable boundary, or an independent release need. One application can remain a single package, while shared libraries can justify workspaces even with only one deployable.
 
-Use Bun workspaces and Turborepo when packages share a build graph. Pin Bun and dependencies, commit the lockfile, and use frozen installs in CI. `bun run` can honor an executable's Node shebang; use Bun's documented `--bun` option when the tool supports Bun and the intention is Bun execution. Workers integration tests should run in Cloudflare's supported Vitest integration or a deployed preview. Testcontainers can use a compatible rootless Podman setup; verify its container API integration.
+Use Bun workspaces and Turborepo when packages share a build graph. Pin Bun and dependencies, commit the lockfile, and use frozen installs in CI. Harden Bun installs for supply-chain safety: keep default-deny lifecycle scripts (`trustedDependencies` only for reviewed packages, noting it replaces Bun's default allowlist), configure a release cooldown (`minimumReleaseAge` in `bunfig.toml`), and run `bun audit`. `bun run` can honor an executable's Node shebang; use Bun's documented `--bun` option when the tool supports Bun and the intention is Bun execution. Workers integration tests should run in Cloudflare's supported Vitest integration or a deployed preview. Testcontainers can use a compatible rootless Podman setup; verify its container API integration.
 
 Declare package exports and task dependencies, keeping server-only code out of browser imports. [Cache reproducible tasks](https://turborepo.dev/docs/crafting-your-repository/caching) with their inputs, outputs, and [build-affecting environment values](https://turborepo.dev/docs/crafting-your-repository/using-environment-variables). Keep code generation separate from deploy/migration commands; external mutations and persistent tasks must execute rather than be restored from cache. Exclude secrets/private data from cached artifacts and logs.
 
@@ -403,14 +403,14 @@ Track server time to first byte, cache hit rate, query latency, bundle size by r
 
 | Category | Recommended starting point | Alternatives or scale path |
 | --- | --- | --- |
-| Framework | TanStack Start | React Router, Next.js, SolidStart 2, Astro; Marko for streaming/resumability; server templates + HTMX for HTML-driven UI |
+| Framework | TanStack Start | React Router, Next.js, Solid 2 (Start mode) / SolidStart 2, Astro; Marko for streaming/resumability; server templates + HTMX for HTML-driven UI |
 | Language | TypeScript, strict mode | Rust/Go service for a measured native hot path |
 | Runtime | Cloudflare Workers or Bun, selected by deployment shape | Node.js only for a verified dependency/host requirement Bun cannot satisfy |
 | Build | Vite | Rsbuild where its ecosystem or build graph is a better fit |
-| Type checking | Bun check after compatibility validation, plus required framework checks | Supported official TypeScript; tsrs for justified local feedback |
-| Lint and format | Ultracite presets + Biome | Ultracite + Oxlint/Oxfmt; suitable existing configuration; supplementary ESLint for uncovered rules |
+| Type checking | Bun check after compatibility validation, plus required framework checks | Supported official TypeScript; `oxlint --type-aware --type-check` or `tsrs` for justified local feedback |
+| Lint and format | Ultracite presets + Oxlint/Oxfmt | Ultracite + Biome; suitable existing configuration; supplementary ESLint for uncovered rules |
 | Workspace | Bun workspaces + Turborepo | pnpm workspaces; a single application may need neither |
-| API | oRPC for TypeScript; OpenAPI for external clients | Hono as an independent HTTP edge/API framework; Convex-generated functions in its profile |
+| API | TanStack Start server functions (web-only) or oRPC (multi-client/OpenAPI) | OpenAPI for external clients; Hono as an independent HTTP edge/API framework; Convex-generated functions in its profile |
 | Application logic | Effect for nontrivial domain services and async processing | Plain functions and `async`/`await` for simpler services |
 | UI | shadcn/ui + supported accessible primitives + Tailwind for React | Framework-compatible components; CSS Modules/native CSS; an existing design system |
 | State | TanStack Query + component state | Convex reactive integration in its profile; Zustand for client-owned state where needed |
@@ -424,7 +424,7 @@ Track server time to first byte, cache hit rate, query latency, bundle size by r
 | Native Bun APIs | S3Client, SQL, or Markdown when Bun execution and requirements fit | Runtime-compatible SDKs, platform bindings, or an existing content pipeline |
 | Jobs | Inngest, Trigger.dev, or Cloudflare Queues/Workflows | Native Convex scheduling in its profile; a dedicated queue/event platform for proven scale |
 | Email | Resend | Postmark, AWS SES |
-| Payments | Stripe | Paddle, Lemon Squeezy (merchant of record) |
+| Payments | Stripe | Paddle, Stripe Managed Payments, Polar.sh (merchant of record) |
 | Analytics | PostHog | A privacy-focused or warehouse-native analytics system |
 | Search | PostgreSQL full-text search | Meilisearch, Algolia, OpenSearch/Elasticsearch |
 | Internationalization | Paraglide.js | FormatJS, i18next |
@@ -457,7 +457,7 @@ This keeps the stack current without turning the README into a list of fashionab
 - [Bulletproof React](https://github.com/alan2207/bulletproof-react)
 - [System Design Primer](https://github.com/donnemartin/system-design-primer)
 - [Vite](https://vite.dev/guide/)
-- [Bun runtime](https://bun.sh/docs/runtime)
+- [Bun runtime](https://bun.com/docs/runtime)
 - [Hono](https://hono.dev/docs/)
 - [Effect programming model](https://effect.website/docs/v4/getting-started/why-effect)
 - [Effect Schema and Standard Schema](https://effect.website/docs/v4/schema/standard-schema)
